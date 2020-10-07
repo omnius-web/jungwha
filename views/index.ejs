@@ -1,0 +1,118 @@
+<%- include ("./header") %>
+
+<div class="om_main_top_wrap">
+	<div class="om_main_top_img">
+		<div class="om_main_top_tit">
+			<a>부천시 정화조 청소 / 공사</a>
+		</div>
+		<div class="om_logo">
+			<img src="/img/logo.png">
+		</div>
+		<div class="om_main_bt">
+			<li class="om_main_bt_li om_main_bt_li1">
+				<!-- <img src="/img/i1.png" class="om_main_bt_b">
+				<img src="/img/i1_o.png" class="om_main_bt_o"> -->
+			</li>
+			<li class="om_main_bt_li om_main_bt_li2">
+			</li>
+			<li class="om_main_bt_li om_main_bt_li3">
+			</li>
+			<li class="om_main_bt_li om_main_bt_li4">
+			</li>
+			<li class="om_main_bt_li om_main_bt_li5">
+			</li>
+		</div>
+	</div>
+</div>
+
+<div class="om_main_form">
+	<div class="om_main_form_con">
+		<form class="" action="/contactprc" method="post">
+
+			<!-- form_1 -->
+			<div class="om_main_form_con_div">
+				<li class="om_main_fcd_li1">
+					<a class="om_main_fcd_a1">성</a><a>명</a>
+				</li>
+				<li class="om_main_fcd_li2">
+					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+				</li>
+			</div>
+			<!-- form_1 -->
+
+			<!-- form_2 -->
+			<div class="om_main_form_con_div">
+				<li class="om_main_fcd_li1">
+					<a>청소날짜</a>
+				</li>
+				<li class="om_main_fcd_li2">
+					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+				</li>
+			</div>
+			<!-- form_2 -->
+
+			<!-- form_3 -->
+			<div class="om_main_form_con_div">
+				<li class="om_main_fcd_li1">
+					<a class="om_main_fcd_a1">주</a><a>소</a>
+				</li>
+				<li class="om_main_fcd_li2">
+					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+				</li>
+			</div>
+			<!-- form_3 -->
+
+			<!-- form_4 -->
+			<div class="om_main_form_con_div">
+				<li class="om_main_fcd_li1">
+					<a>전화번호</a>
+				</li>
+				<li class="om_main_fcd_li2">
+					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+				</li>
+			</div>
+			<!-- form_4 -->
+
+			<!-- form_5 -->
+			<div class="om_main_form_con_div">
+				<li class="om_main_fcd_li1">
+					<a>요청사항</a>
+				</li>
+				<li class="om_main_fcd_li2">
+					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+				</li>
+			</div>
+			<!-- form_5 -->
+
+			<!-- form_6 -->
+			<div class="om_main_form_con_div">
+				<li class="om_main_fcd_li1">
+					<a></a>
+				</li>
+				<li class="om_main_fcd_li2">
+					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+				</li>
+			</div>
+			<!-- form_6 -->
+
+		</form>
+	</div>
+</div>
+
+<div class="om_calendar_input">
+</div>
+
+<div class="om_juso">
+	<form name="form" id="form" method="post">
+		<input type="text" name="currentPage" value="1" class="om_hid"> <!-- 요청 변수 설정 (현재 페이지. currentPage : n > 0) -->
+		<input type="text" name="countPerPage" value="10" class="om_hid"><!-- 요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100) -->
+		<input type="text" name="resultType" value="json" class="om_hid"> <!-- 요청 변수 설정 (검색결과형식 설정, json) -->
+		<input type="text" name="confmKey" value="devU01TX0FVVEgyMDIwMTAwMTIyNDkzNjExMDI0OTM=" class="om_hid"><!-- 요청 변수 설정 (승인키) -->
+		<input type="text" name="keyword" value="" onkeydown="enterSearch();"/><!-- 요청 변수 설정 (키워드) -->
+		<input type="button" onClick="getAddr(1);" value="주소검색하기"/>
+		<div id="list" ></div><!-- 검색 결과 리스트 출력 영역 -->
+	  <div class="paginate" id="pageApi"></div>
+	</form>
+</div>
+
+<%- include ("./footer") %>

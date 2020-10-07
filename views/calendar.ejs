@@ -1,0 +1,51 @@
+<!-- Calendar.ejs -->
+<% var prevMon = Number(month)-1 %>
+<% var nextMon = Number(month)+1 %>
+<div class="" style="text-align: center;">
+  <h2>
+    <%=year%>년 <%= month %>월
+  </h2>
+</div>
+<div class="om_cal_year" data-calyear="<%=year%>">
+  <a class="om_cal_prev" data-prevmon="<%=prevMon%>">이전달</a>
+  <a class="om_cal_next" data-nextmon="<%=nextMon%>">다음달</a>
+</div>
+<a href="/excel" target="_blank">excel</a>
+<div class="om_calendar_table">
+  <table>
+    <tr>
+      <td>일</td>
+      <td>월</td>
+      <td>화</td>
+      <td>수</td>
+      <td>목</td>
+      <td>금</td>
+      <td>토</td>
+    </tr>
+<% for(calCon in cal) { %>
+    <tr>
+  <% for(calCon2 in cal[calCon]) { %>
+
+        <% if(cal[calCon][calCon2] !== 0){ %>
+          <%if(now.nowY === Number(year) && now.nowM === Number(month) && now.nowD === cal[calCon][calCon2]){%>
+            <td style="background-color: #cccccc;">
+              <a><%= cal[calCon][calCon2] %></a>
+            </td>
+          <%}else{%>
+            <%if(holi.includes(cal[calCon][calCon2])){%>
+              <td style="background-color: red;"">
+                <a style="color: white;"><%= cal[calCon][calCon2] %></a>
+              </td>
+            <%}else{%>
+              <td><a><%= cal[calCon][calCon2] %></a></td>
+            <%}%>
+          <%}%>
+        <% }else{ %>
+          <td></td>
+        <%}%>
+
+  <% } %>
+    </tr>
+<% } %>
+  </table>
+</div>

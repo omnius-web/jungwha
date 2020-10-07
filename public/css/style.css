@@ -1,0 +1,305 @@
+/* STYLE.CSS */
+@font-face {
+  font-family: 'LotteMartDream';
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff') format('woff');
+}
+
+
+@font-face {
+ font-family: 'NanumBarunGothic';
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+
+
+
+ @font-face {
+   font-family: 'Noto Sans KR';
+   font-style: normal;
+   font-weight: 900!important;
+   src: url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2') format('woff2'),url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff') format('woff'),url('//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf') format('opentype');
+ }
+
+
+ @font-face {
+   font-family: 'BareunDotum';
+   font-style: normal;
+   font-weight: 300;
+   src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunDotum/BareunDotumOTFPro1.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kpa/BareunDotum/BareunDotumOTFPro1.woff') format('woff');
+ }
+
+
+@font-face { font-family: 'IBMPlexSansKR-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+/* font-family: 'IBMPlexSansKR-Regular'; */
+
+
+@font-face { font-family: 'Godo'; font-style: normal; font-weight: 400; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff'); } @font-face { font-family: 'Godo'; font-style: normal; font-weight: 700; src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); } .godo * { font-family: 'Godo', sans-serif; }
+
+/* font-family: 'Godo', sans-serif; */
+
+/* * {
+    font-family: 'Nanum Gothic', sans-serif!important;
+} */
+/* * {
+    font-family: 'LotteMartDream', sans-serif;
+} */
+
+/* * {
+  font-family: 'NanumBarunGothic', sans-serif;
+} */
+/* * {
+font-family: 'Noto Sans KR', sans-serif;
+} */
+
+
+/* * {
+font-family: 'BareunDotum', sans-serif;
+
+} */
+
+
+
+
+/* * {
+font-family: 'Noto Sans KR', sans-serif;
+} */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'NanumBarunGothic', sans-serif;
+  font-size: 1rem;
+}
+a {
+  text-decoration: none;
+  color: #000000;
+}
+li {
+  list-style: none;
+  display: inline-block;
+}
+.om_hid {
+  display: none;
+}
+
+
+
+
+/* MAIN_TOP */
+.om_main_top_wrap {
+  width: 100%;
+}
+.om_main_top_img {
+  position: relative;
+  background-image: url('/img/main_bg.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 796px;
+}
+.om_main_top_tit {
+  text-align: center;
+  background-color: #0075a9;
+}
+.om_main_top_tit a {
+  color: white;
+  font-size: 40px;
+  font-weight: bolder;
+  display: inline-block;
+  padding: 20px 0;
+}
+.om_logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.om_logo img {
+  width: 700px;
+}
+.om_main_form {
+  margin-top: 20px;
+}
+.om_main_form_con {
+  width: 1600px;
+  margin: 0 auto;
+  border: 2px solid #929191;
+  border-radius: 20px;
+  padding: 1rem 0;
+  text-align: center;
+}
+.om_main_fcd_a1 {
+  letter-spacing: 2.3rem;
+
+}
+.om_main_form_con_div {
+  width: 32%;
+  display: inline-block;
+  margin: 0.7rem 0;
+}
+.om_main_fcd_li1 {
+  width: 20%;
+  text-align: left;
+}
+.om_main_fcd_li1 a {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.om_main_fcd_li2 {
+  width: 75%;
+}
+.om_main_fcd_li2 input {
+  padding: 1rem;
+  border: 0;
+  background-color: #929191;
+  color: white;
+  border-radius: 5px;
+  width: 90%;
+  box-sizing: border-box;
+}
+.om_main_fcd_li2 input::placeholder {
+  color: #cccccc;
+}
+.om_main_bt {
+  position: absolute;
+  top: 150px;
+  right: 20px;
+  width: 250px;
+}
+.om_main_bt > li > img {
+  width: 100%;
+}
+.om_main_bt_li {
+  background-repeat: no-repeat;
+  width: 100%;
+
+  background-size: 100%;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+}
+
+.om_main_bt_li1 {
+  background-image: url('/img/i1.png');
+  height: 70px;
+}
+.om_main_bt_li1:hover {
+  background-image: url('/img/i1_o.png');
+}
+.om_main_bt_li2 {
+  height: 160px;
+  background-image: url('/img/i2.png');
+}
+.om_main_bt_li2:hover {
+  background-image: url('/img/i2_o.png');
+}
+.om_main_bt_li3 {
+  height: 160px;
+  background-image: url('/img/i3.png');
+}
+.om_main_bt_li3:hover {
+  background-image: url('/img/i3_o.png');
+}
+.om_main_bt_li4 {
+  height: 70px;
+  background-image: url('/img/i4.png');
+}
+.om_main_bt_li4:hover {
+  background-image: url('/img/i4_o.png');
+}
+.om_main_bt_li5 {
+  height: 70px;
+  background-image: url('/img/i5.png');
+}
+.om_main_bt_li5:hover {
+  background-image: url('/img/i5_o.png');
+}
+/* .om_main_bt_b {
+
+}
+.om_main_bt_o {
+  display: none;
+} */
+
+
+
+
+
+
+
+@media screen and (max-width: 1500px) {
+  .om_main_top_img {
+    height: 500px;
+  }
+}
+/* MAIN_TOP */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Calendar.ejs */
+.om_calendar_table {
+  width: 100%;
+}
+.om_calendar_table table {
+  width: 100%;
+}
+.om_calendar_table > table td {
+  width: 14%;
+  text-align: center;
+  border: 1px solid #cccccc;
+  padding: 15px 0;
+}
+.om_cal_year > a {
+  cursor: pointer;
+}
+/* Calendar.ejs */
+
+
+
+/* SLIDE */
+.om_slide_wrap {
+  width: 100%;
+  position: relative;
+}
+.om_slide_content {
+  width: 100%;
+  position: relative;
+}
+.om_slide {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+}
+.om_slide1 {
+  background-color: black;
+}
+.om_slide2 {
+  background-color: blue;
+}
+.om_slide3 {
+  background-color: red;
+}
+/* SLIDE */
+
+
+
+/* Juso */
+.jusotable td {
+  border:1px solid #cccccc;
+}
+/* Juso */
