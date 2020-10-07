@@ -27,7 +27,8 @@ module.exports = function(router){
           var auth = {
             name: 'admin',
             nickname: '관리자',
-            num: 'super'
+            auth: 'super',
+            num: 10
           };
           return done(null, auth);
         } else {

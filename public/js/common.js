@@ -62,4 +62,27 @@ $(document).ready(function(){
 
   // main
 
+
+
+
+
+  // 게시판만들기
+
+  $(document).on('click','.create_table',function(){
+    $.ajax({
+      type : 'post',
+      url : '/adm/createtable',
+      data : {
+        name: 'crtb'
+      },
+      cache : false,
+      success : function(rst){
+        alert('테이블만들기 성공');
+      }
+    });
+  });
+
+  // 게시판만들기
+
+
 });
