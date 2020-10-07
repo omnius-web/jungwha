@@ -4,6 +4,7 @@ var app = express();
 var fs = require('fs');
 var https = require('https');
 var indexRout = require('./router/index');
+var admRout = require('./router/adm');
 var ejs = require('ejs');
 
 
@@ -18,6 +19,7 @@ var option = {
 };
 
 app.use('/',indexRout);
+app.use('/adm',admRout);
 
 https.createServer(option, app).listen(3000,function(){
 	console.log('HTTPS SERVER START! PORT:3000');

@@ -77,7 +77,6 @@ a {
 }
 li {
   list-style: none;
-  display: inline-block;
 }
 .om_hid {
   display: none;
@@ -137,6 +136,9 @@ li {
   width: 32%;
   display: inline-block;
   margin: 0.7rem 0;
+}
+.om_main_form_con_div li {
+  display: inline-block;
 }
 .om_main_fcd_li1 {
   width: 20%;
@@ -223,6 +225,20 @@ li {
 .om_main_bt_o {
   display: none;
 } */
+.om_auth {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 99;
+}
+.om_auth > li {
+  display: inline-block;
+  padding: 0 5px;
+}
+.om_auth > li > a {
+  color: white;
+}
+
 
 
 

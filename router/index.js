@@ -1,27 +1,38 @@
 // Index_ROUTER
 var express = require('express');
 var router = express.Router();
-var bodyParser = require('body-parser');
 var path = require('path');
 var dbOpt = require('../models/db');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
 var calMod = require('../models/calendar');
 var solarHoliday = require('../models/solarholiday');
-var excel = require('../models/excel');
+var bodyParser = require('body-parser');
 var mysql = require('mysql');
-var db = mysql.createConnection(dbOpt);
-var session = require("express-session");
+var excel = require('../models/excel');
 
+var db = mysql.createConnection(dbOpt);
 
 
 db.connect();
-router.use(bodyParser.urlencoded({ extended: false }));
+var sessionStore = new MySQLStore(dbOpt);
 
+router.use(session({
+  secret: 'dhasldjtmtptus',
+  resave: false,
+  saveUninitialized: true,
+  store: sessionStore
+}))
+
+router.use(bodyParser.urlencoded({ extended: false }));
+var passport = require('../models/passport')(router);
 
 router.get('/',function(req,res){
   res.send('SERVER SET...');
 })
 
 router.get('/db',function(req,res){
+  console.log(req.user);
   db.query(`SELECT * FROM test`,function(err,data){
     if(err){
       throw err;
@@ -33,13 +44,13 @@ router.get('/db',function(req,res){
   });
 });
 
-router.get('/:pw',function(req,res){
-  var omPw = path.parse(req.params.pw).base;
-  if(omPw === 'omnius'){
-    res.render('index');
-  }else{
-    res.send('SERVER SET...');
+router.get('/omnius',function(req,res){
+  //var omPw = path.parse(req.params.pw).base;
+  var rstSend = {
+    auth: req.user
   }
+  res.render('index',rstSend);
+
 });
 
 

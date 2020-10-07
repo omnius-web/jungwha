@@ -10,6 +10,19 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="/js/common.js"></script>
-    
+
   </head>
   <body>
+    <% if(auth){ %>
+    <div class="om_auth">
+      <li>
+        <a><%= auth.nickname %>님 반갑습니다</a>
+      </li>
+      <li>
+        <a href="/adm/menu">MENU</a>
+      </li>
+      <li>
+        <a href="/adm/logout">LogOut</a>
+      </li>
+    </div>
+    <% } %>
