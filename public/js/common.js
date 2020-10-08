@@ -77,12 +77,40 @@ $(document).ready(function(){
       },
       cache : false,
       success : function(rst){
-        alert('테이블만들기 성공');
+        if(rst){
+          alert('게시판이 성공적으로 만들어졌습니다.');
+        }else{
+          alert('DB나 회원등급에 문제가 있습니다.');
+        }
       }
     });
   });
 
   // 게시판만들기
+
+  // 회원관리 게시판만들기
+
+  $(document).on('click','.create_member_table',function(){
+    $.ajax({
+      type : 'post',
+      url : '/adm/createmembertable',
+      data : {
+        name: 'crtb'
+      },
+      cache : false,
+      success : function(rst){
+        if(rst){
+          alert('게시판이 성공적으로 만들어졌습니다.');
+          location.reload();
+        }else{
+          alert('DB나 회원등급에 문제가 있습니다.');
+          location.reload();
+        }
+      }
+    });
+  });
+
+  // 회원관리 게시판만들기
 
 
 });

@@ -1,0 +1,19 @@
+<!-- Admin_member ejs -->
+<%- include ("../header") %>
+<%- include ("./adm_header") %>
+
+<div class="om_adm_content">
+
+
+<% if(member){ %>
+  member테이블 있음
+<% }else{ %>
+  <div class="om_adm_member_wrap">
+    <a>회원관리 기능을 사용하고 있지 않습니다. 사용을 원하시면 기능을 추가해주세요.</a>
+    <button class="create_member_table">회원관리 기능사용</button>
+  </div>
+<% } %>
+
+</div>
+
+<%- include ("../footer") %>

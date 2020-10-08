@@ -236,8 +236,35 @@ li {
   padding: 0 5px;
 }
 .om_auth > li > a {
-  color: white;
+  color: black;
 }
+
+
+/* ADM */
+.om_adm_header {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  border-bottom: 1px solid #cccccc;
+}
+.om_adm_header > a {
+  font-size: 3rem;
+}
+.om_adm_menu {
+  text-align: center;
+}
+.om_adm_menu > a {
+  display: inline-block;
+  padding: 20px;
+}
+.om_adm_content {
+  width: 1000px;
+  margin: 30px auto;
+}
+.create_member_table {
+  padding: 5px;
+}
+/* ADM */
 
 
 
