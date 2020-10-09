@@ -33,8 +33,20 @@ module.exports = {
     })
     return true;
   },
-  joinprc: function(res,db,postRst){
+  joinprc: function(req,res,db){
     var crypto = require('crypto');
+
+    var post = req.body;
+    var postRst = {};
+    postRst.mb_id = post.id;
+    postRst.mb_pw = post.pw;
+    postRst.mb_json = {};
+    for(name in post){
+      if(name !== 'id' && name !== 'pw'){
+        postRst.mb_json[name] = post[name];
+      }
+    }
+    postRst.mb_json = JSON.stringify(postRst.mb_json);
 
     crypto.randomBytes(64, (err, buf) => {
       var bsalt = buf.toString('base64');

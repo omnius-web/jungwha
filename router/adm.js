@@ -64,21 +64,7 @@ router.get('/join',(req,res)=>{
 
 // 회원가입_Process
 router.post('/join_prc',(req,res)=>{
-  var post = req.body;
-  var postRst = {};
-  postRst.mb_id = post.id;
-  postRst.mb_pw = post.pw;
-  postRst.mb_json = {};
-  for(name in post){
-    if(name !== 'id' && name !== 'pw'){
-      postRst.mb_json[name] = post[name];
-    }
-  }
-  postRst.mb_json = JSON.stringify(postRst.mb_json);
-
-  authMd.joinprc(res,db,postRst);
-
-
+  authMd.joinprc(req,res,db);
 })
 
 // ADMIN 기본화면
