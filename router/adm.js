@@ -26,7 +26,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(flash());
 
-var passport = require('../models/passport')(router);
+var passport = require('../models/passport')(router,db);
 
 
 
@@ -70,34 +70,41 @@ router.post('/join_prc',(req,res)=>{
 // ADMIN 기본화면
 router.get('/',(req,res)=>{
   var authRst = authMd.authcheck(req,res,10);
-  var userInfo = {};
   if(authRst){
-    userInfo = req.user;
+    var rstSend = {
+      auth: authRst,
+      userInfo: req.user
+    }
+    res.render('adm/admin',rstSend);
+  }else{
+    res.redirect('/adm/login');
   }
-  var rstSend = {
-    auth: userInfo
-  }
-  res.render('adm/admin',rstSend);
+
 });
 
 // ADMIN 회원관리
 router.get('/member',(req,res)=>{
   var authRst = authMd.authcheck(req,res,10);
-  var userInfo = {};
   if(authRst){
-    userInfo = req.user;
-  }
-  db.query('select * from member',function(err,data){
-    if(err){
-      var memberRst = false;
-    }
-    var memberRst = data;
     var rstSend = {
-      auth: userInfo,
-      member: memberRst
+      auth: authRst,
+      userInfo: req.user
     }
-    res.render('adm/member',rstSend);
-  })
+    db.query('select * from member',function(err,data){
+      if(err){
+        var memberRst = false;
+      }
+      var memberRst = data;
+      var rstSend = {
+        auth: authRst,
+        userInfo: req.user,
+        member: memberRst
+      }
+      res.render('adm/member',rstSend);
+    })
+  }else{
+    res.redirect('/adm/login');
+  }
 });
 
 // 로그아웃

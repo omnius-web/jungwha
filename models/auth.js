@@ -24,6 +24,7 @@ module.exports = {
       mb_num INT AUTO_INCREMENT PRIMARY KEY,
       mb_id varchar(100),
       mb_pw varchar(255),
+      mb_st varchar(255),
       mb_json text,
       date DATETIME
     )`,function(err,data){
@@ -53,6 +54,7 @@ module.exports = {
       crypto.pbkdf2(postRst.mb_pw, buf.toString('base64'), 120847, 64, 'sha512', (err, key) => {
         var bkey = key.toString('base64');
         postRst.mb_pw = bkey;
+        postRst.mb_st = bsalt;
         console.log(bkey);
         db.query('insert into member set ?',postRst,function(err,rst){
           if (err){
