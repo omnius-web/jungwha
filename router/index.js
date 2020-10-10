@@ -72,15 +72,37 @@ router.post('/calendar',function(req,res){
   var month = req.body.month;
   var rstCalendar = calMod(year,month);
   var holiday = solarHoliday(rstCalendar.rstcalendar,year,month);
-  var rstSend = {
-    year: year,
-    month: month,
-    cal: rstCalendar.rstcalendar,
-    now: rstCalendar.now,
-    holi: holiday
+  var sche_list = function(){
+    return new Promise(function(resolve,reject){
+      db.query('select wr3 from schedule where wr1=? and wr2=?',[year,month],(err,data)=>{
+        if(err){
+          throw 'schedule select fail';
+        }
+        resolve(data);
+      })
+    })
   };
-  console.log(rstSend);
-  res.render('calendar',rstSend);
+  sche_list().then(function(rst){
+    var rstScheArr = [];
+    for(num in rst){
+      rstScheArr.push(Number(rst[num].wr3));
+    }
+    var rstSend = {
+      year: year,
+      month: month,
+      cal: rstCalendar.rstcalendar,
+      now: rstCalendar.now,
+      holi: holiday,
+      auth: req.user,
+      schedule: rstScheArr
+    };
+    //console.log('입력된 스케쥴 배열',rstScheArr.includes('14'));
+    res.render('calendar',rstSend);
+  }).catch(function(){
+    console.log(reject);
+  })
+
+
 });
 // Calendar
 

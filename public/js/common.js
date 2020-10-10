@@ -113,4 +113,72 @@ $(document).ready(function(){
   // 회원관리 게시판만들기
 
 
+
+
+  // schedule
+  $(document).on('click','.adm_sche_in',function(){
+    var nowY = $('.now_y').text();
+    var nowM = $('.now_m').text();
+    var nowD = $(this).children('a').text();
+    var conf = confirm('입력하시겠습니까?');
+    if(conf){
+      $.ajax({
+        type : 'post',
+        url : '/adm/schedule_prc',
+        data : {
+          nowy: nowY,
+          nowm: nowM,
+          nowd: nowD
+        },
+        cache : false,
+        success : function(rst){
+          if(rst){
+            alert('입력되었습니다.');
+            location.reload();
+          }else{
+            alert('입력오류!');
+            location.reload();
+          }
+        }
+      });
+    }
+    else{
+
+    }
+
+  });
+
+  $(document).on('click','.sche_in',function(){
+    var nowY = $('.now_y').text();
+    var nowM = $('.now_m').text();
+    var nowD = $(this).children('a').text();
+    var conf = confirm('삭제하시겠습니까?');
+    if(conf){
+      $.ajax({
+        type : 'post',
+        url : '/adm/schedule_prc_del',
+        data : {
+          nowy: nowY,
+          nowm: nowM,
+          nowd: nowD
+        },
+        cache : false,
+        success : function(rst){
+          if(rst){
+            alert('삭제되었습니다.');
+            location.reload();
+          }else{
+            alert('삭제오류!');
+            location.reload();
+          }
+        }
+      });
+    }
+    else{
+
+    }
+
+  });
+  // schedule
+
 });

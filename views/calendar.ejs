@@ -1,9 +1,17 @@
 <!-- Calendar.ejs -->
 <% var prevMon = Number(month)-1 %>
 <% var nextMon = Number(month)+1 %>
+<% var adm = false %>
+<% var admClass = '' %>
+<% if(auth===undefined){ %>
+  <% var adm = false %>
+<% }else if(auth.name === 'admin'){ %>
+  <% var adm = true %>
+  <% var admClass = 'adm_sche_in' %>
+<% } %>
 <div class="" style="text-align: center;">
   <h2>
-    <%=year%>년 <%= month %>월
+    <span class="now_y"><%=year%></span>년 <span class="now_m"><%= month %></span>월
   </h2>
 </div>
 <div class="om_cal_year" data-calyear="<%=year%>">
@@ -27,17 +35,21 @@
   <% for(calCon2 in cal[calCon]) { %>
 
         <% if(cal[calCon][calCon2] !== 0){ %>
+          <% var sche_class = admClass %>
+          <%if(schedule.includes(cal[calCon][calCon2])){%>
+            <% sche_class = 'sche_in' %>
+          <%}%>
           <%if(now.nowY === Number(year) && now.nowM === Number(month) && now.nowD === cal[calCon][calCon2]){%>
-            <td style="background-color: #cccccc;">
+            <td style="background-color: #cccccc;" class="om_cal_td <%= sche_class %>">
               <a><%= cal[calCon][calCon2] %></a>
             </td>
           <%}else{%>
             <%if(holi.includes(cal[calCon][calCon2])){%>
-              <td style="background-color: red;"">
+              <td style="background-color: red;" class="om_cal_td <%= sche_class %>">
                 <a style="color: white;"><%= cal[calCon][calCon2] %></a>
               </td>
             <%}else{%>
-              <td><a><%= cal[calCon][calCon2] %></a></td>
+              <td class="om_cal_td <%= sche_class %>"><a><%= cal[calCon][calCon2] %></a></td>
             <%}%>
           <%}%>
         <% }else{ %>

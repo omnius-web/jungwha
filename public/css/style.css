@@ -346,3 +346,20 @@ li {
   border:1px solid #cccccc;
 }
 /* Juso */
+
+
+
+
+
+/* schedule.ejs */
+.om_adm_schedule_wrap {
+  width: 800px;
+  margin: 50px auto;
+}
+.om_cal_td {
+  cursor: pointer;
+}
+.sche_in {
+  background-color: #0088ff!important;
+}
+/* schedule.ejs */

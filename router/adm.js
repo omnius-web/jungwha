@@ -48,10 +48,17 @@ router.post('/login_prc', passport.authenticate('local',
 
 // 로그인 화면
 router.get('/login',(req,res)=>{
-  var rstSend = {
-    auth: req.user
+  console.log(req.user);
+  if(req.user === undefined){
+    var rstSend = {
+      auth: false
+    }
+    res.render('login',rstSend);
   }
-  res.render('login',rstSend);
+  else{
+    res.redirect('/')
+  }
+
 });
 
 // 회원가입 화면
@@ -106,6 +113,74 @@ router.get('/member',(req,res)=>{
     res.redirect('/adm/login');
   }
 });
+
+// 스케쥴
+router.get('/schedule',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,10);
+  if(authRst){
+    var rstSend = {
+      auth: authRst,
+      userInfo: req.user
+    }
+    res.render('adm/schedule',rstSend);
+  }else{
+    res.redirect('/adm/login');
+  }
+
+})
+
+// 스케쥴_입력
+router.post('/schedule_prc',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,10);
+  var post = req.body;
+  if(authRst){
+    var timestamp = Math.floor(new Date().getTime()/1000);
+    var rstSend = {
+      subject: '일정입력',
+      writer: '관리자',
+      date: timestamp,
+      wr1: post.nowy,
+      wr2: post.nowm,
+      wr3: post.nowd
+    }
+    db.query('insert into schedule set ?',rstSend,(err,data)=>{
+      if(err){
+        throw 'schedule insert err';
+      }
+      if(data.insertId){
+        res.send(true);
+      }
+      else{
+        res.send(false);
+      }
+    })
+
+  }else{
+    res.redirect('/adm/login');
+  }
+})
+
+// 스케쥴_삭제
+router.post('/schedule_prc_del',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,10);
+  var post = req.body;
+  if(authRst){
+    var rstSend = {
+      wr1: post.nowy,
+      wr2: post.nowm,
+      wr3: post.nowd
+    }
+    db.query('delete from schedule where wr1=? and wr2=? and wr3=?',[rstSend.wr1,rstSend.wr2,rstSend.wr3],(err,data)=>{
+      if(err){
+        throw 'schedule delete err';
+      }
+      res.send(true);
+    })
+
+  }else{
+    res.redirect('/adm/login');
+  }
+})
 
 // 로그아웃
 router.get('/logout', function(req, res){
