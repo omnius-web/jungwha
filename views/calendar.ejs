@@ -40,7 +40,7 @@
             <% sche_class = 'sche_in' %>
           <%}%>
           <%if(now.nowY === Number(year) && now.nowM === Number(month) && now.nowD === cal[calCon][calCon2]){%>
-            <td style="background-color: #cccccc;" class="om_cal_td <%= sche_class %>">
+            <td style="<!--background-color: #cccccc;-->" class="om_cal_td <%= sche_class %>">
               <a><%= cal[calCon][calCon2] %></a>
             </td>
           <%}else{%>

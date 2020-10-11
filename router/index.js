@@ -10,6 +10,7 @@ var solarHoliday = require('../models/solarholiday');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var excel = require('../models/excel');
+var authMd = require('../models/auth');
 
 var db = mysql.createConnection(dbOpt);
 
@@ -45,9 +46,10 @@ router.get('/db',function(req,res){
 });
 
 router.get('/omnius',function(req,res){
-  //var omPw = path.parse(req.params.pw).base;
+  var authRst = authMd.authcheck(req,res,1);
   var rstSend = {
-    auth: req.user
+    auth: authRst,
+    userInfo: req.user
   }
   res.render('index',rstSend);
 

@@ -114,6 +114,32 @@ router.get('/member',(req,res)=>{
   }
 });
 
+// ADMIN 게시판관리
+router.get('/board',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,10);
+  if(authRst){
+    db.query('show tables',(err,rst)=>{
+      if(err){
+        throw 'board_show_table_err';
+      }
+      var bo_list = [];
+      for(lis in rst){
+        for(lisName in rst[lis]){
+            bo_list.push(rst[lis][lisName]);
+        }
+      }
+      var rstSend = {
+        auth: authRst,
+        userInfo: req.user,
+        bolist: bo_list
+      }
+      res.render('adm/board',rstSend);
+    });
+  }else{
+    res.redirect('/adm/login');
+  }
+});
+
 // 스케쥴
 router.get('/schedule',(req,res)=>{
   var authRst = authMd.authcheck(req,res,10);
@@ -199,8 +225,13 @@ router.post('/createtable',(req,res)=>{
   if(authRst){
     var tbName = req.body;
     var cretb = authMd.createtable(db, tbName.name);
+    if(cretb){
+      res.redirect('/adm/board');
+    }
   }
-  res.send(cretb);
+  else{
+    res.redirect('/adm/login');
+  }
 });
 
 // DB 회원관리 테이블만들기

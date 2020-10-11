@@ -45,6 +45,17 @@ $(document).ready(function(){
       }
     });
   }
+
+  // $(document).on('click','#calFormInput',function(){
+  //   $('.calForForm').css('display','inline-block');
+  // }
+  $('#calFormInput').click(function(){
+    $('.calForForm').css('display','inline-block');
+  });
+  // function calFormInput(){
+  //   $('.calForForm').css('display','inline-block');
+  // }
+
   // Calendar
 
 

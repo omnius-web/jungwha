@@ -238,6 +238,21 @@ li {
 .om_auth > li > a {
   color: black;
 }
+.calWrapForForm {
+  position: relative;
+}
+.calForForm {
+  position: absolute;
+  bottom: 55px;
+  left: 50%;
+  margin-left: -100px;
+  display: none;
+  width: 300px;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #cccccc;
+}
+
 
 
 /* ADM */
@@ -246,12 +261,14 @@ li {
   padding: 50px 0;
   text-align: center;
   border-bottom: 1px solid #cccccc;
+  background-color: #eaeaea;
 }
 .om_adm_header > a {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 .om_adm_menu {
   text-align: center;
+  border-bottom: 1px solid #cccccc;
 }
 .om_adm_menu > a {
   display: inline-block;
@@ -263,6 +280,13 @@ li {
 }
 .create_member_table {
   padding: 5px;
+}
+.om_adm_con_wrap {
+  width: 800px;
+  margin: 50px auto;
+}
+.board_list {
+  margin-bottom: 50px;
 }
 /* ADM */
 
@@ -352,10 +376,7 @@ li {
 
 
 /* schedule.ejs */
-.om_adm_schedule_wrap {
-  width: 800px;
-  margin: 50px auto;
-}
+
 .om_cal_td {
   cursor: pointer;
 }

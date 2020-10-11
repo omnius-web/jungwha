@@ -12,7 +12,23 @@ module.exports = {
     }
   },
   createtable: function(db, name){
-    db.query(`create table ?? (wr1 int, wr2 varchar(255))`,[name],function(err,data){
+    db.query(`create table ?? (
+      anum INT AUTO_INCREMENT PRIMARY KEY,
+      subject varchar(255),
+      writer varchar(100),
+      content text,
+      json text,
+      date int, 
+      wr1 varchar(255),
+      wr2 varchar(255),
+      wr3 varchar(255),
+      wr4 varchar(255),
+      wr5 varchar(255),
+      wr6 varchar(255),
+      wr7 varchar(255),
+      wr8 varchar(255),
+      wr9 varchar(255),
+      wr10 varchar(255))`,[name],function(err,data){
       if(err){
         throw err;
       }

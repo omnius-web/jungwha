@@ -1,0 +1,20 @@
+<!-- admin_board_HTML -->
+<%- include ("../header") %>
+<%- include ("./adm_header") %>
+
+<div class="om_adm_con_wrap">
+  <div class="board_list">
+    <% for(bl in bolist){ %>
+      <li><%= bolist[bl] %></li>
+    <% } %>
+  </div>
+  <div class="create_table_div">
+    <form class="" action="/adm/createtable" method="post">
+      <li>
+        <input type="text" name="name" value="" placeholder="table name"><input type="submit" value="게시판만들기">
+      </li>
+    </form>
+  </div>
+</div>
+
+<%- include ("../footer") %>
