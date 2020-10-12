@@ -252,6 +252,24 @@ li {
   padding: 10px;
   border: 1px solid #cccccc;
 }
+.calBottom {
+  position: relative;
+  margin-top: 7px;
+  height: 30px;
+}
+.calBottom > li {
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+.calBottom > li > a {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 8px 10px;
+  background-color: #dadada;
+  cursor: pointer;
+}
 
 
 
@@ -329,7 +347,8 @@ li {
   width: 14%;
   text-align: center;
   border: 1px solid #cccccc;
-  padding: 15px 0;
+  padding: 10px 0;
+  border-radius: 5px;
 }
 .om_cal_year > a {
   cursor: pointer;

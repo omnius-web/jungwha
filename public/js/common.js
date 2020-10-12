@@ -55,7 +55,9 @@ $(document).ready(function(){
   // function calFormInput(){
   //   $('.calForForm').css('display','inline-block');
   // }
-
+  $('.calBottom').click(function(){
+    $('.calForForm').css('display','none');
+  });
   // Calendar
 
 

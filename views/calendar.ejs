@@ -18,7 +18,7 @@
   <a class="om_cal_prev" data-prevmon="<%=prevMon%>">이전달</a>
   <a class="om_cal_next" data-nextmon="<%=nextMon%>">다음달</a>
 </div>
-<a href="/excel" target="_blank">excel</a>
+<!-- <a href="/excel" target="_blank">excel</a> -->
 <div class="om_calendar_table">
   <table>
     <tr>
@@ -39,19 +39,24 @@
           <%if(schedule.includes(cal[calCon][calCon2])){%>
             <% sche_class = 'sche_in' %>
           <%}%>
+          <% var styleDay = '' %>
+          <% var styleDay2 = '' %>
+          <% var selTimeSt = new Date(year,month,cal[calCon][calCon2]) %>
+          <% var selTimeStNow = new Date(now.nowY,now.nowM,now.nowD) %>
           <%if(now.nowY === Number(year) && now.nowM === Number(month) && now.nowD === cal[calCon][calCon2]){%>
-            <td style="<!--background-color: #cccccc;-->" class="om_cal_td <%= sche_class %>">
-              <a><%= cal[calCon][calCon2] %></a>
-            </td>
-          <%}else{%>
-            <%if(holi.includes(cal[calCon][calCon2])){%>
-              <td style="background-color: red;" class="om_cal_td <%= sche_class %>">
-                <a style="color: white;"><%= cal[calCon][calCon2] %></a>
-              </td>
-            <%}else{%>
-              <td class="om_cal_td <%= sche_class %>"><a><%= cal[calCon][calCon2] %></a></td>
-            <%}%>
+            <!-- 오늘일경우 -->
           <%}%>
+          <%if(holi.includes(cal[calCon][calCon2])){%>
+            <!-- 휴일의경우 -->
+            <% styleDay2 += 'color: red;' %>
+          <%}%>
+          <%if(selTimeSt<=selTimeStNow){%>
+            <!-- 휴일의경우 -->
+            <% styleDay += 'background-color: #cccccc;' %>
+          <%}%>
+
+            <td style="<%= styleDay %>" class="om_cal_td <%= sche_class %>"><a style="<%= styleDay2 %>"><%= cal[calCon][calCon2] %></a></td>
+
         <% }else{ %>
           <td></td>
         <%}%>
