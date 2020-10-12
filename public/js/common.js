@@ -64,7 +64,7 @@ $(document).ready(function(){
     var onCm = $('.now_m').text();
     var onCd = $(this).children('a').text();
     $('input[name="wr2"]').val(`${onCy}-${onCm}-${onCd}`);
-    alert(`${onCy}-${onCm}-${onCd}`);
+    //alert(`${onCy}-${onCm}-${onCd}`);
   });
   // $('.selOkC').click(function(){
   //   alert('예약가능');
@@ -205,4 +205,50 @@ $(document).ready(function(){
   });
   // schedule
 
+
+
+  // juso
+  $(document).on('click','.juso_list_td',function(){
+    var juso1 = $(this).children('.juso_list_li1').text();
+    var juso2 = $(this).children('.juso_list_li2').text();
+    //var juso2 = $(this).next('td').children('.juso_list_li1').text();
+    //$('input[name="wr3"]').val(juso1);
+
+    var jusoAddHtml = `
+    <li class="jusoInLi"><input type="text" name="" value="${juso1}" readonly></li>
+    <li class="jusoInLi"><input type="text" name="jusorst1" value="${juso2}" readonly></li>
+    <li class="jusoInLi"><input type="text" name="jusorst2" value="" placeholder="상세주소"></li>
+    <li class="jusoInLiBt"><button type="button" class="jusoinbt">주소입력</button></li>
+    `;
+    $('.jusoAddIn').html(jusoAddHtml);
+    $('#list').html('');
+    $('.paginate').html('');
+  });
+
+  $(document).on('click','.jusoinbt',function(){
+    var rstSujo1 = $('input[name="jusorst1"]').val();
+    var rstSujo2 = $('input[name="jusorst2"]').val();
+    $('input[name="wr3"]').val(`${rstSujo1} ${rstSujo2}`);
+    $('.om_juso').fadeOut();
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      $('.wrap_div').removeClass('blackbg');
+    },500);
+  });
+
+
+  $('input[name="wr3"]').click(function(){
+    $('.om_juso').fadeIn();
+    $('.wrap_div').addClass('blackbg');
+    $('.blackbg').animate({opacity:'0.8'},200);
+  });
+  $('.juso_close a').click(function(){
+    $('.om_juso').fadeOut();
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      $('.wrap_div').removeClass('blackbg');
+    },500);
+  });
+
+  // juso
 });

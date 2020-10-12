@@ -61,13 +61,14 @@
 			<!-- form_2 -->
 
 			<!-- form_3 -->
-			<div class="om_main_form_con_div">
+			<div class="om_main_form_con_div juso_form">
 				<li class="om_main_fcd_li1">
 					<a class="om_main_fcd_a1">주</a><a>소</a>
 				</li>
 				<li class="om_main_fcd_li2">
-					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+					<input type="text" name="wr3" value="" placeholder="지번주소입력">
 				</li>
+
 			</div>
 			<!-- form_3 -->
 
@@ -108,19 +109,28 @@
 	</div>
 </div>
 
-
-
 <div class="om_juso">
 	<form name="form" id="form" method="post">
 		<input type="text" name="currentPage" value="1" class="om_hid"> <!-- 요청 변수 설정 (현재 페이지. currentPage : n > 0) -->
 		<input type="text" name="countPerPage" value="10" class="om_hid"><!-- 요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100) -->
 		<input type="text" name="resultType" value="json" class="om_hid"> <!-- 요청 변수 설정 (검색결과형식 설정, json) -->
 		<input type="text" name="confmKey" value="devU01TX0FVVEgyMDIwMTAwMTIyNDkzNjExMDI0OTM=" class="om_hid"><!-- 요청 변수 설정 (승인키) -->
-		<input type="text" name="keyword" value="" onkeydown="enterSearch();"/><!-- 요청 변수 설정 (키워드) -->
+		<input type="text" name="keyword" value="" onkeydown="enterSearch();" class="om_juso_input"><!-- 요청 변수 설정 (키워드) -->
 		<input type="button" onClick="getAddr(1);" value="주소검색하기"/>
+		<div class="juso_tit_text">
+			<a>주소는 신주소, 구주소 모두 입력 가능하며 실제 신청서에는 구주소로 입력이 됩니다.</a>
+		</div>
 		<div id="list" ></div><!-- 검색 결과 리스트 출력 영역 -->
-	  <div class="paginate" id="pageApi"></div>
+		<div class="paginate" id="pageApi"></div>
+		<div class="jusoAddIn">
+
+		</div>
+		<div class="juso_close">
+			<a>닫기</a>
+		</div>
 	</form>
 </div>
+
+
 
 <%- include ("./footer") %>
