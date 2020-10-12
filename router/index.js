@@ -98,7 +98,7 @@ router.post('/calendar',function(req,res){
       auth: req.user,
       schedule: rstScheArr
     };
-    //console.log('입력된 스케쥴 배열',rstScheArr.includes('14'));
+    //console.log('입력된 스케쥴 배열',rstSend.cal);
     res.render('calendar',rstSend);
   }).catch(function(){
     console.log(reject);

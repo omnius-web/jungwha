@@ -58,6 +58,17 @@ $(document).ready(function(){
   $('.calBottom').click(function(){
     $('.calForForm').css('display','none');
   });
+
+  $(document).on('click','.selokc',function(){
+    var onCy = $('.now_y').text();
+    var onCm = $('.now_m').text();
+    var onCd = $(this).children('a').text();
+    $('input[name="wr2"]').val(`${onCy}-${onCm}-${onCd}`);
+    alert(`${onCy}-${onCm}-${onCd}`);
+  });
+  // $('.selOkC').click(function(){
+  //   alert('예약가능');
+  // });
   // Calendar
 
 

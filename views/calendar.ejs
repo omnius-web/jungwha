@@ -36,11 +36,12 @@
 
         <% if(cal[calCon][calCon2] !== 0){ %>
           <% var sche_class = admClass %>
-          <%if(schedule.includes(cal[calCon][calCon2])){%>
+          <%if(schedule.includes(cal[calCon][calCon2]) && adm===true){%>
             <% sche_class = 'sche_in' %>
           <%}%>
           <% var styleDay = '' %>
           <% var styleDay2 = '' %>
+          <% var selOkC = '' %>
           <% var selTimeSt = new Date(year,month,cal[calCon][calCon2]) %>
           <% var selTimeStNow = new Date(now.nowY,now.nowM,now.nowD) %>
           <%if(now.nowY === Number(year) && now.nowM === Number(month) && now.nowD === cal[calCon][calCon2]){%>
@@ -48,14 +49,26 @@
           <%}%>
           <%if(holi.includes(cal[calCon][calCon2])){%>
             <!-- 휴일의경우 -->
-            <% styleDay2 += 'color: red;' %>
+            <% styleDay2 += 'color: red!important;' %>
           <%}%>
-          <%if(selTimeSt<=selTimeStNow){%>
-            <!-- 휴일의경우 -->
-            <% styleDay += 'background-color: #cccccc;' %>
+          <%if(selTimeSt<=selTimeStNow && adm===false){%>
+            <!-- 오늘이전일경우 -->
+            <% styleDay += 'background-color: #cccccc!important;' %>
+          <%}%>
+          <%if(schedule.includes(cal[calCon][calCon2])){%>
+            <!-- 예약불가능의경우 -->
+            <% styleDay += 'background-color: #0088ff;' %>
+          <%}%>
+          <% if(calCon2 == 6){ %>
+            <!-- 토요일의경우 -->
+            <% styleDay2 += 'color: blue;' %>
+          <% } %>
+          <%if(selTimeSt>selTimeStNow && adm===false && !schedule.includes(cal[calCon][calCon2])){%>
+            <!-- 고객예약가능날짜 -->
+            <% selOkC = 'selokc' %>
           <%}%>
 
-            <td style="<%= styleDay %>" class="om_cal_td <%= sche_class %>"><a style="<%= styleDay2 %>"><%= cal[calCon][calCon2] %></a></td>
+            <td style="<%= styleDay %>" class="om_cal_td <%= sche_class %> <%= selOkC %>"><a style="<%= styleDay2 %>"><%= cal[calCon][calCon2] %></a></td>
 
         <% }else{ %>
           <td></td>

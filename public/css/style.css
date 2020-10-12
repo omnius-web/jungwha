@@ -350,6 +350,20 @@ li {
   padding: 10px 0;
   border-radius: 5px;
 }
+.om_cal_year {
+  position: relative;
+  margin-bottom: 15px;
+}
+.om_cal_prev {
+  position: absolute;
+  left: 10px;
+  top: -19px;
+}
+.om_cal_next {
+  position: absolute;
+  right: 10px;
+  top: -19px;
+}
 .om_cal_year > a {
   cursor: pointer;
 }
