@@ -254,6 +254,58 @@ $(document).ready(function(){
   $('.om_main_fcd_li2_2_a1').click(function(){
     $('.om_main_fcd_li2_2_option').slideToggle();
   });
+  $('.om_main_fcd_li2_2_option a').click(function(){
+    $('.om_main_fcd_li2_2_option').slideUp();
+    var omfl2oa = $(this).text();
+    $('.om_main_fcd_li2_2 input[name="wr3"]').val(omfl2oa);
+    $('.om_main_fcd_li2_2_a1').text(omfl2oa);
+  });
+  $('.contact_else').click(function(){
+    $('.contact_else_option').slideToggle();
+  });
+  $('.contact_else_option a').click(function(){
+    var thdata = $(this).data('conelse');
+    if(thdata=='1'){
+      $('.contact_else').focus();
+    }
+    else{
+      var seldata = $(this).text();
+      $('.contact_else').val(seldata);
+    }
+    $('.contact_else_option').slideUp();
+  })
+  $('.om_main_fcd_li1_a_last').click(function(){
+    var inhtmllast = '<i class="fa fa-check" aria-hidden="true"></i>';
+    var confhtml = $(this).html();
+    var chkval = $('.om_main_fcd_li2 input[name="wr7"]').val();
+    if(confhtml){
+      //alert('체크됨');
+      $('.om_main_fcd_li1_a_last').html('');
+      $('.om_main_fcd_li2 input[name="wr7"]').val('');
+    }
+    else{
+      //alert('체크안됨');
+      $('.om_main_fcd_li1_a_last').html(inhtmllast);
+      $('.om_main_fcd_li2 input[name="wr7"]').val('1');
+    }
+    var chkval = $('.om_main_fcd_li2 input[name="wr7"]').val();
+    alert(chkval);
+    // $('.om_main_fcd_li1_a_last').html(inhtmllast);
+  });
+  $('.contact_submit').click(function(){
+    var contactData = $('.main_contact').serialize();
+    $.ajax({
+      type : 'post',
+      url : '/contactprc',
+      data : contactData,
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      dataType: "text",
+      cache : false,
+      success : function(rst){
+        alert(rst);
+      }
+    });
+  });
 
 
   // 메인_고객_청소날짜 선택

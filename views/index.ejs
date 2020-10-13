@@ -27,7 +27,7 @@
 
 <div class="om_main_form">
 	<div class="om_main_form_con">
-		<form class="" action="/contactprc" method="post">
+		<form class="main_contact" action="/contactprc" method="post">
 
 			<!-- form_1 -->
 			<div class="om_main_form_con_div">
@@ -51,9 +51,15 @@
 						<a class="om_main_fcd_li2_2_a1">시간선택<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 						<input type="hidden" name="wr3" value="">
 						<div class="om_main_fcd_li2_2_option">
-							<a>9시~10시</a>
-							<a>9시~10시</a>
-							<a>9시~10시</a>
+							<a>오전 6시~7시</a>
+							<a>오전 7시~8시</a>
+							<a>오전 8시~9시</a>
+							<a>오전 10시~11시</a>
+							<a>오전 11시~12시</a>
+							<a>오후 1시~2시</a>
+							<a>오후 2시~3시</a>
+							<a>오전 아무때나</a>
+							<a>오후 아무때나</a>
 						</div>
 					</div>
 				</li>
@@ -88,7 +94,7 @@
 					<a>전화번호</a>
 				</li>
 				<li class="om_main_fcd_li2">
-					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+					<input type="text" name="wr5" value="" placeholder="예)01012345678" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 				</li>
 			</div>
 			<!-- form_4 -->
@@ -99,18 +105,25 @@
 					<a>요청사항</a>
 				</li>
 				<li class="om_main_fcd_li2">
-					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+					<input type="text" name="wr6" value="" placeholder="요청사항을 입력해주세요." class="contact_else">
+					<div class="contact_else_option">
+						<a data-conelse="1">직접입력</a>
+						<a>도착 전 연락바랍니다.</a>
+						<a>영수증은 우편함에</a>
+						<a>영수증을 문자로 보내주세요.</a>
+					</div>
 				</li>
 			</div>
 			<!-- form_5 -->
 
 			<!-- form_6 -->
 			<div class="om_main_form_con_div">
-				<li class="om_main_fcd_li1">
-					<a></a>
+				<li class="om_main_fcd_li1 om_main_fcd_li1_li_last">
+					<a class="om_main_fcd_li1_a_last"><i class="fa fa-check" aria-hidden="true"></i></a>
 				</li>
-				<li class="om_main_fcd_li2">
-					<input type="text" name="wr1" value="" placeholder="하수과 신고자명">
+				<li class="om_main_fcd_li2 om_main_fcd_li1_a2_last">
+					<a>세금계산서발행</a>
+					<input type="hidden" name="wr7" value="1">
 				</li>
 			</div>
 			<!-- form_6 -->
@@ -118,6 +131,12 @@
 		</form>
 	</div>
 </div>
+
+
+<div class="contact_submit">
+	<a>submit</a>
+</div>
+
 
 <div class="om_juso">
 	<form name="form" id="form" method="post">
