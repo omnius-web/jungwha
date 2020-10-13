@@ -288,8 +288,8 @@ $(document).ready(function(){
       $('.om_main_fcd_li1_a_last').html(inhtmllast);
       $('.om_main_fcd_li2 input[name="wr7"]').val('1');
     }
-    var chkval = $('.om_main_fcd_li2 input[name="wr7"]').val();
-    alert(chkval);
+    // var chkval = $('.om_main_fcd_li2 input[name="wr7"]').val();
+    // alert(chkval);
     // $('.om_main_fcd_li1_a_last').html(inhtmllast);
   });
   $('.contact_submit').click(function(){
