@@ -151,6 +151,49 @@ li {
 .om_main_fcd_li2 {
   width: 75%;
 }
+.om_main_fcd_li2_date {
+  font-size: 0;
+}
+.om_main_fcd_li2_1 {
+  width: 50%!important;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.om_main_fcd_li2_2 {
+  position: relative;
+  width: 40%!important;
+  padding: 1rem;
+  border-radius: 5px;
+  border-left: 3px solid white;
+  box-sizing: border-box;
+  background-color: #929191;
+  display: inline-block;
+  text-align: left;
+}
+.om_main_fcd_li2_2 > a {
+  color: #cccccc;
+}
+.om_main_fcd_li2_2 > a > i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  font-size: 1.5rem;
+}
+.om_main_fcd_li2_2_option {
+  position: absolute;
+  display: none;
+}
+.om_main_fcd_li2_2_option > a {
+  display: block;
+}
+.om_main_fcd_li2_2 a {
+  cursor: pointer;
+}
 .om_main_fcd_li2 input {
   padding: 1rem;
   border: 0;

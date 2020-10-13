@@ -2,9 +2,10 @@
 // OMNIUS - U01TX0FVVEgyMDIwMTAwMTIxNTQ0NTExMDI0OTE=
 // 복사골환경(주) - U01TX0FVVEgyMDIwMTAwMTIxNTgzNzExMDI0OTI=
 // 개발 - devU01TX0FVVEgyMDIwMTAwMTIyNDkzNjExMDI0OTM=
-  function getAddr(stts=0){
+
+  function getAddr(stts){
   	// 적용예 (api 호출 전에 검색어 체크)
-    if(stts!==0){
+    if(stts!==undefined){
       document.form.currentPage.value="1";
     }
   	if (!checkSearchedWord(document.form.keyword)) {

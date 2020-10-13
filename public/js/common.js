@@ -63,7 +63,9 @@ $(document).ready(function(){
     var onCy = $('.now_y').text();
     var onCm = $('.now_m').text();
     var onCd = $(this).children('a').text();
-    $('input[name="wr2"]').val(`${onCy}-${onCm}-${onCd}`);
+    var rstText = onCy+'-'+onCm+'-'+onCd;
+    $('input[name="wr2"]').val(rstText);
+    $('.calForForm').css('display','none');
     //alert(`${onCy}-${onCm}-${onCd}`);
   });
   // $('.selOkC').click(function(){
@@ -211,24 +213,19 @@ $(document).ready(function(){
   $(document).on('click','.juso_list_td',function(){
     var juso1 = $(this).children('.juso_list_li1').text();
     var juso2 = $(this).children('.juso_list_li2').text();
-    //var juso2 = $(this).next('td').children('.juso_list_li1').text();
-    //$('input[name="wr3"]').val(juso1);
 
-    var jusoAddHtml = `
-    <li class="jusoInLi"><input type="text" name="" value="${juso1}" readonly></li>
-    <li class="jusoInLi"><input type="text" name="jusorst1" value="${juso2}" readonly></li>
-    <li class="jusoInLi"><input type="text" name="jusorst2" value="" placeholder="상세주소"></li>
-    <li class="jusoInLiBt"><button type="button" class="jusoinbt">주소입력</button></li>
-    `;
+    var jusoAddHtml = '<li class="jusoInLi"><input type="text" name="" value="'+juso1+'" readonly></li><li class="jusoInLi"><input type="text" name="jusorst1" value="'+juso2+'" readonly></li><li class="jusoInLi"><input type="text" name="jusorst2" value="" placeholder="상세주소"></li><li class="jusoInLiBt"><button type="button" class="jusoinbt">주소입력</button></li>';
+
     $('.jusoAddIn').html(jusoAddHtml);
     $('#list').html('');
     $('.paginate').html('');
   });
 
+
   $(document).on('click','.jusoinbt',function(){
     var rstSujo1 = $('input[name="jusorst1"]').val();
     var rstSujo2 = $('input[name="jusorst2"]').val();
-    $('input[name="wr3"]').val(`${rstSujo1} ${rstSujo2}`);
+    $('input[name="wr4"]').val(rstSujo1+' '+rstSujo2);
     $('.om_juso').fadeOut();
     $('.blackbg').animate({opacity:'0'},500);
     setTimeout(function(){
@@ -237,7 +234,7 @@ $(document).ready(function(){
   });
 
 
-  $('input[name="wr3"]').click(function(){
+  $('input[name="wr4"]').click(function(){
     $('.om_juso').fadeIn();
     $('.wrap_div').addClass('blackbg');
     $('.blackbg').animate({opacity:'0.8'},200);
@@ -251,4 +248,14 @@ $(document).ready(function(){
   });
 
   // juso
+
+
+  // 메인_고객_청소날짜 선택
+  $('.om_main_fcd_li2_2_a1').click(function(){
+    $('.om_main_fcd_li2_2_option').slideToggle();
+  });
+
+
+  // 메인_고객_청소날짜 선택
+
 });
