@@ -302,7 +302,13 @@ $(document).ready(function(){
       dataType: "text",
       cache : false,
       success : function(rst){
-        alert(rst);
+        if(rst){
+          alert('신청이 완료되었습니다.');
+          location.reload();
+        }
+        else{
+          alert('신청오류! 전화문의주세요.');
+        }
       }
     });
   });

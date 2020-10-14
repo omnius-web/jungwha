@@ -42,8 +42,8 @@
           <% var styleDay = '' %>
           <% var styleDay2 = '' %>
           <% var selOkC = '' %>
-          <% var selTimeSt = new Date(year,month,cal[calCon][calCon2]) %>
-          <% var selTimeStNow = new Date(now.nowY,now.nowM,now.nowD) %>
+          <% var selTimeSt = new Date(year,month,cal[calCon][calCon2]).getTime() %>
+          <% var selTimeStNow = new Date(now.nowY,now.nowM,now.nowD).getTime() %>
           <%if(now.nowY === Number(year) && now.nowM === Number(month) && now.nowD === cal[calCon][calCon2]){%>
             <!-- 오늘일경우 -->
           <%}%>

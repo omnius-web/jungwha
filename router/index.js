@@ -52,8 +52,7 @@ router.get('/omnius',function(req,res){
     auth: authRst,
     userInfo: req.user
   }
-  console.log(omTime.timeSt());
-  console.log(omTime.selTimeSt(2020,9,14));
+
   res.render('index',rstSend);
 
 });
@@ -115,8 +114,23 @@ router.post('/calendar',function(req,res){
 // contactprc
 router.post('/contactprc',(req,res)=>{
   var post = req.body;
-  console.log(post);
-  res.send(post);
+  var conDate = post.wr2;
+  var dateSplit = conDate.split('-');
+  var reqSelTime = omTime.selTimeSt(Number(dateSplit[0]),Number(dateSplit[1])-1,Number(dateSplit[2]));
+  var nowTime = omTime.timeSt();
+
+  post.wr8 = dateSplit[0];
+  post.wr9 = dateSplit[1];
+  post.wr10 = dateSplit[2];
+  post.wr11 = reqSelTime.selTS2;
+  post.date = nowTime.now2;
+
+  db.query('insert into contact set ?',post,(err,rst)=>{
+    if(err){
+      throw 'contact insert error';
+    }
+    res.send(true);
+  });
 });
 // contactprc
 

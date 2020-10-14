@@ -17,8 +17,8 @@ module.exports = {
   selTimeSt: function(year,mon,day){
     var selT = new Date(year,mon,day,0,0,0,1).getTime();
     return {
-      selTS: Math.floor(selT/1000),
-      selTS2: selT
+      selTS: selT,
+      selTS2: Math.floor(selT/1000)
     }
   }
 };
