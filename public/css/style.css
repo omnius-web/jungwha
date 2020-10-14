@@ -195,7 +195,7 @@ li {
   width: 100%;
   border: 1px solid #eaeaea;
   box-sizing: border-box;
-
+  z-index: 999;
 }
 .om_main_fcd_li2_2_option > a {
   display: block;

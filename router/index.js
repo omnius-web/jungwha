@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var excel = require('../models/excel');
 var authMd = require('../models/auth');
+var omTime = require('../models/time');
 
 var db = mysql.createConnection(dbOpt);
 
@@ -51,6 +52,8 @@ router.get('/omnius',function(req,res){
     auth: authRst,
     userInfo: req.user
   }
+  console.log(omTime.timeSt());
+  console.log(omTime.selTimeSt(2020,9,14));
   res.render('index',rstSend);
 
 });
