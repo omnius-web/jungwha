@@ -250,7 +250,7 @@ $(document).ready(function(){
   // juso
 
 
-  // 메인_고객_청소날짜 선택
+  // 메인_고객_청소신청
   $('.om_main_fcd_li2_2_a1').click(function(){
     $('.om_main_fcd_li2_2_option').slideToggle();
   });
@@ -302,18 +302,115 @@ $(document).ready(function(){
       dataType: "text",
       cache : false,
       success : function(rst){
-        if(rst){
+        var rstJn = JSON.parse(rst);
+        if(rstJn.rst){
           alert('신청이 완료되었습니다.');
           location.reload();
         }
         else{
-          alert('신청오류! 전화문의주세요.');
+          if(rstJn.err=='1'){
+            alert('동일한 전화번호가 입력되어있습니다.');
+          }
+          else if(rstJn.err=='2'){
+            alert('모든 내용을 입력해주세요.');
+          }
+          else{
+            alert('신청오류! 전화문의주세요.');
+          }
         }
       }
     });
   });
 
+  $('.om_main_bt_li4').click(function(){
+    $('.search_basic').fadeIn();
+    $('.wrap_div').addClass('blackbg');
+    $('.blackbg').animate({opacity:'0.8'},200);
+  });
+  $('.search_close').click(function(){
+    $('.search_basic').fadeOut();
+    $('.search_rst').fadeOut();
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      $('.wrap_div').removeClass('blackbg');
+    },500);
+    $('input').val('');
+  });
+  $('.search_rst_bt').click(function(){
+    $('.search_basic').fadeOut();
+    $('.search_rst').fadeOut();
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      $('.wrap_div').removeClass('blackbg');
+    },500);
+    $('input').val('');
+  });
 
-  // 메인_고객_청소날짜 선택
+
+  // 메인_고객_청소신청
+
+
+
+  // 신청이력조회
+  $('.search_enter').click(function(){
+    var contactData = $('.search_list').serialize();
+    $.ajax({
+      type : 'post',
+      url : '/contactlist',
+      data : contactData,
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      dataType: "text",
+      cache : false,
+      success : function(rst){
+        var rstJn = JSON.parse(rst);
+        console.log(rstJn);
+        $('.search_basic').css('display','none');
+        $('.search_rst').css('display','inline-block');
+        var name = $('.shrst_in_wr1').val();
+        var hp = $('.shrst_in_wr2').val();
+        $('.search_rst_li1').text(name);
+        $('.search_rst_li2').text(hp);
+        $('.search_rst_li3').text(rstJn.cl0.wr4);
+        if(rstJn.clval){
+          var srstcon = '<li><a>마지막청소날짜</a></li><li><a>'+rstJn.cl0.wr8+'년 '+rstJn.cl0.wr9+'월 '+rstJn.cl0.wr10+'일</a></li>';
+        }
+        else{
+          var srstcon = '<li><a>죄송합니다.</a></li><li><a>이전청소일을 확인할 수 없습니다.</a></li>';
+        }
+        $('.search_rst_content').html(srstcon);
+      }
+    });
+  });
+
+  // setInterval(function(){
+  //   $('.search_icon img').fadeToggle();
+  // },700);
+  // $('.search_icon').mouseover(function(){
+  //   $('.search_icon img').stop().fadeIn();
+  // })
+
+
+
+  // 아이콘 깜빡임
+  var stint = null;
+  function startinter(){
+    stint = setInterval(function(){
+      $('.search_icon img').animate({opacity:0},700).animate({opacity:1},700)
+    },1400);
+  }
+  $('.search_icon').mouseover(function(){
+    iconstop();
+  });
+  $('.search_icon').mouseleave(function(){
+    startinter()
+  });
+  function iconstop(){
+    clearInterval(stint);
+  }
+
+  startinter();
+  // 아이콘 깜빡임
+
+  // 신청이력조회
 
 });

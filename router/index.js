@@ -113,26 +113,100 @@ router.post('/calendar',function(req,res){
 
 // contactprc
 router.post('/contactprc',(req,res)=>{
+  var sendJn = {};
+  var confpost = true;
   var post = req.body;
-  var conDate = post.wr2;
-  var dateSplit = conDate.split('-');
-  var reqSelTime = omTime.selTimeSt(Number(dateSplit[0]),Number(dateSplit[1])-1,Number(dateSplit[2]));
-  var nowTime = omTime.timeSt();
-
-  post.wr8 = dateSplit[0];
-  post.wr9 = dateSplit[1];
-  post.wr10 = dateSplit[2];
-  post.wr11 = reqSelTime.selTS2;
-  post.date = nowTime.now2;
-
-  db.query('insert into contact set ?',post,(err,rst)=>{
-    if(err){
-      throw 'contact insert error';
+  for(postnum in post){
+    if(post[postnum]==''){
+      sendJn.rst = false;
+      sendJn.err = '2';
+      confpost = false;
+      res.send(sendJn);
+      return
     }
-    res.send(true);
-  });
+  }
+  if(confpost){
+    var conDate = post.wr2;
+    var dateSplit = conDate.split('-');
+    var reqSelTime = omTime.selTimeSt(Number(dateSplit[0]),Number(dateSplit[1])-1,Number(dateSplit[2]));
+    var nowTime = omTime.timeSt();
+
+    post.wr8 = dateSplit[0];
+    post.wr9 = dateSplit[1];
+    post.wr10 = dateSplit[2];
+    post.wr11 = reqSelTime.selTS2;
+    post.date = nowTime.now2;
+
+    var dbSearch = function(){
+      return new Promise(function(resolve,reject){
+        db.query('select * from contact where wr5 = ?',[post.wr5],function(err,data){
+          if(err){
+            throw 'contact db for hp num search';
+          }
+          resolve(data);
+        });
+      });
+    }
+
+    dbSearch().then(function(rst){
+      if(rst[0]===undefined){
+        db.query('insert into contact set ?',post,(err,rst)=>{
+          if(err){
+            throw 'contact insert error';
+          }
+          sendJn.rst = true;
+          res.send(sendJn);
+        });
+      }
+      else{
+        sendJn.rst = false;
+        sendJn.err = '1';
+        res.send(sendJn);
+      }
+    }).catch(function(){
+      console.log(reject);
+    });
+  }
+
+
+
+
+
 });
 // contactprc
+
+
+
+
+// contactList
+router.post('/contactlist',(req,res)=>{
+  var post = req.body;
+  var searList = function(){
+    return new Promise(function(resolve,reject){
+      db.query('select * from contact where wr1=? and wr5=?',[post.wr1,post.wr5],function(err,data){
+        if(err){
+          throw 'contact List select err';
+        }
+        resolve(data);
+      });
+    });
+  }
+  searList().then(function(rst){
+    var rstSend = {};
+    rstSend.clval = true;
+    if(rst[0]==undefined){
+      rstSend.clval = false;
+    }
+    for(num in rst){
+      rstSend['cl'+num] = rst[num];
+    }
+    console.log(rstSend);
+    res.send(rstSend);
+  }).catch(function(){
+    console.log(reject);
+  })
+})
+// contactList
 
 
 
