@@ -463,18 +463,16 @@ li {
   -ms-transform: translate(-50%,-50%);
   -o-transform: translate(-50%,-50%);
   z-index: 999;
+  display: none;
 }
 .search_basic {
   background-image: url('/img/search_bg.png');
-  display: none;
 }
 .search_rst {
   background-image: url('/img/search_rst_bg.png');
-  display: none;
 }
 .search_conf {
   background-image: url('/img/search_conf_bg.png');
-  display: none;
 }
 .search_con {
   position: relative;

@@ -12,7 +12,7 @@ var mysql = require('mysql');
 var excel = require('../models/excel');
 var authMd = require('../models/auth');
 var omTime = require('../models/time');
-
+var popTemplate = require('../models/poptemplate');
 var db = mysql.createConnection(dbOpt);
 
 
@@ -201,8 +201,9 @@ router.post('/contactlist',(req,res)=>{
     for(num in rst){
       rstSend['cl'+num] = rst[num];
     }
-    console.log(rstSend);
-    res.send(rstSend);
+    //console.log(rstSend);
+    var rstHtml = popTemplate.conListRst(rstSend);
+    res.send(rstHtml);
   }).catch(function(){
     console.log(reject);
   })
@@ -212,6 +213,19 @@ router.post('/contactlist',(req,res)=>{
 
 
 
+// contact confirm
+router.post('/contactconf',(req,res)=>{
+  var post = req.body;
+  if(post.confname == '1'){
+    var rstHtml = popTemplate.conList();
+    res.send(rstHtml);
+  }
+  if(post.confname == '2'){
+    var rstHtml = popTemplate.conConf();
+    res.send(rstHtml);
+  }
+});
+// contact confirm
 
 
 
