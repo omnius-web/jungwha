@@ -335,6 +335,10 @@ $(document).ready(function(){
       $('.wrap_div').removeClass('blackbg');
     },500);
     $('input').val('');
+    $('.search_rst_li1').text('');
+    $('.search_rst_li2').text('');
+    $('.search_rst_li3').text('');
+    $('.search_rst_content').text('');
   });
   $('.search_rst_bt').click(function(){
     $('.search_basic').fadeOut();
@@ -344,6 +348,10 @@ $(document).ready(function(){
       $('.wrap_div').removeClass('blackbg');
     },500);
     $('input').val('');
+    $('.search_rst_li1').text('');
+    $('.search_rst_li2').text('');
+    $('.search_rst_li3').text('');
+    $('.search_rst_content').text('');
   });
 
 
@@ -363,19 +371,22 @@ $(document).ready(function(){
       cache : false,
       success : function(rst){
         var rstJn = JSON.parse(rst);
-        console.log(rstJn);
+        var srstcon = '';
+        console.log(rstJn.clval);
         $('.search_basic').css('display','none');
         $('.search_rst').css('display','inline-block');
         var name = $('.shrst_in_wr1').val();
         var hp = $('.shrst_in_wr2').val();
         $('.search_rst_li1').text(name);
         $('.search_rst_li2').text(hp);
-        $('.search_rst_li3').text(rstJn.cl0.wr4);
+
+
         if(rstJn.clval){
-          var srstcon = '<li><a>마지막청소날짜</a></li><li><a>'+rstJn.cl0.wr8+'년 '+rstJn.cl0.wr9+'월 '+rstJn.cl0.wr10+'일</a></li>';
+          $('.search_rst_li3').text(rstJn.cl0.wr4);
+          srstcon = '<li><a>마지막청소날짜</a></li><li><a>'+rstJn.cl0.wr8+'년 '+rstJn.cl0.wr9+'월 '+rstJn.cl0.wr10+'일</a></li>';
         }
         else{
-          var srstcon = '<li><a>죄송합니다.</a></li><li><a>이전청소일을 확인할 수 없습니다.</a></li>';
+          srstcon = '<li><a>죄송합니다.</a></li><li><a>이전청소일을 확인할 수 없습니다.</a></li>';
         }
         $('.search_rst_content').html(srstcon);
       }

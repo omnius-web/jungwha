@@ -183,7 +183,7 @@ router.post('/contactlist',(req,res)=>{
   var post = req.body;
   var searList = function(){
     return new Promise(function(resolve,reject){
-      db.query('select * from contact where wr1=? and wr5=?',[post.wr1,post.wr5],function(err,data){
+      db.query('select * from contact where wr1=? and wr5=? order by wr11 desc',[post.wr1,post.wr5],function(err,data){
         if(err){
           throw 'contact List select err';
         }
