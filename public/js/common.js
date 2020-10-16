@@ -327,9 +327,18 @@ $(document).ready(function(){
     $('.wrap_div').addClass('blackbg');
     $('.blackbg').animate({opacity:'0.8'},200);
   });
+  $('.om_main_bt_li5').click(function(){
+    $('.search_conf').fadeIn();
+    $('.wrap_div').addClass('blackbg');
+    $('.blackbg').animate({opacity:'0.8'},200);
+  });
+
+
+
   $('.search_close').click(function(){
     $('.search_basic').fadeOut();
     $('.search_rst').fadeOut();
+    $('.search_conf').fadeOut();
     $('.blackbg').animate({opacity:'0'},500);
     setTimeout(function(){
       $('.wrap_div').removeClass('blackbg');
@@ -343,6 +352,7 @@ $(document).ready(function(){
   $('.search_rst_bt').click(function(){
     $('.search_basic').fadeOut();
     $('.search_rst').fadeOut();
+    $('.search_conf').fadeOut();
     $('.blackbg').animate({opacity:'0'},500);
     setTimeout(function(){
       $('.wrap_div').removeClass('blackbg');

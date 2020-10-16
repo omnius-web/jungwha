@@ -472,6 +472,10 @@ li {
   background-image: url('/img/search_rst_bg.png');
   display: none;
 }
+.search_conf {
+  background-image: url('/img/search_conf_bg.png');
+  display: none;
+}
 .search_con {
   position: relative;
   width: 100%;
