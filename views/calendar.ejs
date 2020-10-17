@@ -63,7 +63,7 @@
             <!-- 토요일의경우 -->
             <% styleDay2 += 'color: blue;' %>
           <% } %>
-          <%if(selTimeSt>selTimeStNow && adm===false && !schedule.includes(cal[calCon][calCon2])){%>
+          <%if(selTimeSt>selTimeStNow && adm===false && !schedule.includes(cal[calCon][calCon2]) && !holi.includes(cal[calCon][calCon2]) && calCon2!=0 && calCon2!=6){%>
             <!-- 고객예약가능날짜 -->
             <% selOkC = 'selokc' %>
           <%}%>
