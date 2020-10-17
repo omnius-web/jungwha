@@ -102,8 +102,8 @@ router.post('/calendar',function(req,res){
     };
     //console.log('입력된 스케쥴 배열',rstSend.cal);
     res.render('calendar',rstSend);
-  }).catch(function(){
-    console.log(reject);
+  }).catch(function(err){
+    console.log(err);
   })
 
 
@@ -164,8 +164,8 @@ router.post('/contactprc',(req,res)=>{
         sendJn.err = '1';
         res.send(sendJn);
       }
-    }).catch(function(){
-      console.log(reject);
+    }).catch(function(err){
+      console.log(err);
     });
   }
 
@@ -195,6 +195,8 @@ router.post('/contactlist',(req,res)=>{
   searList().then(function(rst){
     var rstSend = {};
     rstSend.clval = true;
+    rstSend.name = post.wr1;
+    rstSend.hp = post.wr5;
     if(rst[0]==undefined){
       rstSend.clval = false;
     }
@@ -202,10 +204,15 @@ router.post('/contactlist',(req,res)=>{
       rstSend['cl'+num] = rst[num];
     }
     //console.log(rstSend);
-    var rstHtml = popTemplate.conListRst(rstSend);
+    if(post.sendtype=='list'){
+      var rstHtml = popTemplate.conListRst(rstSend);
+    }
+    if(post.sendtype=='conf'){
+      var rstHtml = popTemplate.conConfRst(rstSend);
+    }
     res.send(rstHtml);
-  }).catch(function(){
-    console.log(reject);
+  }).catch(function(err){
+    console.error(err);
   })
 })
 // contactList

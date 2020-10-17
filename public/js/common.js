@@ -374,6 +374,14 @@ $(document).ready(function(){
       $('.wrap_div').removeClass('blackbg');
     },500);
   });
+  $(document).on('click','.search_rst_bt',function(){
+    $('.search').fadeOut();
+    $('.search').html('');
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      $('.wrap_div').removeClass('blackbg');
+    },500);
+  });
 
 
   // $('.search_close').click(function(){
@@ -392,20 +400,20 @@ $(document).ready(function(){
   //   $('.search_rst_li3').text('');
   //   $('.search_rst_content').text('');
   // });
-  $('.search_rst_bt').click(function(){
-    $('.search_basic').fadeOut();
-    $('.search_rst').fadeOut();
-    $('.search_conf').fadeOut();
-    $('.blackbg').animate({opacity:'0'},500);
-    setTimeout(function(){
-      $('.wrap_div').removeClass('blackbg');
-    },500);
-    $('input').val('');
-    $('.search_rst_li1').text('');
-    $('.search_rst_li2').text('');
-    $('.search_rst_li3').text('');
-    $('.search_rst_content').text('');
-  });
+  // $('.search_rst_bt').click(function(){
+  //   $('.search_basic').fadeOut();
+  //   $('.search_rst').fadeOut();
+  //   $('.search_conf').fadeOut();
+  //   $('.blackbg').animate({opacity:'0'},500);
+  //   setTimeout(function(){
+  //     $('.wrap_div').removeClass('blackbg');
+  //   },500);
+  //   $('input').val('');
+  //   $('.search_rst_li1').text('');
+  //   $('.search_rst_li2').text('');
+  //   $('.search_rst_li3').text('');
+  //   $('.search_rst_content').text('');
+  // });
 
 
   // 메인_고객_청소신청
