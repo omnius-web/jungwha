@@ -1,0 +1,172 @@
+<!-- Adm Contact List EJS -->
+
+<%- include ("../header") %>
+<%- include ("./adm_header") %>
+
+
+<div class="admconlist_wrap">
+    <div class="contactlist_select">
+        <form action="/adm/contact" method="post">
+            <select name="year">
+                <% for(var i = 2017; i < 2100; i++) { %>
+                    <% var selected = '' %>
+                    <% if(i == nowTime.nowY){ %>
+                        <% var selected = 'selected="selected"' %>
+                    <% } %>
+                    <option value="<%= i %>" <%= selected %>><%= i %></option>
+                <% } %>
+            </select>
+            <select name="month">
+                <% for(var i = 1; i < 13; i++) { %>
+                    <% var selected = '' %>
+                    <% if(i == nowTime.nowM){ %>
+                        <% var selected = 'selected="selected"' %>
+                    <% } %>
+                    <option value="<%= i %>" <%= selected %>><%= i %></option>
+                <% } %>
+            </select>
+            <select name="day">
+                <option value="0">전체</option>
+                <% for(var i = 1; i < 32; i++) { %>
+                    
+                    <option value="<%= i %>" <%= selected %>><%= i %></option>
+                <% } %>
+            </select>
+            <input type="text" name="name" value="" placeholder="이름" size="7">
+            <input type="text" name="hp" value="" placeholder="연락처" size="8">
+            <select name="jusogu">
+                <option value="0">구선택</option>
+                <option value="원미구">원미구</option>
+                <option value="소사구">소사구</option>
+                <option value="오정구">오정구</option>
+            </select>
+        </form>
+    </div>
+    <table>
+        <tr class="admconlist_tit">
+            <td>
+                번 호
+            </td>
+            <td>
+                이 름
+            </td>
+            <td>
+                주 소
+            </td>
+            <td>
+                청소 날짜
+            </td>
+            <td>
+                청소 시간
+            </td>
+            <td>
+                청소량
+            </td>
+            <td>
+                전화번호1
+            </td>
+            <td>
+                전화번호2
+            </td>
+            <td>
+                청소금액
+            </td>
+            <td>
+                청소완료
+            </td>
+            <td>
+                청소알림
+            </td>
+            <td>
+                세금계산서
+            </td>
+            <td>
+                요청사항
+            </td>
+            <td>
+                비고
+            </td>
+            <td></td>
+
+        </tr>
+<% var listNum = 1 %>
+<% for(clNum in data) { %>
+        <tr>
+            <form method="post" id="admconup">
+            <td>
+                <%= listNum %>
+            </td>
+            <td>
+                <input type="text" name="wr1" value="<%= data[clNum].wr1 %>" class="admconlist_input1"><!--이름-->
+            </td>
+            <td>
+                <input type="text" name="wr4" value="<%= data[clNum].wr4 %>" class="admconlist_input1"><!--주소-->
+            </td>
+            <td>
+                <input type="text" name="wr2" value="<%= data[clNum].wr2 %>" class="admconlist_input1"><!--청소날짜-->
+            </td>
+            <td>
+                <input type="text" name="wr3" value="<%= data[clNum].wr3 %>" class="admconlist_input1"><!--청소시간-->
+            </td>
+            <td>
+                <input type="text" name="wr13" value="<%= data[clNum].wr13 %>" class="admconlist_input3"><!--청소량-->
+            </td>
+            <td>
+                <input type="text" name="wr5" value="<%= data[clNum].wr5 %>" class="admconlist_input1"><!--전화번호1-->
+            </td>
+            <td>
+                <input type="text" name="wr14" value="<%= data[clNum].wr14 %>" class="admconlist_input1"><!--전화번호2-->
+            </td>
+            <td>
+                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input3"><!--청소금액-->
+            </td>
+            <td>
+                <input type="text" name="wr12" value="<%= data[clNum].wr12 %>" class="admconlist_input4"><!--청소완료-->
+            </td>
+            <td>
+                <input type="text" name="wr16" value="<%= data[clNum].wr16 %>" class="admconlist_input4"><!--청소알림-->
+            </td>
+            <td>
+                <input type="text" name="wr7" value="<%= data[clNum].wr7 %>" class="admconlist_input4"><!--세금계산서-->
+            </td>
+            <td>
+                <input type="text" name="wr6" value="<%= data[clNum].wr6 %>" class="admconlist_input1"><!--요청사항-->
+            </td>
+            <td>
+                <input type="text" name="wr17" value="<%= data[clNum].wr17 %>" class="admconlist_input2"><!--비고-->
+            </td>
+            <td class="admcon_bt">
+                <input type="hidden" name="anum" value="<%= data[clNum].anum %>">
+                
+                <a class="admconup">
+                    수정
+                </a>
+                <a class="admcondel">
+                    삭제
+                </a>
+            </td>
+            </form>
+        </tr>
+    <% listNum++ %>
+<% } %>
+    </table>
+</div>
+
+
+<%- include ("../footer") %>
+
+
+
+<!--이름 wr1-->
+<!--주소 wr4-->
+<!--청소날짜 wr2-->
+<!--청소시간 wr3-->
+<!--청소량 wr13 int-->
+<!--전화번호1 wr5-->
+<!--전화번호2 wr14 varchar(255)-->
+<!--청소금액 wr15 int-->
+<!--청소완료 wr12-->
+<!--청소알림 wr16 varchar(30)-->
+<!--세금계산서 wr7-->
+<!--요청사항 wr6-->
+<!--비고 wr17 text-->

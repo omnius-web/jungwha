@@ -8,6 +8,7 @@ var bodyParser = require("body-parser");
 var MySQLStore = require('express-mysql-session')(session);
 var flash = require('connect-flash');
 var authMd = require('../models/auth');
+var omTime = require('../models/time');
 
 var db = mysql.createConnection(dbOpt);
 db.connect();
@@ -207,6 +208,118 @@ router.post('/schedule_prc_del',(req,res)=>{
     res.redirect('/adm/login');
   }
 })
+
+
+//  Contact 고객관리
+router.get('/contact',(req,res)=>{
+  var rstSend = {};
+  var authRst = authMd.authcheck(req,res,10);
+  var nowTime = omTime.timeSt();
+  if(authRst){
+    rstSend = {
+      auth: authRst,
+      userInfo: req.user,
+      nowTime: nowTime
+    }
+    var conList = new Promise(function(resolve,reject){
+      db.query('select * from contact where not wr12 = "1" order by wr11',(err,data)=>{
+        if(err){
+          throw 'adm contact list select query error';
+        }
+        resolve(data);
+      })
+    });
+    conList.then(function(rst){
+      rstSend.data = rst;
+      res.render('adm/contact',rstSend);
+    }).catch(function(err){
+      console.log(err);
+    });
+  }
+  else{
+    res.redirect('/adm/login');
+  }
+})
+//  Contact 고객관리
+
+// Contact list 수정
+router.post('/contactup',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,10);
+  if(authRst){
+    var post = req.body;
+    var anum = post.anum;
+    delete post.anum;
+    var conDate = post.wr2;
+    var dateSplit = conDate.split('-');
+    var reqSelTime = omTime.selTimeSt(Number(dateSplit[0]),Number(dateSplit[1])-1,Number(dateSplit[2]));
+    var nowTime = omTime.timeSt();
+
+    post.wr8 = dateSplit[0];
+    post.wr9 = dateSplit[1];
+    post.wr10 = dateSplit[2];
+    post.wr11 = reqSelTime.selTS2;
+    var sql = 'update contact set';
+    var params = [];
+    for(poval in post){
+      sql += ` ${poval} = ?,`;
+      params.push(post[poval]);
+    }
+    sql = sql.substr(0, sql.length -1);
+    sql += ' where anum = ?';
+    params.push(anum);
+    // console.log(sql);
+    // console.log(params);
+    var conUpdate = new Promise(function(resolve,reject){
+      db.query(sql,params,function(err,rst){
+        if(err){
+          throw 'adm contact update query error';
+        }
+        resolve(rst);
+      })
+    });
+    conUpdate.then(function(rst){
+      res.send(true);
+    }).catch(function(err){
+      console.log(err);
+    })
+  }
+  
+})
+// Contact list 수정
+
+
+
+
+// Contact list 삭제
+router.post('/contactdel',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,10);
+  if(authRst){
+    var post = req.body;
+    var anum = post.anum;
+    
+    var conUpdate = new Promise(function(resolve,reject){
+      db.query('delete from contact where anum = ?',[anum],function(err,rst){
+        if(err){
+          throw 'adm contact delete query error';
+        }
+        resolve(rst);
+      })
+    });
+    conUpdate.then(function(rst){
+      res.send(true);
+    }).catch(function(err){
+      console.log(err);
+    })
+  }
+  
+})
+// Contact list 삭제
+
+
+
+
+
+
 
 // 로그아웃
 router.get('/logout', function(req, res){

@@ -135,7 +135,8 @@ router.post('/contactprc',(req,res)=>{
     post.wr9 = dateSplit[1];
     post.wr10 = dateSplit[2];
     post.wr11 = reqSelTime.selTS2;
-    post.wr12 = '0';
+    post.wr13 = 0;
+    post.wr15 = 0;
     post.date = nowTime.now2;
 
     var dbSearch = function(){

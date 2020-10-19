@@ -778,3 +778,54 @@ li {
   background-color: #0088ff!important;
 }
 /* schedule.ejs */
+
+
+
+/* adm_Contact_list */
+
+.admconlist_wrap {
+  width: 100%;
+  margin-top: 30px;
+}
+.admconlist_wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.admconlist_wrap table td {
+  border: 1px solid #eaeaea;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+.admconlist_wrap table td input {
+  font-size: 0.8rem;
+  padding: 5px;
+  border-radius: 0.5rem;
+  border: 1px solid #eaeaea;
+}
+.admconlist_input1 {
+  width: 100px;
+}
+.admconlist_input2 {
+  width: 180px;
+}
+.admconlist_input3 {
+  width: 80px;
+}
+.admconlist_input4 {
+  width: 20px;
+}
+.admcon_bt a {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+  border-radius: 0.5rem;
+  padding: 5px;
+  font-size: 0.8rem;
+}
+.contactlist_select {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* adm_Contact_list */

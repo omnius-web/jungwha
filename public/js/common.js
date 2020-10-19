@@ -234,7 +234,7 @@ $(document).ready(function(){
   });
 
 
-  $('input[name="wr4"]').click(function(){
+  $('.jusoinput').click(function(){
     $('.om_juso').fadeIn();
     $('.wrap_div').addClass('blackbg');
     $('.blackbg').animate({opacity:'0.8'},200);
@@ -521,6 +521,61 @@ $(document).ready(function(){
   // 아이콘 깜빡임
 
   // 신청이력조회
+
+
+
+
+  // admin contact list
+  $(document).on('click','.admconup',function(){
+    var confedit = confirm('수정하시겠습니까?');
+    if(confedit){
+      var contactData = $(this).parents('.admcon_bt').prevAll('#admconup').serialize();
+      $.ajax({
+        type : 'post',
+        url : '/adm/contactup',
+        data : contactData,
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: "text",
+        cache : false,
+        success : function(rst){
+          if(rst){
+            alert('수정되었습니다.');
+            location.reload();
+          }
+          else{
+            alert('수정오류!');
+          }
+        }
+      });
+    }
+  });
+
+  $(document).on('click','.admcondel',function(){
+    var confedit = confirm('삭제하시겠습니까?');
+    if(confedit){
+      var contactData = $(this).parents('.admcon_bt').prevAll('#admconup').serialize();
+      $.ajax({
+        type : 'post',
+        url : '/adm/contactdel',
+        data : contactData,
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: "text",
+        cache : false,
+        success : function(rst){
+          if(rst){
+            alert('삭제되었습니다.');
+            location.reload();
+          }
+          else{
+            alert('삭제오류!');
+          }
+        }
+      });
+    }
+  });
+  // admin contact list
+
+
 
 });
 
