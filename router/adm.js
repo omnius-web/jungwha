@@ -240,6 +240,14 @@ router.get('/contact',(req,res)=>{
     res.redirect('/adm/login');
   }
 })
+
+
+router.post('/contact',(req,res)=>{
+  var post = req.body;
+  console.log(post);
+})
+
+
 //  Contact 고객관리
 
 // Contact list 수정

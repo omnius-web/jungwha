@@ -69,10 +69,10 @@ module.exports = {
                             </li>
                         </div>
                 </div>
-                <div class="search_icon search_enter">
+                <div class="search_icon search_enter2">
                     <img src="/img/icon_b.png">
                 </div>
-                <div class="search_bt search_enter">
+                <div class="search_bt search_enter2">
                     <a style="color: black; text-align: left;">정화조 청소신청확인</a>
                 </div>
             </form>

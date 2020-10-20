@@ -309,7 +309,7 @@ $(document).ready(function(){
         }
         else{
           if(rstJn.err=='1'){
-            alert('동일한 전화번호가 입력되어있습니다.');
+            alert('이미 신청된 내역이 있습니다.');
           }
           else if(rstJn.err=='2'){
             alert('모든 내용을 입력해주세요.');
@@ -426,6 +426,14 @@ $(document).ready(function(){
   
   $(document).on('click','.search_enter',function(){
     var contactData = $('.search_list').serialize();
+    $('.sms_conf').css('display','none');
+    
+    var sendty = $('input[name="sendtype"]').val();
+    if(sendty=='conf'){
+      var smsVal = $('input[name="sms"]:checked').val();
+      contactData += `&sms=${smsVal}`;
+    }
+    
     $.ajax({
       type : 'post',
       url : '/contactlist',
@@ -456,6 +464,24 @@ $(document).ready(function(){
         // $('.search_rst_content').html(srstcon);
       }
     });
+  });
+
+
+
+  $(document).on('click','.search_enter2',function(){
+    var contactData = $('.search_list').serialize();
+    contactData += '&test=index';
+    var se2_htlm = `
+      <div class="con_conf_sms">
+        <li><input type="radio" name="sms" value="0"></li>
+        <li><input type="radio" name="sms" value="1"></li>
+      </div>
+      <div class="search_icon search_enter">
+          <img src="/img/icon_b.png">
+      </div>
+    `;
+    $('.sms_conf').html(se2_htlm);
+    $('.sms_conf').css('display','inline-block');
   });
 
   // $('.search_enter').click(function(){

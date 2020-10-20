@@ -135,13 +135,15 @@ router.post('/contactprc',(req,res)=>{
     post.wr9 = dateSplit[1];
     post.wr10 = dateSplit[2];
     post.wr11 = reqSelTime.selTS2;
+    post.wr12 = 0;
     post.wr13 = 0;
     post.wr15 = 0;
+    post.wr16 = 0;
     post.date = nowTime.now2;
 
     var dbSearch = function(){
       return new Promise(function(resolve,reject){
-        db.query('select * from contact where wr5 = ?',[post.wr5],function(err,data){
+        db.query('select * from contact where wr5 = ? and not wr12="1"',[post.wr5],function(err,data){
           if(err){
             throw 'contact db for hp num search';
           }
@@ -183,9 +185,17 @@ router.post('/contactprc',(req,res)=>{
 // contactList
 router.post('/contactlist',(req,res)=>{
   var post = req.body;
+  console.log(post);
   var searList = function(){
     return new Promise(function(resolve,reject){
-      db.query('select * from contact where wr1=? and wr5=? order by wr11 desc',[post.wr1,post.wr5],function(err,data){
+      var sql = '';
+      if(post.sendtype=='list'){
+        sql = `select * from contact where wr1=? and wr5=? and wr12='1' order by wr11 desc`;
+      }
+      if(post.sendtype=='conf'){
+        sql = `select * from contact where wr1=? and wr5=? and not wr12='1' order by wr11 desc`;
+      }
+      db.query(sql,[post.wr1,post.wr5],function(err,data){
         if(err){
           throw 'contact List select err';
         }
@@ -209,12 +219,26 @@ router.post('/contactlist',(req,res)=>{
       var rstHtml = popTemplate.conListRst(rstSend);
     }
     if(post.sendtype=='conf'){
+      // if(post.sms){
+      //   var sql = `insert into contact (wr16) values ("1") where anum `;
+      // }
+      // else{
+      //   var sql = `insert into contact (wr16) values ("")`;
+      // }
+      // db.query(sql,function(err,rst){
+      //   if(err){
+      //     throw 'contact insert smsAlert query error';
+      //   }
+      //   resolve(true);
+      // })
+      console.log(rst);
       var rstHtml = popTemplate.conConfRst(rstSend);
     }
     res.send(rstHtml);
   }).catch(function(err){
     console.error(err);
   })
+  
 })
 // contactList
 
