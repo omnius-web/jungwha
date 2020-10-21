@@ -3,15 +3,51 @@
 <%- include ("../header") %>
 <%- include ("./adm_header") %>
 
+<% var obPostBul = Object.keys(post).length %>
+<% var jtjs = jsonText %>
+<div class="extesst">excel</div>
+<div class="om_hid jsontext_div">
+    <form action="/adm/excelsend" method="post" id="excelform" target="pop_window">
+        <textarea name="jstextarea"><%- jsonText %></textarea>
+    </form>
+    
+</div>
 
+<script>
+    $('.extesst').click(function(){
+        window.open("","pop_window","width=500,height=300");
+        $('#excelform').submit();
+    //$(document).on('click','.extesst',function(){
+        /*var datajste = $('.jsontext_div').text();
+        $.ajax({
+            type : 'post',
+            url : '/adm/excelsend',
+            data : {
+                jsdata: datajste
+            },
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            dataType: "text",
+            cache : false,
+            success : function(rst){
+            
+            }
+        })*/
+    });
+</script>
 <div class="admconlist_wrap">
     <div class="contactlist_select">
         <form action="/adm/contact" method="post">
             <select name="year">
                 <% for(var i = 2017; i < 2100; i++) { %>
                     <% var selected = '' %>
-                    <% if(i == nowTime.nowY){ %>
-                        <% var selected = 'selected="selected"' %>
+                    <% if(obPostBul){ %>
+                        <% if(i == Number(post.year)){ %>
+                            <% var selected = 'selected="selected"' %>
+                        <% } %>
+                    <% }else{ %>
+                        <% if(i == nowTime.nowY){ %>
+                            <% var selected = 'selected="selected"' %>
+                        <% } %>
                     <% } %>
                     <option value="<%= i %>" <%= selected %>><%= i %></option>
                 <% } %>
@@ -19,8 +55,14 @@
             <select name="month">
                 <% for(var i = 1; i < 13; i++) { %>
                     <% var selected = '' %>
-                    <% if(i == nowTime.nowM){ %>
-                        <% var selected = 'selected="selected"' %>
+                    <% if(obPostBul){ %>
+                        <% if(i == Number(post.month)){ %>
+                            <% var selected = 'selected="selected"' %>
+                        <% } %>
+                    <% }else{ %>
+                        <% if(i == nowTime.nowM){ %>
+                            <% var selected = 'selected="selected"' %>
+                        <% } %>
                     <% } %>
                     <option value="<%= i %>" <%= selected %>><%= i %></option>
                 <% } %>
@@ -28,24 +70,43 @@
             <select name="day">
                 <option value="0">전체</option>
                 <% for(var i = 1; i < 32; i++) { %>
-                    
+                    <% var selected = '' %>
+                    <% if(post.day!==undefined){ %>
+                        <% if(i == Number(post.day)){ %>
+                            <% var selected = 'selected="selected"' %>
+                        <% } %>
+                    <% } %>
                     <option value="<%= i %>" <%= selected %>><%= i %></option>
                 <% } %>
             </select>
-            <input type="text" name="name" value="" placeholder="이름" size="7">
-            <input type="text" name="hp" value="" placeholder="연락처" size="8">
+            <input type="text" name="name" value="<%= post.name%>" placeholder="이름" size="7">
+            <input type="text" name="hp" value="<%= post.hp%>" placeholder="연락처" size="8">
             <select name="jusogu">
                 <option value="0">구선택</option>
-                <option value="원미구">원미구</option>
-                <option value="소사구">소사구</option>
-                <option value="오정구">오정구</option>
+                <option value="원미구" <% if(post.jusogu=='원미구'){ %> selected="selected" <%}%> >원미구</option>
+                <option value="소사구" <% if(post.jusogu=='소사구'){ %> selected="selected" <%}%> >소사구</option>
+                <option value="오정구" <% if(post.jusogu=='오정구'){ %> selected="selected" <%}%> >오정구</option>
             </select>
             <select name="complete">
-                <option value="0">신청상태</option>
-                <option value="1">청소완료</option>
+                <option value="0" <% if(post.complete=='0'){ %> selected="selected" <%}%> >신청대기</option>
+                <option value="1" <% if(post.complete=='1'){ %> selected="selected" <%}%> >청소완료</option>
             </select>
             <input type="submit" value="검색">
         </form>
+    </div>
+    <div class="adm_conlist_date_tit">
+        <script>
+            var selYear = $('select[name="year"]').val();
+            var selMonth = $('select[name="month"]').val();
+            var selDay = $('select[name="day"]').val();
+            if(selDay=='0'){
+                selDay = '';
+            }
+            else{
+                selDay = `${selDay}일`;
+            }
+            document.write(`${selYear}년 ${selMonth}월 ${selDay}`);;
+        </script>
     </div>
     <table>
         <tr class="admconlist_tit">
@@ -175,3 +236,7 @@
 <!--세금계산서 wr7-->
 <!--요청사항 wr6-->
 <!--비고 wr17 text-->
+
+<!--년 wr8-->
+<!--월 wr9-->
+<!--일 wr10-->

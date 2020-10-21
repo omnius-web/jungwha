@@ -9,6 +9,7 @@ var MySQLStore = require('express-mysql-session')(session);
 var flash = require('connect-flash');
 var authMd = require('../models/auth');
 var omTime = require('../models/time');
+var excel = require('../models/excel');
 
 var db = mysql.createConnection(dbOpt);
 db.connect();
@@ -221,8 +222,9 @@ router.get('/contact',(req,res)=>{
       userInfo: req.user,
       nowTime: nowTime
     }
+    rstSend.post = {};
     var conList = new Promise(function(resolve,reject){
-      db.query('select * from contact where not wr12 = "1" order by wr11',(err,data)=>{
+      db.query(`select * from contact where not wr12 = "1" and wr8="${nowTime.nowY}" and wr9="${nowTime.nowM}" order by wr11`,(err,data)=>{
         if(err){
           throw 'adm contact list select query error';
         }
@@ -231,6 +233,8 @@ router.get('/contact',(req,res)=>{
     });
     conList.then(function(rst){
       rstSend.data = rst;
+      var jsonText = JSON.stringify(rst);
+      rstSend.jsonText = jsonText;
       res.render('adm/contact',rstSend);
     }).catch(function(err){
       console.log(err);
@@ -243,8 +247,57 @@ router.get('/contact',(req,res)=>{
 
 
 router.post('/contact',(req,res)=>{
-  var post = req.body;
-  console.log(post);
+  var rstSend = {};
+  var authRst = authMd.authcheck(req,res,10);
+  var nowTime = omTime.timeSt();
+  if(authRst){
+    rstSend = {
+      auth: authRst,
+      userInfo: req.user,
+      nowTime: nowTime
+    }
+    var post = req.body;
+    rstSend.post = {};
+    var sql = `select * from contact where`;
+    var params = [];
+    sql += ` wr8=?`;
+    params.push(post.year);
+    sql += ` and wr9=?`;
+    params.push(post.month);
+    if(post.day!=='0'){
+      sql += ` and wr10=?`;
+      params.push(post.day);
+    }
+    if(post.name!==''){
+      sql += ` and wr1=?`;
+      params.push(post.name);
+    }
+    if(post.hp!==''){
+      sql += ` and wr5=?`;
+      params.push(post.hp);
+    }
+    if(post.jusogu!=='0'){
+      sql += ` and wr4 like ?`;
+      params.push(`%${post.jusogu}%`);
+    }
+    sql += ` and wr12=?`;
+    params.push(post.complete);
+    console.log(sql);
+    console.log(params);
+    db.query(sql,params,function(err,rst){
+      if(err){
+        throw 'adm contact list post select where error';
+      }
+      rstSend.data = rst;
+      rstSend.post = post;
+      var jsonText = JSON.stringify(rst);
+      rstSend.jsonText = jsonText;
+      res.render('adm/contact',rstSend);
+    })
+  }
+  else{
+    res.redirect('/adm/login');
+  }
 })
 
 
@@ -322,6 +375,19 @@ router.post('/contactdel',(req,res)=>{
   
 })
 // Contact list 삭제
+
+
+
+
+// EXCEL Down
+router.post('/excelsend',(req,res)=>{
+  var post = req.body;
+  var postJson = JSON.parse(post.jstextarea);
+  var excelRst = excel(postJson);
+  excelRst.write('Excel.xlsx',res);
+});
+// EXCEL Down
+
 
 
 
