@@ -57,7 +57,7 @@
   		// htmlStr += "<td>"+this.bdNm+"</td>"; // 건물명
   		// htmlStr += "<td>"+this.bdKdcd+"</td>"; // 공동주택여부(1:공동주택, 0:비공동주택)
   		// htmlStr += "<td>"+this.siNm+"</td>"; // 시도명
-  		// htmlStr += "<td>"+this.sggNm+"</td>"; // 시군구명
+  		// htmlStr += "<td><li class='juso_list_li1'>"+this.sggNm+"</li></td>"; // 시군구명
   		// htmlStr += "<td>"+this.emdNm+"</td>"; // 읍면동명
   		// htmlStr += "<td>"+this.liNm+"</td>"; // 법정리명
   		// htmlStr += "<td>"+this.rn+"</td>"; // 도로명

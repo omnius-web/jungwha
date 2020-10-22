@@ -847,3 +847,19 @@ li {
 }
 
 /* adm_Contact_list */
+
+
+
+
+/* adm_popup */
+.om_adm_popup {
+  text-align: center;
+}
+.om_adm_popup form li {
+  width: 100%;
+  text-align: left;
+  margin: 10px 0;
+}
+
+/* adm_popup */
+

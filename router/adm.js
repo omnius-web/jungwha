@@ -10,6 +10,18 @@ var flash = require('connect-flash');
 var authMd = require('../models/auth');
 var omTime = require('../models/time');
 var excel = require('../models/excel');
+var multer  = require('multer');
+var uploadDate = Date.now();
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/upload/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + uploadDate)
+  }
+});
+
+var upload = multer({ storage: storage });
 
 var db = mysql.createConnection(dbOpt);
 db.connect();
@@ -17,7 +29,7 @@ db.connect();
 var sessionStore = new MySQLStore(dbOpt);
 
 
-router.use(express.static("public"));
+//router.use(express.static("public"));
 router.use(session({
   secret: 'dhasldjtmtptus',
   resave: false,
@@ -382,11 +394,57 @@ router.post('/contactdel',(req,res)=>{
 // EXCEL Down
 router.post('/excelsend',(req,res)=>{
   var post = req.body;
-  var postJson = JSON.parse(post.jstextarea);
-  var excelRst = excel(postJson);
+  var excelRst = excel(post);
   excelRst.write('Excel.xlsx',res);
 });
 // EXCEL Down
+
+
+
+
+// POPUP
+router.get('/popup',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,10);
+  if(authRst){
+    var rstSend = {
+      auth: authRst,
+      userInfo: req.user
+    }
+    db.query('select * from popup where anum=1',(err,data)=>{
+      if(err){
+        throw 'adm popup select error';
+      }
+      rstSend.popdata = data;
+      res.render('adm/popup',rstSend);
+    });
+    
+  }else{
+    res.redirect('/adm/login');
+  }
+})
+
+router.post('/popup',upload.single('wr1'),(req,res)=>{
+  var post = req.body;
+  if(req.file===undefined){
+    var sql = 'update popup set wr2=?';
+    var params = [post.wr2];
+  }
+  else{
+    var sql = 'update popup set wr1=?, wr2=?';
+    var params = [req.file.fieldname + '-' + uploadDate,post.wr2];
+  }
+  
+  
+
+  db.query(sql,params,function(err,rst){
+    if(err){
+      throw 'adm popup update error';
+    }
+    res.redirect('/adm/popup');
+  })
+})
+// POPUP
+
 
 
 

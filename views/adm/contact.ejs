@@ -8,6 +8,8 @@
 <div class="extesst">excel</div>
 <div class="om_hid jsontext_div">
     <form action="/adm/excelsend" method="post" id="excelform" target="pop_window">
+        <input type="text" name="year" value="<%=post.year%>">
+        <input type="text" name="month" value="<%=post.month%>">
         <textarea name="jstextarea"><%- jsonText %></textarea>
     </form>
     
