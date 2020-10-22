@@ -30,12 +30,12 @@
 
 <div class="om_adm_con_wrap om_adm_popup">
 
-    <form id="form1" action="/adm/popup" method="post" enctype="multipart/form-data">
+    <form id="form1" action="/adm/popupprc" method="post" enctype="multipart/form-data">
         <li> 팝업이미지 교체 : <input type='file' id="imgInp" name="wr1"></li>
         <li><input type="radio" name="wr2" value="0" <% if(popdata[0].wr2 == '0') { %>checked="checked"<% } %> >팝업사용하지 않음
         <input type="radio" name="wr2" value="1" <% if(popdata[0].wr2 == '1') { %>checked="checked"<% } %> >팝업사용</li>
         <li><input type="submit" value="팝업올리기"></li>
-        <img id="blah" src="/upload/<%= popdata[0].wr1%>" alt="" />
+        <img id="blah" src="/upload/<%= popdata[0].wr1%>" alt="" width="350">
     </form>
 
 </div>

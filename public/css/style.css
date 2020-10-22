@@ -853,7 +853,7 @@ li {
 
 /* adm_popup */
 .om_adm_popup {
-  text-align: center;
+  text-align: left;
 }
 .om_adm_popup form li {
   width: 100%;

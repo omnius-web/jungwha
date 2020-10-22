@@ -21,7 +21,11 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage: storage });
+var upload = multer(
+  { 
+    storage: storage,
+    limits: {fileSize: 1100000}
+  }).single('wr1');
 
 var db = mysql.createConnection(dbOpt);
 db.connect();
@@ -423,25 +427,37 @@ router.get('/popup',(req,res)=>{
   }
 })
 
-router.post('/popup',upload.single('wr1'),(req,res)=>{
-  var post = req.body;
-  if(req.file===undefined){
-    var sql = 'update popup set wr2=?';
-    var params = [post.wr2];
-  }
-  else{
-    var sql = 'update popup set wr1=?, wr2=?';
-    var params = [req.file.fieldname + '-' + uploadDate,post.wr2];
-  }
-  
-  
-
-  db.query(sql,params,function(err,rst){
-    if(err){
-      throw 'adm popup update error';
+router.post('/popupprc',(req,res)=>{
+  upload(req, res, function (err) {
+    if (err) {
+      // 업로드할때 오류가 발생함
+      res.send('<script>alert("파일 용량은 1Mb 이하로 업로드가능합니다.");location.href="/adm/popup";</script>');
+      return
     }
-    res.redirect('/adm/popup');
+    var post = req.body;
+    if(req.file===undefined){
+      var sql = 'update popup set wr2=?';
+      var params = [post.wr2];
+    }
+    else{
+      // if(req.file.size > 1100000){
+      //   res.send('<script>alert("파일 용량은 1Mb 이하로 업로드가능합니다.");location.back();</script>');
+      //   return;
+      // }
+      var sql = 'update popup set wr1=?, wr2=?';
+      var params = [req.file.fieldname + '-' + uploadDate,post.wr2];
+    }
+    
+
+    db.query(sql,params,function(err,rst){
+      if(err){
+        throw 'adm popup update error';
+      }
+      res.redirect('/adm/popup');
+    })
+    // 정상적으로 완료됨
   })
+  
 })
 // POPUP
 
