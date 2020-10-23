@@ -566,7 +566,7 @@ $(document).ready(function(){
         success : function(rst){
           if(rst){
             alert('수정되었습니다.');
-            location.reload();
+            //location.reload();
           }
           else{
             alert('수정오류!');
@@ -615,4 +615,32 @@ $(document).ready(function(){
 function numchk(val){
   var rstval = val.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');
   $('.numvalin').val(rstval);
+}
+
+function moneycol(selval, nnth){
+  var nnthyy = $(nnth).parents('td').prev('.money_td').children('input');
+  if(selval=='현금'){
+    nnthyy.removeClass('mc_black');
+    nnthyy.removeClass('mc_gray');
+    nnthyy.removeClass('mc_red');
+    nnthyy.addClass('mc_black');
+  }
+  if(selval=='입금'){
+    nnthyy.removeClass('mc_black');
+    nnthyy.removeClass('mc_gray');
+    nnthyy.removeClass('mc_red');
+    nnthyy.addClass('mc_gray');
+  }
+  if(selval=='미수'){
+    nnthyy.removeClass('mc_black');
+    nnthyy.removeClass('mc_gray');
+    nnthyy.removeClass('mc_red');
+    nnthyy.addClass('mc_red');
+  }
+  if(selval==''){
+    nnthyy.removeClass('mc_black');
+    nnthyy.removeClass('mc_gray');
+    nnthyy.removeClass('mc_red');
+    nnthyy.addClass('mc_black');
+  }
 }

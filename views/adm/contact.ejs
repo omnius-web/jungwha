@@ -5,7 +5,7 @@
 
 <% var obPostBul = Object.keys(post).length %>
 <% var jtjs = jsonText %>
-<div class="extesst">excel</div>
+
 <div class="om_hid jsontext_div">
     <form action="/adm/excelsend" method="post" id="excelform" target="pop_window">
         <input type="text" name="year" value="<%=post.year%>">
@@ -110,6 +110,7 @@
             document.write(`${selYear}년 ${selMonth}월 ${selDay}`);;
         </script>
     </div>
+    <div class="extesst excel_bt_style">엑셀다운</div>
     <table>
         <tr class="admconlist_tit">
             <td>
@@ -118,7 +119,7 @@
             <td>
                 이 름
             </td>
-            <td>
+            <td colspan="2">
                 주 소
             </td>
             <td>
@@ -140,6 +141,9 @@
                 청소금액
             </td>
             <td>
+                결재여부
+            </td>
+            <td>
                 청소완료
             </td>
             <td>
@@ -159,6 +163,10 @@
         </tr>
 <% var listNum = 1 %>
 <% for(clNum in data) { %>
+    <% var moneyColor = '' %>
+    <% if(data[clNum].wr18=='현금'){ moneyColor = 'mc_black' } %>
+    <% if(data[clNum].wr18=='입금'){ moneyColor = 'mc_gray' } %>
+    <% if(data[clNum].wr18=='미수'){ moneyColor = 'mc_red' } %>
         <tr>
             <form method="post" id="admconup">
             <td>
@@ -166,6 +174,14 @@
             </td>
             <td>
                 <input type="text" name="wr1" value="<%= data[clNum].wr1 %>" class="admconlist_input1"><!--이름-->
+            </td>
+            <td>
+                <select name="wr19">
+                    <option value="">구선택</option>
+                    <option value="원미구" <% if(data[clNum].wr19=='원미구'){ %> selected="selected" <%}%> >원미구</option>
+                    <option value="오정구" <% if(data[clNum].wr19=='오정구'){ %> selected="selected" <%}%> >오정구</option>
+                    <option value="소사구" <% if(data[clNum].wr19=='소사구'){ %> selected="selected" <%}%> >소사구</option>
+                </select>
             </td>
             <td>
                 <input type="text" name="wr4" value="<%= data[clNum].wr4 %>" class="admconlist_input1"><!--주소-->
@@ -185,8 +201,16 @@
             <td>
                 <input type="text" name="wr14" value="<%= data[clNum].wr14 %>" class="admconlist_input1"><!--전화번호2-->
             </td>
+            <td class="money_td">
+                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input3 <%= moneyColor%> moneycolor"><!--청소금액-->
+            </td>
             <td>
-                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input3"><!--청소금액-->
+                <select name="wr18" onchange="moneycol(this.value, this);">
+                    <option value="">선택</option>
+                    <option value="현금" <% if(data[clNum].wr18=='현금'){ %> selected="selected" <%}%> >현금</option>
+                    <option value="입금" <% if(data[clNum].wr18=='입금'){ %> selected="selected" <%}%> >입금</option>
+                    <option value="미수" <% if(data[clNum].wr18=='미수'){ %> selected="selected" <%}%> >미수</option>
+                </select>
             </td>
             <td>
                 <input type="text" name="wr12" value="<%= data[clNum].wr12 %>" class="admconlist_input4"><!--청소완료-->
@@ -201,7 +225,7 @@
                 <input type="text" name="wr6" value="<%= data[clNum].wr6 %>" class="admconlist_input1"><!--요청사항-->
             </td>
             <td>
-                <input type="text" name="wr17" value="<%= data[clNum].wr17 %>" class="admconlist_input2"><!--비고-->
+                <input type="text" name="wr17" value="<%= data[clNum].wr17 %>" class="admconlist_input1"><!--비고-->
             </td>
             <td class="admcon_bt">
                 <input type="hidden" name="anum" value="<%= data[clNum].anum %>">
@@ -238,7 +262,33 @@
 <!--세금계산서 wr7-->
 <!--요청사항 wr6-->
 <!--비고 wr17 text-->
+<!--결재여부 wr18-->
 
 <!--년 wr8-->
 <!--월 wr9-->
 <!--일 wr10-->
+
+
+
+
+<!--
+    wr1 이름
+    wr2 청소날짜
+    wr3 청소시간
+    wr4 주소
+    wr5 전화번호1
+    wr6 요청사항
+    wr7 세금계산서
+    wr8 년
+    wr9 월
+    wr10 일
+    wr11 청소날짜 timestamp
+    wr12 청소완료
+    wr13 청소량
+    wr14 전화번호2
+    wr15 청소금액
+    wr16 청소알림
+    wr17 비고
+    wr18 결재여부
+    wr19 구
+-->

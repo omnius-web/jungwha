@@ -828,7 +828,7 @@ li {
   width: 180px;
 }
 .admconlist_input3 {
-  width: 80px;
+  width: 50px;
 }
 .admconlist_input4 {
   width: 20px;
@@ -845,6 +845,22 @@ li {
   text-align: center;
   margin-bottom: 20px;
 }
+.mc_black {
+  color: black;
+}
+.mc_gray {
+  color: gray;
+}
+.mc_red {
+  color: red;
+}
+.excel_bt_style {
+  width: 100%;
+  text-align: right;
+  padding: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+}    
 
 /* adm_Contact_list */
 
