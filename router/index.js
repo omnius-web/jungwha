@@ -48,12 +48,32 @@ router.get('/db',function(req,res){
 
 router.get('/omnius',function(req,res){
   var authRst = authMd.authcheck(req,res,1);
-  var rstSend = {
-    auth: authRst,
-    userInfo: req.user
-  }
-
-  res.render('index',rstSend);
+  db.query('select * from popup where anum=1',(err,data)=>{
+    if(err){
+      throw 'main popup select query error';
+    }
+    var rstSend = {
+      auth: authRst,
+      userInfo: req.user
+    }
+    if(data[0].wr2=='0'){
+      rstSend.popup = ``;
+    }
+    if(data[0].wr2=='1'){
+      rstSend.popup = `
+      <div class="main_popup">
+        <div class="popup_img">
+          <img src="/upload/${data[0].wr1}">
+        </div>
+        <div class="popup_close">
+          <a>닫기</a>
+        </div>
+      </div>
+      `;
+    }
+    res.render('index',rstSend);
+  });
+  
 
 });
 

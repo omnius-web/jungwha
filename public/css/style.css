@@ -863,3 +863,37 @@ li {
 
 /* adm_popup */
 
+/* main_popup */
+.main_popup {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 400px;
+  /* transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%); */
+  z-index: 99999;
+  font-size: 0;
+}
+.popup_img {
+  font-size: 0;
+}
+.popup_img img {
+  width: 400px;
+}
+.popup_close {
+  width: 100%;
+  padding: 5px;
+  text-align: right;
+  box-sizing: border-box;
+  background-color: rgba(0,0,0,0.5);
+}
+.popup_close a {
+  display: inline-block;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+/* main_popup */

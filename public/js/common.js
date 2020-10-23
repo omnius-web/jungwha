@@ -601,6 +601,12 @@ $(document).ready(function(){
   });
   // admin contact list
 
+  // popup close
+  $('.popup_close a').click(function(){
+    $('.main_popup').html('');
+  })
+  // popup close
+
 
 
 });
