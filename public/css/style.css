@@ -623,10 +623,72 @@ li {
   font-weight: bolder;
   margin: 30px 0 25px 0;
 }
+.main_contact_wrap {
+  text-align: center;
+  margin-top: 20px;
+}
+.contact_submit {
+  width: 400px;
+  display: inline-block;
+}
+.contact_submit a {
+  cursor: pointer;
+}
+.contact_submit img {
+  width: 400px;
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* LOGIN */
+.om_login_wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%);
+
+}
+.om_login_tit {
+  text-align: center;
+  padding: 30px;
+}
+.om_login_tit a {
+  font-size: 1.5rem;
+}
+.om_login {
+  box-sizing: border-box;
+}
+.om_login input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.om_login button {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* LOGIN */
 
 
 
@@ -861,6 +923,18 @@ li {
   box-sizing: border-box;
   cursor: pointer;
 }    
+.om_sum_conlist {
+  position: relative;
+}
+.om_sum_conlist table {
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+.om_sum_conlist table td {
+  border: 1px solid #cccccc;
+  padding: 10px;
+}
 
 /* adm_Contact_list */
 

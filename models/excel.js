@@ -20,6 +20,7 @@ module.exports = function(post){
     alignment: {
       wrapText: true,
       horizontal: 'center',
+      vertical: 'center'
     },
     font: {
       color: '#000000',
@@ -31,6 +32,7 @@ module.exports = function(post){
     alignment: {
       wrapText: true,
       horizontal: 'center',
+      vertical: 'center'
     },
     font: {
       color: '#000000',
@@ -39,8 +41,16 @@ module.exports = function(post){
     },
     numberFormat: '#,##0; (#,##0); -',
   });
+  ws.column(4).setWidth(70);
+  ws.column(6).setWidth(20);
+  ws.column(8).setWidth(15);
+  ws.column(9).setWidth(15);
+  ws.column(15).setWidth(40);
+  ws.column(16).setWidth(40);
+  ws.row(1).setHeight(50);
+  ws.cell(1, 1, 1, 16, true).string(`${post.year}년 ${post.month}월`).style(style2);
 
-  ws.cell(1, 1, 1, 14, true).string(`${post.year}년 ${post.month}월`).style(style2);
+  ws.row(2).setHeight(40);
   ws.cell(2,1).string('번호').style(style);
   ws.cell(2,2).string('이름').style(style);
   ws.cell(2,3).string('구').style(style);
@@ -60,7 +70,10 @@ module.exports = function(post){
 
   var cellnum = 3;
   var inNo = 1;
+  var sumwr13 = 0;
+  var sumwr15 = 0;
   for(jsnum in postJson){
+    ws.row(cellnum).setHeight(25);
     ws.cell(cellnum,1).string(`${inNo}`).style(style);
     ws.cell(cellnum,2).string(`${postJson[jsnum].wr1}`).style(style);
     ws.cell(cellnum,3).string(`${postJson[jsnum].wr19}`).style(style);
@@ -79,8 +92,14 @@ module.exports = function(post){
     ws.cell(cellnum,16).string(`${postJson[jsnum].wr17}`).style(style);
     cellnum++;
     inNo++;
+    sumwr13 += Number(postJson[jsnum].wr13);
+    sumwr15 += Number(postJson[jsnum].wr15);
   }
 
+  ws.row(cellnum+2).setHeight(30);
+  ws.cell(cellnum+2,6).string(`합계`).style(style);
+  ws.cell(cellnum+2,7).number(Number(sumwr13)).style(style);
+  ws.cell(cellnum+2,10).number(Number(sumwr15)).style(style);
 
 
   // Set value of cell A1 to 100 as a number type styled with paramaters of style

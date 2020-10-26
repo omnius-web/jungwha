@@ -16,7 +16,8 @@
 </div>
 
 <script>
-    $('.extesst').click(function(){
+    //$('.extesst').click(function(){
+    $(document).on('click','.extesst',function(){
         window.open("","pop_window","width=500,height=300");
         $('#excelform').submit();
     //$(document).on('click','.extesst',function(){
@@ -162,6 +163,8 @@
 
         </tr>
 <% var listNum = 1 %>
+<% var sumwr13 = 0 %>
+<% var sumwr15 = 0 %>
 <% for(clNum in data) { %>
     <% var moneyColor = '' %>
     <% if(data[clNum].wr18=='현금'){ moneyColor = 'mc_black' } %>
@@ -240,7 +243,27 @@
             </form>
         </tr>
     <% listNum++ %>
+    <% sumwr13 += Number(data[clNum].wr13) %>
+    <% sumwr15 += Number(data[clNum].wr15) %>
 <% } %>
+    </table>
+</div>
+<div class="om_sum_conlist">
+    <table>
+        <tr>
+            <td>
+                총 청소량
+            </td>
+            <td>
+                <%= sumwr13.toLocaleString() %>
+            </td>
+            <td>
+                총 청소금액
+            </td>
+            <td>
+                <%= sumwr15.toLocaleString() %>
+            </td>
+        </tr>
     </table>
 </div>
 

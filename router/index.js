@@ -29,9 +29,9 @@ router.use(session({
 router.use(bodyParser.urlencoded({ extended: false }));
 var passport = require('../models/passport')(router);
 
-router.get('/',function(req,res){
-  res.send('SERVER SET...');
-})
+// router.get('/',function(req,res){
+//   res.send('SERVER SET...');
+// })
 
 router.get('/db',function(req,res){
   console.log(req.user);
@@ -46,7 +46,7 @@ router.get('/db',function(req,res){
   });
 });
 
-router.get('/omnius',function(req,res){
+router.get('/',function(req,res){
   var authRst = authMd.authcheck(req,res,1);
   db.query('select * from popup where anum=1',(err,data)=>{
     if(err){
@@ -66,7 +66,7 @@ router.get('/omnius',function(req,res){
           <img src="/upload/${data[0].wr1}">
         </div>
         <div class="popup_close">
-          <a>닫기</a>
+          <a class="popup_close_a">닫기</a>
         </div>
       </div>
       `;
@@ -302,6 +302,7 @@ router.post('/post',function(req,res){
 router.get('/slide',function(req,res){
   res.render('slide');
 });
+
 
 
 

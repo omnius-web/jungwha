@@ -281,7 +281,7 @@ $(document).ready(function(){
     if(confhtml){
       //alert('체크됨');
       $('.om_main_fcd_li1_a_last').html('');
-      $('.om_main_fcd_li2 input[name="wr7"]').val('');
+      $('.om_main_fcd_li2 input[name="wr7"]').val('0');
     }
     else{
       //alert('체크안됨');
@@ -431,7 +431,7 @@ $(document).ready(function(){
     var sendty = $('input[name="sendtype"]').val();
     if(sendty=='conf'){
       var smsVal = $('input[name="sms"]:checked').val();
-      contactData += `&sms=${smsVal}`;
+      contactData += '&sms='+smsVal;
     }
     
     $.ajax({
@@ -471,15 +471,7 @@ $(document).ready(function(){
   $(document).on('click','.search_enter2',function(){
     var contactData = $('.search_list').serialize();
     contactData += '&test=index';
-    var se2_htlm = `
-      <div class="con_conf_sms">
-        <li><input type="radio" name="sms" value="0"></li>
-        <li><input type="radio" name="sms" value="1"></li>
-      </div>
-      <div class="search_icon search_enter">
-          <img src="/img/icon_b.png">
-      </div>
-    `;
+    var se2_htlm = '<div class="con_conf_sms"><li><input type="radio" name="sms" value="0"></li><li><input type="radio" name="sms" value="1"></li></div><div class="search_icon search_enter"><img src="/img/icon_b.png"></div>';
     $('.sms_conf').html(se2_htlm);
     $('.sms_conf').css('display','inline-block');
   });
@@ -602,9 +594,12 @@ $(document).ready(function(){
   // admin contact list
 
   // popup close
-  $('.popup_close a').click(function(){
+  // $('.popup_close a').click(function(){
+  //   $('.main_popup').html('');
+  // })
+  $(document).on('click','.popup_close_a',function(){
     $('.main_popup').html('');
-  })
+  });
   // popup close
 
 

@@ -1,18 +1,27 @@
 <!-- Login_HTML -->
 <%- include ("./header") %>
 
-<div class="om_login">
-  <form class="" action="/adm/login_prc" method="post">
-    <li>
-      <input type="text" name="id" value="" placeholder="ID">
-    </li>
-    <li>
-      <input type="password" name="pw" value="" placeholder="PASSWORD">
-    </li>
-    <li>
-      <input type="submit" value="LogIn">
-    </li>
-  </form>
+<div class="om_login_wrap">
+  <div class="om_login_tit">
+      <a>복사골 환경 관리자 시스템</a>
+  </div>
+  <div class="om_login">
+    <form class="" action="/adm/login_prc" method="post">
+      <li>
+        <input type="text" name="id" value="" placeholder="ID">
+      </li>
+      <li>
+        <input type="password" name="pw" value="" placeholder="PASSWORD">
+      </li>
+      <!-- <li>
+        <input type="submit" value="LogIn" class="om_login_submit">
+      </li> -->
+      <li>
+        <button type="submit">LogIn</button>
+      </li>
+    </form>
+  </div>
 </div>
+
 
 <%- include ("./footer") %>
