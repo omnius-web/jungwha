@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var cssRead = require('../models/cssread');
 var dbOpt = require('../models/db');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
@@ -300,12 +301,16 @@ router.post('/contactlist',(req,res)=>{
 router.post('/contactconf',(req,res)=>{
   var post = req.body;
   if(post.confname == '1'){
-    var rstHtml = popTemplate.conList();
-    res.send(rstHtml);
+    // var rstHtml = popTemplate.conList();
+    // res.send(rstHtml);
+    var thcss = cssRead('public/css/conlist.css');
+    res.render('popup/conlist',{css:thcss});
   }
   if(post.confname == '2'){
-    var rstHtml = popTemplate.conConf();
-    res.send(rstHtml);
+    // var rstHtml = popTemplate.conConf();
+    // res.send(rstHtml);
+    var thcss = cssRead('public/css/conlist.css');
+    res.render('popup/conconf',{css:thcss});
   }
 });
 // contact confirm

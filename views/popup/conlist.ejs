@@ -1,0 +1,43 @@
+<!--conlist.ejs-->
+
+<%- css%>
+
+
+
+
+<div class="search_con search_basic">
+    <div class="search_logo">
+        <img src="/img/logo.png">
+    </div>
+    <form class="search_list" method="post">
+        <input type="hidden" name="sendtype" value="list">
+        <div class="search_from">
+
+                <div class="search_from_div">
+                    <li class="search_from_div_li sfd_li1">
+                        <a class="om_main_fcd_a1 sfd_li_a1">성</a><a class="sfd_li_a1">명</a>
+                    </li>
+                    <li class="search_from_div_li sfd_li2">
+                        <input type="text" name="wr1" value="" class="sfd_li2_in shrst_in_wr1">
+                    </li>
+                </div>
+                <div class="search_from_div">
+                    <li class="search_from_div_li sfd_li1">
+                        <a class="sf_a_num sfd_li_a1">전화번호</a>
+                    </li>
+                    <li class="search_from_div_li sfd_li2">
+                        <input type="text" name="wr5" value="" oninput="numchk(this.value);" class="sfd_li2_in shrst_in_wr2 numvalin">
+                    </li>
+                </div>
+        </div>
+        <div class="search_icon search_enter">
+            <img src="/img/icon_w.png">
+        </div>
+        <div class="search_bt search_enter">
+            <a>정화조 청소이력조회</a>
+        </div>
+    </form>
+    <div class="search_close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+</div>
