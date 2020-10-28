@@ -71,11 +71,33 @@ router.get('/',function(req,res){
       </div>
       `;
     }
-    res.render('index',rstSend);
+    // res.render('index',rstSend);
+    if(req.user === undefined){
+      res.render('index',rstSend);
+    }
+    else{
+      res.redirect('/adm');
+    }
   });
   
 
 });
+
+
+router.get('/main',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,1);
+  var rstSend = {
+    auth: authRst,
+    userInfo: req.user,
+    css: 'main.css'
+  }
+  if(req.user === undefined){
+    res.render('main',rstSend);
+  }
+  else{
+    res.redirect('/adm');
+  }
+})
 
 
 
@@ -136,21 +158,27 @@ router.post('/contactprc',(req,res)=>{
   var sendJn = {};
   var confpost = true;
   var post = req.body;
+
+  var postCount = 0;
   for(postnum in post){
-    if(post[postnum]==''){
+    if(post[postnum]=='' && postCount < 5){
       sendJn.rst = false;
       sendJn.err = '2';
       confpost = false;
       res.send(sendJn);
       return
     }
+    postCount++;
   }
+  
   if(confpost){
     var conDate = post.wr2;
     var dateSplit = conDate.split('-');
     var reqSelTime = omTime.selTimeSt(Number(dateSplit[0]),Number(dateSplit[1])-1,Number(dateSplit[2]));
     var nowTime = omTime.timeSt();
 
+    post.wr4 = post.wr4+' '+post.wr4_1;
+    delete post.wr4_1;
     post.wr8 = dateSplit[0];
     post.wr9 = dateSplit[1];
     post.wr10 = dateSplit[2];
@@ -160,6 +188,7 @@ router.post('/contactprc',(req,res)=>{
     post.wr15 = 0;
     post.wr16 = 0;
     post.date = nowTime.now2;
+
 
     var dbSearch = function(){
       return new Promise(function(resolve,reject){
@@ -190,7 +219,9 @@ router.post('/contactprc',(req,res)=>{
     }).catch(function(err){
       console.log(err);
     });
+    
   }
+  
 
 
 

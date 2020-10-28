@@ -293,8 +293,12 @@ router.post('/contact',(req,res)=>{
       params.push(post.hp);
     }
     if(post.jusogu!=='0'){
+      sql += ` and wr19=?`;
+      params.push(post.jusogu);
+    }
+    if(post.juso!==''){
       sql += ` and wr4 like ?`;
-      params.push(`%${post.jusogu}%`);
+      params.push(`%${post.juso}%`);
     }
     sql += ` and wr12=?`;
     params.push(post.complete);
@@ -337,6 +341,11 @@ router.post('/contactup',(req,res)=>{
     post.wr11 = reqSelTime.selTS2;
     var sql = 'update contact set';
     var params = [];
+    // post.wr13 = Math.floor(post.wr13);
+    if(post.wr20 === undefined){
+      post.wr20 = '0';
+    }
+    console.log(post.wr20);
     for(poval in post){
       sql += ` ${poval} = ?,`;
       params.push(post[poval]);
@@ -504,5 +513,7 @@ router.post('/createmembertable',(req,res)=>{
   }
   res.send(cretb);
 });
+
+
 
 module.exports = router;

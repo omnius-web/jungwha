@@ -40,7 +40,7 @@
 <div class="admconlist_wrap">
     <div class="contactlist_select">
         <form action="/adm/contact" method="post">
-            <select name="year">
+            <select name="year" style="font-size: 1.3rem;">
                 <% for(var i = 2017; i < 2100; i++) { %>
                     <% var selected = '' %>
                     <% if(obPostBul){ %>
@@ -55,7 +55,7 @@
                     <option value="<%= i %>" <%= selected %>><%= i %></option>
                 <% } %>
             </select>
-            <select name="month">
+            <select name="month" style="font-size: 1.3rem;">
                 <% for(var i = 1; i < 13; i++) { %>
                     <% var selected = '' %>
                     <% if(obPostBul){ %>
@@ -70,7 +70,7 @@
                     <option value="<%= i %>" <%= selected %>><%= i %></option>
                 <% } %>
             </select>
-            <select name="day">
+            <select name="day" style="font-size: 1.3rem;">
                 <option value="0">전체</option>
                 <% for(var i = 1; i < 32; i++) { %>
                     <% var selected = '' %>
@@ -82,19 +82,20 @@
                     <option value="<%= i %>" <%= selected %>><%= i %></option>
                 <% } %>
             </select>
-            <input type="text" name="name" value="<%= post.name%>" placeholder="이름" size="7">
-            <input type="text" name="hp" value="<%= post.hp%>" placeholder="연락처" size="8">
-            <select name="jusogu">
+            <input type="text" name="name" value="<%= post.name%>" placeholder="이름" size="7" style="font-size: 1.3rem;">
+            <input type="text" name="hp" value="<%= post.hp%>" placeholder="연락처" size="12" style="font-size: 1.3rem;">
+            <input type="text" name="juso" value="<%= post.juso%>" placeholder="주소검색" size="12" style="font-size: 1.3rem;">
+            <select name="jusogu" style="font-size: 1.3rem;">
                 <option value="0">구선택</option>
                 <option value="원미구" <% if(post.jusogu=='원미구'){ %> selected="selected" <%}%> >원미구</option>
                 <option value="소사구" <% if(post.jusogu=='소사구'){ %> selected="selected" <%}%> >소사구</option>
                 <option value="오정구" <% if(post.jusogu=='오정구'){ %> selected="selected" <%}%> >오정구</option>
             </select>
-            <select name="complete">
+            <select name="complete" style="font-size: 1.3rem;">
                 <option value="0" <% if(post.complete=='0'){ %> selected="selected" <%}%> >신청대기</option>
                 <option value="1" <% if(post.complete=='1'){ %> selected="selected" <%}%> >청소완료</option>
             </select>
-            <input type="submit" value="검색">
+            <input type="submit" value="검색" style="font-size: 1.3rem; padding: 5px 30px;">
         </form>
     </div>
     <div class="adm_conlist_date_tit">
@@ -151,13 +152,16 @@
                 청소알림
             </td>
             <td>
-                세금계산서
+                전자계산서
             </td>
             <td>
                 요청사항
             </td>
             <td>
                 비고
+            </td>
+            <td>
+                우수환경
             </td>
             <td></td>
 
@@ -170,6 +174,14 @@
     <% if(data[clNum].wr18=='현금'){ moneyColor = 'mc_black' } %>
     <% if(data[clNum].wr18=='입금'){ moneyColor = 'mc_gray' } %>
     <% if(data[clNum].wr18=='미수'){ moneyColor = 'mc_red' } %>
+    <% var jusoSpl = data[clNum].wr4 %>
+    <% jusoSpl = jusoSpl.split(' ') %>
+    <% var jusoRst = '' %>
+    <% for(jso in jusoSpl){ %>
+        <% if(jso != 0 && jso != 1) { jusoRst += jusoSpl[jso]+' ' } %>
+        
+            
+    <% } %>
         <tr>
             <form method="post" id="admconup">
             <td>
@@ -186,8 +198,8 @@
                     <option value="소사구" <% if(data[clNum].wr19=='소사구'){ %> selected="selected" <%}%> >소사구</option>
                 </select>
             </td>
-            <td>
-                <input type="text" name="wr4" value="<%= data[clNum].wr4 %>" class="admconlist_input1"><!--주소-->
+            <td style="width: 300px;">
+                <input type="text" name="wr4" value="<%= data[clNum].wr4 %>" class="admconlist_input5"><!--주소-->
             </td>
             <td>
                 <input type="text" name="wr2" value="<%= data[clNum].wr2 %>" class="admconlist_input1"><!--청소날짜-->
@@ -196,7 +208,7 @@
                 <input type="text" name="wr3" value="<%= data[clNum].wr3 %>" class="admconlist_input1"><!--청소시간-->
             </td>
             <td>
-                <input type="text" name="wr13" value="<%= data[clNum].wr13 %>" class="admconlist_input3"><!--청소량-->
+                <input type="text" name="wr13" value="<%= data[clNum].wr13.toFixed(2) %>" class="admconlist_input3 conlistwr13input" style="font-weight: bold; font-size:0.8rem;" oninput="conlistwr13(this.value)"><!--청소량-->
             </td>
             <td>
                 <input type="text" name="wr5" value="<%= data[clNum].wr5 %>" class="admconlist_input1"><!--전화번호1-->
@@ -205,7 +217,7 @@
                 <input type="text" name="wr14" value="<%= data[clNum].wr14 %>" class="admconlist_input1"><!--전화번호2-->
             </td>
             <td class="money_td">
-                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input3 <%= moneyColor%> moneycolor"><!--청소금액-->
+                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input3 conlistwr15input <%= moneyColor%> moneycolor" style="font-weight: bold; font-size:0.8rem;" oninput="conlistwr15(this.value)"><!--청소금액-->
             </td>
             <td>
                 <select name="wr18" onchange="moneycol(this.value, this);">
@@ -230,11 +242,16 @@
             <td>
                 <input type="text" name="wr17" value="<%= data[clNum].wr17 %>" class="admconlist_input1"><!--비고-->
             </td>
+            <td>
+                <% var wr20selected = '' %>
+                <% if(data[clNum].wr20 == '1') { wr20selected = 'checked="checked"' } %>
+                <input type="checkbox" name="wr20" value="1" <%- wr20selected %>><!--우수환경-->
+            </td>
             <td class="admcon_bt">
                 <input type="hidden" name="anum" value="<%= data[clNum].anum %>">
                 
                 <a class="admconup">
-                    수정
+                    저장
                 </a>
                 <a class="admcondel">
                     삭제
@@ -254,13 +271,13 @@
             <td>
                 총 청소량
             </td>
-            <td>
+            <td class="wr13Rst">
                 <%= sumwr13.toLocaleString() %>
             </td>
             <td>
                 총 청소금액
             </td>
-            <td>
+            <td class="wr15Rst">
                 <%= sumwr15.toLocaleString() %>
             </td>
         </tr>
@@ -314,4 +331,5 @@
     wr17 비고
     wr18 결재여부
     wr19 구
+    wr20 우수환경
 -->

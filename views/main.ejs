@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
+    <title>복사골환경(주)</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/<%= css%>">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <!--[if lte IE 8]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+
+  </head>
+  <body>
+
+    <div class="main_tit">
+      <a>부천시 지정 정화조 청소업체</a>
+    </div>
+    
+    <% if(auth){ %>
+    <div class="om_auth">
+      <li>
+        <a><%= userInfo.nickname %>님 반갑습니다</a>
+      </li>
+      <li>
+        <a href="/adm">MENU</a>
+      </li>
+      <li>
+        <a href="/adm/logout">LogOut</a>
+      </li>
+    </div>
+    <% } %>
+    
+
+    <div class="main_wrap">
+      <div class="main_bg">
+        <img src="/img/main/main_bg_n2.png">
+        <div class="main_bt_wrap">
+          <div class="main_bt_con">
+            <li class="main_bt1"><img src="/img/main/bt1.png" alt=""></li>
+            <li class="main_bt2"><img src="/img/main/bt2.png" alt=""></li>
+            <li class="main_bt3"><img src="/img/main/bt3.png" alt=""></li>
+            <li class="main_bt4"><img src="/img/main/bt4.png" alt=""></li>
+          </div>
+        </div>
+        <div class="main_bottom_bt">
+          <li class="main_bottom_bt_li main_bottom_bt_li1">
+            <a><img src="/img/main/bt5.png"></a>
+          </li>
+          <li class="main_bottom_bt_li main_bottom_bt_li2">
+            <a><img src="/img/main/bt6.png"></a>
+          </li>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <form class="main_contact" action="/contactprc" method="post">
+    <div class="main_n_contact_wrap">
+      <div class="main_n_contact_tit">
+        <img src="/img/main/contact_top.png">
+      </div>
+      <div class="main_n_contact_con">
+        <!-- form_1 -->
+        <div class="main_n_conin">
+          <li class="main_n_conin_li1">
+            <img src="/img/main/contact_in1.png" alt="성명">
+          </li>
+          <li class="main_n_conin_li2">
+            <input type="text" name="wr1" value="" placeholder="하수과 신고자명" class="main_n_conin_input main_n_input1">
+          </li>
+        </div>
+        <!-- form_1 -->
+
+        <!-- form_1 -->
+        <div class="main_n_conin">
+          <li class="main_n_conin_li1">
+            <img src="/img/main/contact_in2.png" alt="청소날짜">
+          </li>
+          <li class="main_n_conin_li3">
+            <input type="text" name="wr2" value="" placeholder="0000-00-00" class="main_n_conin_input main_n_input1" id="calFormInput">
+          </li>
+          <li class="main_n_conin_li4">
+            <input type="hidden" name="wr3" value="" id="main_n_timesel_input">
+            <a class="main_n_conin_input main_n_input1 main_n_conin_li4_a" id="main_n_timesel">시간선택</a>
+          </li>
+          <div class="calForForm">
+            <div class="om_calendar_input">
+            </div>
+            <div class="calBottom">
+              <li>
+                <a>닫기</a>
+              </li>
+            </div>
+          </div>
+          <div class="main_n_conin_timesel">
+            <li>오전 6시~7시</li>
+            <li>오전 7시~8시</li>
+            <li>오전 8시~9시</li>
+            <li>오전 10시~11시</li>
+            <li>오전 11시~12시</li>
+            <li>오후 1시~2시</li>
+            <li>오후 2시~3시</li>
+            <li>오전 아무때나</li>
+            <li>오후 아무때나</li>
+          </div>
+        </div>
+        <!-- form_1 -->
+
+        <!-- form_1 -->
+        <div class="main_n_conin">
+          <li class="main_n_conin_li1">
+            <img src="/img/main/contact_in3.png" alt="주소">
+          </li>
+          <li class="main_n_conin_li2">
+            <input type="text" name="wr4" value="" placeholder="지번주소입력" class="main_n_conin_input main_n_input1">
+          </li>
+        </div>
+        <!-- form_1 -->
+
+        <!-- form_1 -->
+        <div class="main_n_conin">
+          <li class="main_n_conin_li1">
+            <img src="/img/main/contact_in4.png" alt="전화번호">
+          </li>
+          <li class="main_n_conin_li2">
+            <input type="text" name="wr5" value="" placeholder="예)01012345678" class="main_n_conin_input main_n_input1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+          </li>
+        </div>
+        <!-- form_1 -->
+
+        <!-- form_1 -->
+        <div class="main_n_conin">
+          <li class="main_n_conin_li1">
+            <img src="/img/main/contact_in5.png" alt="요청사항">
+          </li>
+          <li class="main_n_conin_li2">
+            <input type="text" name="wr6" value="" placeholder="요청사항을 선택해주세요." class="main_n_conin_input main_n_input1" id="main_yoch_sel">
+          </li>
+          <div class="main_n_conin_yoch">
+            <li data-conelse="1">직접입력</li>
+						<li>도착 전 연락바랍니다.</li>
+						<li>영수증은 우편함에</li>
+						<li>영수증을 문자로 보내주세요.</li>
+          </div>
+          <div class="main_n_conin_bil">
+            <input type="checkbox" name="wr7" value="1" class="main_n_conin_bil_input">
+            <img src="/img/main/contact_in6.png" alt="전자계산서">
+          </div>
+        </div>
+        <!-- form_1 -->
+
+        <!-- form_1 -->
+        <div class="main_n_conin">
+          <li class="main_n_conin_li1">
+            
+          </li>
+          <li class="main_n_conin_li2">
+            <input type="text" name="wr4_1" value="" placeholder="상세주소" class="main_n_conin_input main_n_input1">
+          </li>
+        </div>
+        <!-- form_1 -->
+      </div>
+      </div>
+      </form>
+    </div>
+
+    <div class="main_contact_wrap">
+      <div class="contact_submit">
+        <a><img src="/img/main_bt.png"></a>
+      </div>
+    </div>
+
+
+    <script src="/js/common.js"></script>
+  </body>
+</html>
+
+
+    
