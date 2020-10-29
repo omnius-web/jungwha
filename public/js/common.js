@@ -251,42 +251,72 @@ $(document).ready(function(){
 
 
   // juso
+
+
+  
+
+  $('.main_n_juso_in').click(function(){
+    if($('.main_n_juso').is(":visible")) {
+      $('.main_n_juso').slideUp();
+    } else {
+      $('.main_n_juso').slideDown();
+    }
+  });
+
+
   $(document).on('click','.juso_list_td',function(){
-    var juso1 = $(this).children('.juso_list_li1').text();
+    // var juso1 = $(this).children('.juso_list_li1').text();
     var juso2 = $(this).children('.juso_list_li2').text();
 
-    var jusoAddHtml = '<li class="jusoInLi"><input type="text" name="" value="'+juso1+'" readonly></li><li class="jusoInLi"><input type="text" name="jusorst1" value="'+juso2+'" readonly></li><li class="jusoInLi"><input type="text" name="jusorst2" value="" placeholder="상세주소"></li><li class="jusoInLiBt"><button type="button" class="jusoinbt">주소입력</button></li>';
+    // var jusoAddHtml = '<li class="jusoInLi"><input type="text" name="" value="'+juso1+'" readonly></li><li class="jusoInLi"><input type="text" name="jusorst1" value="'+juso2+'" readonly></li><li class="jusoInLi"><input type="text" name="jusorst2" value="" placeholder="상세주소"></li><li class="jusoInLiBt"><button type="button" class="jusoinbt">주소입력</button></li>';
 
-    $('.jusoAddIn').html(jusoAddHtml);
+    // $('.jusoAddIn').html(jusoAddHtml);
+    $('.main_n_juso_in').val(juso2);
+    
+    if($('.main_n_juso').is(":visible")) {
+      $('.main_n_juso').slideUp();
+    } else {
+      $('.main_n_juso').slideDown();
+    }
+
     $('#list').html('');
     $('.paginate').html('');
+    $('.jusoschkeyview').val('');
+    $('.main_n_juso_desc2').css('display','inline-block');
   });
 
 
-  $(document).on('click','.jusoinbt',function(){
-    var rstSujo1 = $('input[name="jusorst1"]').val();
-    var rstSujo2 = $('input[name="jusorst2"]').val();
-    $('input[name="wr4"]').val(rstSujo1+' '+rstSujo2);
-    $('.om_juso').fadeOut();
-    $('.blackbg').animate({opacity:'0'},500);
-    setTimeout(function(){
-      $('.wrap_div').removeClass('blackbg');
-    },500);
-  });
+  // $(document).on('click','.jusoinbt',function(){
+  //   var rstSujo1 = $('input[name="jusorst1"]').val();
+  //   var rstSujo2 = $('input[name="jusorst2"]').val();
+  //   $('input[name="wr4"]').val(rstSujo1+' '+rstSujo2);
+  //   $('.om_juso').fadeOut();
+  //   $('.blackbg').animate({opacity:'0'},500);
+  //   setTimeout(function(){
+  //     $('.wrap_div').removeClass('blackbg');
+  //   },500);
+  // });
 
 
-  $('.jusoinput').click(function(){
-    $('.om_juso').fadeIn();
-    $('.wrap_div').addClass('blackbg');
-    $('.blackbg').animate({opacity:'0.8'},200);
-  });
-  $('.juso_close a').click(function(){
-    $('.om_juso').fadeOut();
-    $('.blackbg').animate({opacity:'0'},500);
-    setTimeout(function(){
-      $('.wrap_div').removeClass('blackbg');
-    },500);
-  });
+  // $('.jusoinput').click(function(){
+  //   $('.om_juso').fadeIn();
+  //   $('.wrap_div').addClass('blackbg');
+  //   $('.blackbg').animate({opacity:'0.8'},200);
+  // });
+  // $('.juso_close a').click(function(){
+  //   $('.om_juso').fadeOut();
+  //   $('.blackbg').animate({opacity:'0'},500);
+  //   setTimeout(function(){
+  //     $('.wrap_div').removeClass('blackbg');
+  //   },500);
+  // });
+
+
+
+  
+
+
+
 
   // juso
 
@@ -385,6 +415,9 @@ $(document).ready(function(){
           else if(rstJn.err=='2'){
             alert('모든 내용을 입력해주세요.');
           }
+          else if(rstJn.err=='3'){
+            alert('개인정보수집 및 활용동의해주세요.');
+          }
           else{
             alert('신청오류! 전화문의주세요.');
           }
@@ -453,6 +486,30 @@ $(document).ready(function(){
       $('.wrap_div').removeClass('blackbg');
     },500);
   });
+
+  
+  $(document).on('click','.main_agree_img',function(){
+    $.ajax({
+      url : '/agree',
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      cache : false,
+      success : function(rst){
+        $('.agree_html').html(rst);
+        $('.agree_wrap').fadeIn();
+        $('.wrap_div').addClass('blackbg');
+        $('.blackbg').animate({opacity:'0.8'},200);
+      }
+    });
+  });
+  $(document).on('click','.agree_close',function(){
+    $('.agree_wrap').fadeOut();
+    $('.agree_html').html('');
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      $('.wrap_div').removeClass('blackbg');
+    },500);
+  });
+
 
 
   // $('.search_close').click(function(){
@@ -724,4 +781,16 @@ function moneycol(selval, nnth){
     nnthyy.removeClass('mc_red');
     nnthyy.addClass('mc_black');
   }
+}
+
+
+function omJusoEnter(){
+  var schKey = $('.jusoschkeyview').val();
+  $('.om_search_key').val(schKey);
+  enterSearch();
+}
+function omJusoBt(){
+  var schKey = $('.jusoschkeyview').val();
+  $('.om_search_key').val(schKey);
+  getAddr(1);
 }

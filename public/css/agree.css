@@ -1,0 +1,45 @@
+.agree_wrap {
+    position: fixed;
+    display: none;
+    width: 800px;
+    height: 600px;
+    background-color: white;;
+    top: 50%;
+    left: 50%;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    z-index: 9999;
+    overflow-y: scroll;
+}
+
+.agree_wrap > li.tit {
+    font-size: 1.7rem;
+    font-weight: 800;
+}
+
+.agree_wrap > li.tit2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.agree_wrap > li.desc {
+    font-size: 1.2rem;
+}
+
+.agree_wrap > li {
+    padding-top: 30px;
+}
+
+.agree_close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: black;
+    font-size: 1.8rem;
+    z-index: 9999;
+}

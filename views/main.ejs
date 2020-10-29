@@ -18,6 +18,10 @@
   </head>
   <body>
 
+    <div class="wrap_div">
+
+    </div>
+
     <div class="main_tit">
       <a>부천시 지정 정화조 청소업체</a>
     </div>
@@ -121,8 +125,24 @@
             <img src="/img/main/contact_in3.png" alt="주소">
           </li>
           <li class="main_n_conin_li2">
-            <input type="text" name="wr4" value="" placeholder="지번주소입력" class="main_n_conin_input main_n_input1">
+            <input type="text" name="wr4" value="" placeholder="지번주소입력" class="main_n_conin_input main_n_input1 main_n_juso_in">
           </li>
+          <div class="main_n_juso">
+            <div class="main_n_juso_top">
+              <li>
+                <input type="text" name="" value="" class="jusoschkeyview" onkeydown="omJusoEnter()">
+                <img src="/img/main/juso_sch_bt.png" class="main_n_sch_bt" onclick="omJusoBt()">
+              </li>
+              <li>
+                <img src="/img/main/juso_desc.png" class="main_n_juso_desc1">
+              </li>
+            </div>
+            <div class="main_n_juso_bottom">
+              <img src="/img/main/juso_desc2.png" class="main_n_juso_desc2">
+              <div id="list" class="main_n_juso_list"></div><!-- 검색 결과 리스트 출력 영역 -->
+              <div class="paginate" id="pageApi"></div>
+            </div>
+          </div>
         </div>
         <!-- form_1 -->
 
@@ -164,14 +184,22 @@
             
           </li>
           <li class="main_n_conin_li2">
-            <input type="text" name="wr4_1" value="" placeholder="상세주소" class="main_n_conin_input main_n_input1">
+
+            <input type="text" name="wr4_1" value="" placeholder="상세주소" class="main_n_conin_input main_n_input1 main_n_juso_wr4_1">
           </li>
         </div>
         <!-- form_1 -->
       </div>
       </div>
+
+      <div class="main_n_agree">
+        <input type="checkbox" name="wr21" value="1" class="main_n_conin_agree_input">
+        <img src="/img/main/contact_in7.png" class="main_agree_img">
+      </div>
       </form>
     </div>
+
+
 
     <div class="main_contact_wrap">
       <div class="contact_submit">
@@ -180,6 +208,42 @@
     </div>
 
 
+
+
+
+
+
+
+
+
+
+
+    <div class="om_juso om_hid">
+      <form name="form" id="form" method="post">
+        <input type="text" name="currentPage" value="1" class="om_hid"> <!-- 요청 변수 설정 (현재 페이지. currentPage : n > 0) -->
+        <input type="text" name="countPerPage" value="5" class="om_hid"><!-- 요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100) -->
+        <input type="text" name="resultType" value="json" class="om_hid"> <!-- 요청 변수 설정 (검색결과형식 설정, json) -->
+        <input type="text" name="confmKey" value="devU01TX0FVVEgyMDIwMTAwMTIyNDkzNjExMDI0OTM=" class="om_hid"><!-- 요청 변수 설정 (승인키) -->
+        <input type="text" name="keyword" value="" class="om_juso_input om_search_key"><!-- 요청 변수 설정 (키워드) -->
+        
+        
+        <div class="juso_close">
+          <a>닫기</a>
+        </div>
+      </form>
+    </div>
+
+    
+      <div class="agree_html">
+        
+      </div>
+      
+   
+    
+
+
+
+    <script src="/js/juso_api.js"></script>
     <script src="/js/common.js"></script>
   </body>
 </html>

@@ -328,13 +328,27 @@ input:focus {outline:none;}
   background-color: #dadada;
   cursor: pointer;
 }
-
+.main_n_juso {
+  position: absolute;
+  display: none;
+  right: 38px;
+  bottom: 63px;
+  width: 423px;
+  border: 1px solid #eaeaea;
+  background-color: white;
+  padding: 10px;
+  z-index: 999;
+}
 .om_juso {
-  position: fixed;
+  /* position: fixed;
   display: none;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); */
+  position: absolute;
+  display: none!important;
+  right: 38px;
+  bottom: 63px;
   width: 330px;
   border: 1px solid #eaeaea;
   background-color: white;
@@ -362,7 +376,7 @@ input:focus {outline:none;}
   margin: 5px;
 }
 #list {
-  border-top: 1px solid #eaeaea;
+  /* border-top: 1px solid #eaeaea; */
 }
 .juso_tit_text > a {
   font-size: 0.9rem;
@@ -542,10 +556,7 @@ input:focus {outline:none;}
   font-weight: bolder;
   margin: 30px 0 25px 0;
 }
-.main_contact_wrap {
-  text-align: center;
-  margin-top: 20px;
-}
+
 .contact_submit {
   width: 400px;
   display: inline-block;
@@ -745,14 +756,16 @@ input:focus {outline:none;}
   border:1px solid #cccccc;
 }
 .juso_list_td {
+  text-align: left;
   cursor: pointer;
   padding: 5px;
 }
 .juso_list_li1 {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  padding-bottom: 5px;
 }
 .juso_list_li2 {
-  font-size: 0.6rem;
+  font-size: 0.9rem;
 }
 .paginate {
   text-align: center;
@@ -760,6 +773,15 @@ input:focus {outline:none;}
 .paginate > a {
   font-size: 0.8rem;
   color: gray;
+}
+.juso_list_part2 {
+  font-size: 0.8rem;
+}
+.juso_list_td img {
+  width: 40px;
+  vertical-align: middle;
+  padding-right: 5px;
+  box-sizing: border-box;
 }
 
 /* Juso */
@@ -814,9 +836,7 @@ input:focus {outline:none;}
 .admconlist_input4 {
   width: 20px;
 }
-.admconlist_input5 {
-  /* width: 150px; */
-}
+
 .admcon_bt a {
   display: inline-block;
   cursor: pointer;

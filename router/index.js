@@ -171,14 +171,30 @@ router.post('/contactprc',(req,res)=>{
     }
     postCount++;
   }
+  if(post.wr21===undefined){
+    sendJn.rst = false;
+    sendJn.err = '3';
+    confpost = false;
+    res.send(sendJn);
+    return
+  }
   
+ 
   if(confpost){
+    var jusoSpl = post.wr4;
+    jusoSpl = jusoSpl.split(' ');
+    delete jusoSpl[0];
+    delete jusoSpl[1];
+    var jusoSplRst = '';
+    for(jsn in jusoSpl){
+      jusoSplRst += jusoSpl[jsn]+' ';
+    }
     var conDate = post.wr2;
     var dateSplit = conDate.split('-');
     var reqSelTime = omTime.selTimeSt(Number(dateSplit[0]),Number(dateSplit[1])-1,Number(dateSplit[2]));
     var nowTime = omTime.timeSt();
 
-    post.wr4 = post.wr4+' '+post.wr4_1;
+    post.wr4 = jusoSplRst+post.wr4_1;
     delete post.wr4_1;
     post.wr8 = dateSplit[0];
     post.wr9 = dateSplit[1];
@@ -189,7 +205,6 @@ router.post('/contactprc',(req,res)=>{
     post.wr15 = 0;
     post.wr16 = 0;
     post.date = nowTime.now2;
-
 
     var dbSearch = function(){
       return new Promise(function(resolve,reject){
@@ -222,7 +237,7 @@ router.post('/contactprc',(req,res)=>{
     });
     
   }
-  
+
 
 
 
@@ -314,6 +329,19 @@ router.post('/contactconf',(req,res)=>{
   }
 });
 // contact confirm
+
+
+
+
+
+
+// agree
+
+router.get('/agree',(req,res)=>{
+  var thcss =  cssRead('public/css/agree.css');
+  res.render('agree',{css:thcss});
+})
+
 
 
 

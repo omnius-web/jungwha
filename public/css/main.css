@@ -86,7 +86,7 @@
 
 .main_n_contact_wrap {
     width: 1600px;
-    margin: 20px auto;
+    margin: 20px auto 5px auto;
     font-size: 0;
 }
 .main_n_contact_tit {
@@ -193,6 +193,64 @@
     margin-top: 0.4rem;
     vertical-align: top;
 }
+.main_n_agree {
+    text-align: center;
+}
+.main_n_conin_agree_input {
+    vertical-align: top;
+    margin-top: 0.8rem;
+}
+.main_contact_wrap {
+    text-align: center;
+    margin-top: 0px;
+}
+.main_n_juso {
+    position: absolute;
+    display: none;
+    right: 38px;
+    bottom: 63px;
+    width: 423px;
+    border: 1px solid #eaeaea;
+    background-color: white;
+    padding: 10px;
+    z-index: 999;
+    background-color: #f0f0f0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.main_n_juso > div {
+    background-color: white;
+}
+.jusoschkeyview, .main_n_sch_bt {
+    vertical-align: middle;
+}
+.jusoschkeyview {
+    padding: 10px;
+}
+.jusoschkeyview {
+    width: 70%;
+}
+.main_n_juso_desc1 {
+    width: 380px;
+}
+.main_n_juso_desc2 {
+    width: 320px;
+    padding: 30px 0;
+}
+.main_n_juso_top {
+    padding: 10px;
+}
+.main_n_juso_bottom {
+    position: relative;
+    margin-top: 10px;
+    padding: 5px;
+}
+.main_n_juso_list, .paginate {
+    background-color: white;
+}
+
+
+
 
 
 @media screen and (min-width: 1921px) {

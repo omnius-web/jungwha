@@ -30,7 +30,7 @@
             pageMake(jsonStr);
   				}
   			}
-        $('.jusoAddIn').html('');
+        $('.main_n_juso_wr4_1').html('');
   		}
   	    ,error: function(xhr,status, error){
   	    	alert("에러발생");
@@ -43,12 +43,13 @@
   	htmlStr += "<table>";
   	$(jsonStr.results.juso).each(function(){
   		htmlStr += "<tr>";
-  		htmlStr += "<td class='juso_list_td'><li class='juso_list_li1'>"+this.roadAddr+"</li><li class='juso_list_li2'>"+this.jibunAddr+"</li></td>"; // 전체 도로명주소
+		  htmlStr += "<td class='juso_list_td'><li class='juso_list_li1'><img src='/img/main/juso_jibun.png'>"+this.roadAddrPart1+"<a class='juso_list_part2'>"+this.roadAddrPart2+"</a></li><li class='juso_list_li2'><img src='/img/main/juso_doro.png'>"+this.jibunAddr+"</li></td>"; // 전체 도로명주소
+		// 전체 도로명주소 -> this.roadAddr
   		//htmlStr += "<td>"+this.roadAddrPart1+"</td>"; // 도로명주소(참고항목 제외)
   		//htmlStr += "<td>"+this.roadAddrPart2+"</td>"; // 도로명주소 참고항목
   		//htmlStr += "<td>"+this.jibunAddr+"</td>"; // 지번주소
   		// htmlStr += "<td>"+this.engAddr+"</td>"; // 도로명주소(영문)
-  		htmlStr += "<td><li class='juso_list_li1'>"+this.zipNo+"</li></td>"; // 우편번호
+  		//htmlStr += "<td><li class='juso_list_li1'>"+this.zipNo+"</li></td>"; // 우편번호
   		// htmlStr += "<td>"+this.admCd+"</td>"; // 행정구역코드
   		// htmlStr += "<td>"+this.rnMgtSn+"</td>"; // 도로명코드
   		// htmlStr += "<td>"+this.bdMgtSn+"</td>"; // 건물관리번호
@@ -70,7 +71,8 @@
   		// htmlStr += "<td>"+this.emdNo+"</td>"; // 읍면동일련번호
   		htmlStr += "</tr>";
   	});
-  	htmlStr += "</table>";
+	  htmlStr += "</table>";
+	  $('.main_n_juso_desc2').css('display','none');
   	$("#list").html(htmlStr);
   }
 
@@ -109,7 +111,7 @@
   function enterSearch() {
   	var evt_code = (window.netscape) ? ev.which : event.keyCode;
   	if (evt_code == 13) {
-  		event.keyCode = 0;
+		event.keyCode = 0;
   		getAddr();
   	}
   }
