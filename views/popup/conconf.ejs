@@ -1,10 +1,11 @@
 <!--conlist.ejs-->
 
 <%- css%>
+<%- js%>
 
 
 <div class="search_con search_conf">
-    <div class="search_logo">
+    <div class="search_logo om_hid">
         <img src="/img/logo_n2.png">
     </div>
     <form class="search_list" method="post">
@@ -13,7 +14,8 @@
 
                 <div class="search_from_div">
                     <li class="search_from_div_li sfd_li1">
-                        <a class="om_main_fcd_a1 sfd_li_a1" style="color: black; text-align: left;">성</a><a class="sfd_li_a1" style="color: black; text-align: left;">명</a>
+                        <!-- <a class="om_main_fcd_a1 sfd_li_a1" style="color: black; text-align: left;">성</a><a class="sfd_li_a1" style="color: black; text-align: left;">명</a> -->
+                        <img src="/img/main/popup_conconf_in1.png">
                     </li>
                     <li class="search_from_div_li sfd_li2">
                         <input type="text" name="wr1" value="" class="sfd_li2_in shrst_in_wr1">
@@ -21,7 +23,8 @@
                 </div>
                 <div class="search_from_div">
                     <li class="search_from_div_li sfd_li1">
-                        <a class="sf_a_num sfd_li_a1" style="color: black; text-align: left;">전화번호</a>
+                        <!-- <a class="sf_a_num sfd_li_a1" style="color: black; text-align: left;">전화번호</a> -->
+                        <img src="/img/main/popup_conconf_in2.png">
                     </li>
                     <li class="search_from_div_li sfd_li2">
                         <input type="text" name="wr5" value="" oninput="numchk(this.value);" class="sfd_li2_in shrst_in_wr2 numvalin">
@@ -31,7 +34,7 @@
         <div class="search_icon search_enter2">
             <img src="/img/icon_b.png">
         </div>
-        <div class="search_bt search_enter2">
+        <div class="search_bt search_enter2 om_hid">
             <a style="color: black; text-align: left;">정화조 청소신청확인</a>
         </div>
     </form>

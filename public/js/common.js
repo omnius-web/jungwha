@@ -418,6 +418,9 @@ $(document).ready(function(){
           else if(rstJn.err=='3'){
             alert('개인정보수집 및 활용동의해주세요.');
           }
+          else if(rstJn.err=='4'){
+            alert('선택하신 시간은 이미 예약되어있습니다.');
+          }
           else{
             alert('신청오류! 전화문의주세요.');
           }
@@ -426,7 +429,7 @@ $(document).ready(function(){
     });
   });
 
-  $('.om_main_bt_li4').click(function(){
+  $('.main_bottom_bt_li1').click(function(){
     $.ajax({
       type : 'post',
       url : '/contactconf',
@@ -443,7 +446,7 @@ $(document).ready(function(){
     });
     
   });
-  $('.om_main_bt_li5').click(function(){
+  $('.main_bottom_bt_li2').click(function(){
     $.ajax({
       type : 'post',
       url : '/contactconf',
@@ -486,6 +489,11 @@ $(document).ready(function(){
       $('.wrap_div').removeClass('blackbg');
     },500);
   });
+  $(document).on('click','.conf_first_close',function(){
+    $('.sms_conf').html('');
+    $('.sms_conf').css('display','none');
+  });
+  
 
   
   $(document).on('click','.main_agree_img',function(){
@@ -552,57 +560,11 @@ $(document).ready(function(){
   
 
   
-  $(document).on('click','.search_enter',function(){
-    var contactData = $('.search_list').serialize();
-    $('.sms_conf').css('display','none');
-    
-    var sendty = $('input[name="sendtype"]').val();
-    if(sendty=='conf'){
-      var smsVal = $('input[name="sms"]:checked').val();
-      contactData += '&sms='+smsVal;
-    }
-    
-    $.ajax({
-      type : 'post',
-      url : '/contactlist',
-      data : contactData,
-      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-      dataType: "text",
-      cache : false,
-      success : function(rst){
-        $('.search').html(rst);
-        // var rstJn = JSON.parse(rst);
-        // var srstcon = '';
-        // console.log(rstJn.clval);
-        // $('.search').css('display','none');
-        // $('.search_rst').css('display','inline-block');
-        // var name = $('.shrst_in_wr1').val();
-        // var hp = $('.shrst_in_wr2').val();
-        // $('.search_rst_li1').text(name);
-        // $('.search_rst_li2').text(hp);
-
-
-        // if(rstJn.clval){
-        //   $('.search_rst_li3').text(rstJn.cl0.wr4);
-        //   srstcon = '<li><a>마지막청소날짜</a></li><li><a>'+rstJn.cl0.wr8+'년 '+rstJn.cl0.wr9+'월 '+rstJn.cl0.wr10+'일</a></li>';
-        // }
-        // else{
-        //   srstcon = '<li><a>죄송합니다.</a></li><li><a>이전청소일을 확인할 수 없습니다.</a></li>';
-        // }
-        // $('.search_rst_content').html(srstcon);
-      }
-    });
-  });
 
 
 
-  $(document).on('click','.search_enter2',function(){
-    var contactData = $('.search_list').serialize();
-    contactData += '&test=index';
-    var se2_htlm = '<div class="con_conf_sms"><li><input type="radio" name="sms" value="0"></li><li><input type="radio" name="sms" value="1"></li></div><div class="search_icon search_enter"><img src="/img/icon_b.png"></div>';
-    $('.sms_conf').html(se2_htlm);
-    $('.sms_conf').css('display','inline-block');
-  });
+
+
 
   // $('.search_enter').click(function(){
   //   var contactData = $('.search_list').serialize();
@@ -646,25 +608,6 @@ $(document).ready(function(){
 
 
 
-  // 아이콘 깜빡임
-  var stint = null;
-  function startinter(){
-    stint = setInterval(function(){
-      $('.search_icon img').animate({opacity:0},700).animate({opacity:1},700)
-    },1400);
-  }
-  $('.search_icon').mouseover(function(){
-    iconstop();
-  });
-  $('.search_icon').mouseleave(function(){
-    startinter()
-  });
-  function iconstop(){
-    clearInterval(stint);
-  }
-
-  startinter();
-  // 아이콘 깜빡임
 
   // 신청이력조회
 

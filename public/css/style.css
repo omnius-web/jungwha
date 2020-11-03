@@ -475,12 +475,8 @@ input:focus {outline:none;}
   display: none;
 }
 
-.search_rst {
-  background-image: url('/img/search_rst_bg.png');
-}
-.search_conf {
-  background-image: url('/img/search_conf_bg.png');
-}
+
+
 
 
 
@@ -499,21 +495,7 @@ input:focus {outline:none;}
   top: auto!important;
   bottom: 10%!important;
 }
-.search_rst_content {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  top: 65%;
-}
-.search_rst_content2 {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  top: 70%;
-}
-.search_rst_content2 li {
-  padding: 5px 0;
-}
+
 .search_confrst_bot_text {
   position: absolute;
   text-align: center;
@@ -538,18 +520,7 @@ input:focus {outline:none;}
 .main_rst_juso_tit {
   vertical-align: top;
 }
-.sms_conf {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  -moz-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  -o-transform: translate(-50%,-50%);
-  z-index: 9999;
-}
+
 .adm_conlist_date_tit {
   text-align: center;
   font-size: 1.7rem;
@@ -821,7 +792,7 @@ input:focus {outline:none;}
 .admconlist_wrap table td input {
   font-size: 0.8rem;
   padding: 0px;
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   border: 0px solid #eaeaea;
 }
 .admconlist_input1 {
@@ -836,7 +807,9 @@ input:focus {outline:none;}
 .admconlist_input4 {
   width: 20px;
 }
-
+.admconlist_input5 {
+  width: 95%;
+}
 .admcon_bt a {
   display: inline-block;
   cursor: pointer;
@@ -848,6 +821,9 @@ input:focus {outline:none;}
 .contactlist_select {
   text-align: center;
   margin-bottom: 20px;
+}
+.contactlist_select a {
+  font-size: 1.3rem;
 }
 .mc_black {
   color: black;
@@ -863,8 +839,15 @@ input:focus {outline:none;}
   text-align: right;
   padding: 10px;
   box-sizing: border-box;
+  
+} 
+.extesst_a {
   cursor: pointer;
-}    
+  font-size: 1.3rem;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  padding: 5px;
+}   
 .om_sum_conlist {
   position: relative;
 }
@@ -898,9 +881,9 @@ input:focus {outline:none;}
 /* main_popup */
 .main_popup {
   position: absolute;
-  top: 100px;
+  top: 150px;
   left: 50px;
-  width: 400px;
+  width: 500px;
   /* transform: translate(-50%,-50%);
   -webkit-transform: translate(-50%,-50%);
   -moz-transform: translate(-50%,-50%);
@@ -913,7 +896,7 @@ input:focus {outline:none;}
   font-size: 0;
 }
 .popup_img img {
-  width: 400px;
+  width: 500px;
 }
 .popup_close {
   width: 100%;

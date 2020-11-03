@@ -1,0 +1,72 @@
+<!-- conListRst.ejs -->
+
+<%- css%>
+<%- js%>
+
+
+<div class="search_con search_rst">
+    <div class="search_logo om_hid">
+        <img src="/img/logo_n2.png">
+    </div>
+
+        <div class="search_from popup_list_rst_form con_conf_rst_pop">
+
+                <div class="search_from_div">
+                    <li class="search_from_div_li sfd_li1">
+                        <!-- <a class="om_main_fcd_a1 sfd_li_a1" style="color:#0075a9!important;">성</a><a class="sfd_li_a1" style="color:#0075a9!important;">명</a> -->
+                        <img src="/img/main/popup_conlistrst_in1.png">
+                    </li>
+                    <li class="search_from_div_li sfd_li2 search_rst_li1" style="color: black; text-align: left; padding: 9px;">
+                        <%- rstSend.name %>
+                    </li>
+                </div>
+                <div class="search_from_div">
+                    <li class="search_from_div_li sfd_li1">
+                        <!-- <a class="sf_a_num sfd_li_a1" style="color:#0075a9!important;">전화번호</a> -->
+                        <img src="/img/main/popup_conlistrst_in2.png">
+                    </li>
+                    <li class="search_from_div_li sfd_li2 search_rst_li2" style="color: black; text-align: left; padding: 9px;">
+                        <%- rstSend.hp %>
+                    </li>
+                </div>
+                <div class="search_from_div">
+                    <li class="search_from_div_li sfd_li1 main_rst_juso_tit">
+                        <!-- <a class="om_main_fcd_a1 sfd_li_a1" style="color:#0075a9!important;">주</a><a class="sfd_li_a1" style="color:#0075a9!important;">소</a> -->
+                        <img src="/img/main/popup_conlistrst_in3.png">
+                    </li>
+                    <li class="search_from_div_li sfd_li2 search_rst_li3" style="color: black; text-align: left; padding: 9px;">
+                        <%- rstSend.rstJuso %>
+                    </li>
+                </div>
+                <div class="search_from_div">
+                    <li class="search_from_div_li sfd_li1 main_rst_juso_tit">
+                        <!-- <a class="om_main_fcd_a1 sfd_li_a1" style="color:#0075a9!important;">주</a><a class="sfd_li_a1" style="color:#0075a9!important;">소</a> -->
+                        <img src="/img/main/popup_conlistrst_in4.png">
+                    </li>
+                    <li class="search_from_div_li sfd_li2 search_rst_li3" style="color: black; text-align: left; padding: 9px;">
+                        <%- rstSend.cl0.wr2 %>
+                    </li>
+                </div>
+                <div class="search_from_div">
+                    <li class="search_from_div_li sfd_li1 main_rst_juso_tit">
+                        <!-- <a class="om_main_fcd_a1 sfd_li_a1" style="color:#0075a9!important;">주</a><a class="sfd_li_a1" style="color:#0075a9!important;">소</a> -->
+                        <img src="/img/main/popup_conlistrst_in5.png">
+                    </li>
+                    <li class="search_from_div_li sfd_li2 search_rst_li3" style="color: black; text-align: left; padding: 9px;">
+                        <%- rstSend.cl0.wr6 %>
+                    </li>
+                </div>
+        </div>
+
+        <div class="search_rst_content">
+            <%- rstSend.rstCon %>
+        </div>
+
+        <div class="search_icon search_rst_bt">
+            <img src="/img/icon_b.png">
+        </div>
+
+    <div class="search_close">
+        <i class="fa fa-times" aria-hidden="true" style="color: black;"></i>
+    </div>
+</div>

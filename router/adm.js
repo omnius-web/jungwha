@@ -289,8 +289,8 @@ router.post('/contact',(req,res)=>{
       params.push(post.name);
     }
     if(post.hp!==''){
-      sql += ` and wr5=?`;
-      params.push(post.hp);
+      sql += ` and wr5 like ?`;
+      params.push(`%${post.hp}%`);
     }
     if(post.jusogu!=='0'){
       sql += ` and wr19=?`;
@@ -300,8 +300,21 @@ router.post('/contact',(req,res)=>{
       sql += ` and wr4 like ?`;
       params.push(`%${post.juso}%`);
     }
-    sql += ` and wr12=?`;
-    params.push(post.complete);
+    if(post.usu == '1'){
+      sql += ` and wr20=?`;
+      params.push(`1`);
+    }
+    if(post.complete!=='2'){
+      sql += ` and wr12=?`;
+      params.push(post.complete);
+    }
+    if(post.payrst=='1'){
+      sql += ` and wr18=?`;
+      params.push('미수');
+    }
+    
+    sql += ` order by wr11`;
+    
     console.log(sql);
     console.log(params);
     db.query(sql,params,function(err,rst){

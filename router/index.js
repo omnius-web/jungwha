@@ -48,6 +48,8 @@ router.get('/db',function(req,res){
 });
 
 router.get('/',function(req,res){
+  res.send('');
+  /*
   var authRst = authMd.authcheck(req,res,1);
   db.query('select * from popup where anum=1',(err,data)=>{
     if(err){
@@ -55,7 +57,8 @@ router.get('/',function(req,res){
     }
     var rstSend = {
       auth: authRst,
-      userInfo: req.user
+      userInfo: req.user,
+      css: 'main.css'
     }
     if(data[0].wr2=='0'){
       rstSend.popup = ``;
@@ -80,24 +83,45 @@ router.get('/',function(req,res){
       res.redirect('/adm');
     }
   });
-  
+  */
 
 });
 
 
 router.get('/main',(req,res)=>{
   var authRst = authMd.authcheck(req,res,1);
-  var rstSend = {
-    auth: authRst,
-    userInfo: req.user,
-    css: 'main.css'
-  }
-  if(req.user === undefined){
-    res.render('main',rstSend);
-  }
-  else{
-    res.redirect('/adm');
-  }
+  db.query('select * from popup where anum=1',(err,data)=>{
+    if(err){
+      throw 'main popup select query error';
+    }
+    var rstSend = {
+      auth: authRst,
+      userInfo: req.user,
+      css: 'main.css'
+    }
+    if(data[0].wr2=='0'){
+      rstSend.popup = ``;
+    }
+    if(data[0].wr2=='1'){
+      rstSend.popup = `
+      <div class="main_popup">
+        <div class="popup_img">
+          <img src="/upload/${data[0].wr1}">
+        </div>
+        <div class="popup_close">
+          <a class="popup_close_a">닫기</a>
+        </div>
+      </div>
+      `;
+    }
+    // res.render('index',rstSend);
+    if(req.user === undefined){
+      res.render('main',rstSend);
+    }
+    else{
+      res.redirect('/adm');
+    }
+  });
 })
 
 
@@ -119,6 +143,7 @@ router.post('/calendar',function(req,res){
   var month = req.body.month;
   var rstCalendar = calMod(year,month);
   var holiday = solarHoliday(rstCalendar.rstcalendar,year,month);
+  
   var sche_list = function(){
     return new Promise(function(resolve,reject){
       db.query('select wr3 from schedule where wr1=? and wr2=?',[year,month],(err,data)=>{
@@ -141,8 +166,17 @@ router.post('/calendar',function(req,res){
       now: rstCalendar.now,
       holi: holiday,
       auth: req.user,
-      schedule: rstScheArr
+      schedule: rstScheArr,
+      mon6th: false
     };
+    var date2 = new Date();
+    var date1 = new Date(Number(year),Number(month)-1,date2.getDate());
+    //console.log(date2.getDate());
+    var date2Sum6 = date2.setMonth(date2.getMonth()+4);
+    //console.log(date1.getTime(),date2.getTime());
+    if(date1.getTime() > date2.getTime()){
+      rstSend.mon6th = true;
+    }
     //console.log('입력된 스케쥴 배열',rstSend.cal);
     res.render('calendar',rstSend);
   }).catch(function(err){
@@ -208,7 +242,7 @@ router.post('/contactprc',(req,res)=>{
 
     var dbSearch = function(){
       return new Promise(function(resolve,reject){
-        db.query('select * from contact where wr5 = ? and not wr12="1"',[post.wr5],function(err,data){
+        db.query('select * from contact where (wr5 = ? and not wr12="1") or (wr2 = ? and wr3 = ?)',[post.wr5,post.wr2,post.wr3],function(err,data){
           if(err){
             throw 'contact db for hp num search';
           }
@@ -228,8 +262,16 @@ router.post('/contactprc',(req,res)=>{
         });
       }
       else{
+        if(rst[0].wr2==post.wr2 && rst[0].wr3==post.wr3){
+          console.log('시간동일');
+          sendJn.err = '4';
+        }
+        if(rst[0].wr5==post.wr5){
+          console.log('번호동일');
+          sendJn.err = '1';
+        }
         sendJn.rst = false;
-        sendJn.err = '1';
+        
         res.send(sendJn);
       }
     }).catch(function(err){
@@ -283,9 +325,40 @@ router.post('/contactlist',(req,res)=>{
     }
     //console.log(rstSend);
     if(post.sendtype=='list'){
-      var rstHtml = popTemplate.conListRst(rstSend);
+      rstSend.rstCon = '';
+      rstSend.rstJuso = '';
+      if(rstSend.clval){
+        rstSend.rstCon = `<li class="popup_list_rst_bottom_li">
+        <img src="/img/main/popup_list_rst_bottom_text2.png" class="popup_list_rst_bottom_noimg">
+        <div class="popup_list_rst_bottom_li_div">
+          <a>${rstSend.cl0.wr8}</a>
+          <a>년</a>
+          <a>${rstSend.cl0.wr9}</a>
+          <a>월</a>
+          <a>${rstSend.cl0.wr10}</a>
+          <a>일</a>
+        </div>
+        </li>`;
+        rstSend.rstJuso = rstSend.cl0.wr4;
+      }
+      else{
+        rstSend.rstCon = `<li class="popup_list_rst_bottom_li"><img src="/img/main/popup_list_rst_bottom_text.png" class="popup_list_rst_bottom_noimg"></li>`;
+      }
+      var thcss = cssRead('public/css/conlist.css');
+      var thjs = cssRead('public/js/conlist.js');
+      res.render('popup/conlistrst',{css:thcss,js:thjs,rstSend:rstSend});
+      //var rstHtml = popTemplate.conListRst(rstSend);
     }
-    if(post.sendtype=='conf'){
+    if(post.sendtype=='conf' && post.test==undefined){
+      //console.log('신청확인첫번째');
+      if(rstSend.clval){
+        var se2_htlm = '<div class="con_conf_sms"><img src="/img/main/sms_conf.png"><li class="con_conf_sms_input"><a><input type="radio" name="sms" value="1"></a><a>네</a><a><input type="radio" name="sms" value="0"></a><a>아니요</a></li><li class="search_icon search_enter sms_conf_icon"><img src="/img/icon_b.png"></li></div>';
+        res.send(se2_htlm);
+      }
+      else{
+        var se2_htlm = '<div class="con_conf_sms"><img src="/img/main/con_conf_no.png"><li class="search_icon conf_first_close sms_conf_icon"><img src="/img/icon_b.png"></li></div>';
+        res.send(se2_htlm);
+      }
       // if(post.sms){
       //   var sql = `insert into contact (wr16) values ("1") where anum `;
       // }
@@ -298,10 +371,45 @@ router.post('/contactlist',(req,res)=>{
       //   }
       //   resolve(true);
       // })
-      console.log(rst);
-      var rstHtml = popTemplate.conConfRst(rstSend);
+      //console.log(rst);
+      //var rstHtml = popTemplate.conConfRst(rstSend);
     }
-    res.send(rstHtml);
+    if(post.sendtype=='conf' && post.test=='index'){
+      //console.log('완전한 신청확인');
+      if(post.sms=='1'){
+        //console.log('알림신청');
+        if(rstSend.clval){
+          var smsupNum = '1';
+          rstSend.rstCon = `<li class="popup_list_rst_bottom_li">
+          <img src="/img/main/popup_list_rst_bottom_text3.png" class="popup_list_rst_bottom_noimg">
+          </li>`;
+          rstSend.rstJuso = rstSend.cl0.wr4;
+        }
+      }
+      else{
+        //console.log('알림신청안함');
+        if(rstSend.clval){
+          var smsupNum = '0';
+          rstSend.rstCon = `<li class="popup_list_rst_bottom_li">
+          <img src="/img/main/popup_list_rst_bottom_text4.png" class="popup_list_rst_bottom_noimg">
+          </li>`;
+          rstSend.rstJuso = rstSend.cl0.wr4;
+        }
+      }
+      var smsupSql = `update contact set wr16=? where anum=?`;
+      var smsParams = [smsupNum,rstSend.cl0.anum];
+      db.query(smsupSql,smsParams,function(err,rst){
+        if(err){
+          throw 'sms update query err';
+        }
+        //console.log(smsParams);
+        var thcss = cssRead('public/css/conlist.css');
+        var thjs = cssRead('public/js/conlist.js');
+        res.render('popup/conconfrst',{css:thcss,js:thjs,rstSend:rstSend});
+      });
+      
+    }
+    //res.send(rstHtml);
   }).catch(function(err){
     console.error(err);
   })
@@ -319,13 +427,15 @@ router.post('/contactconf',(req,res)=>{
     // var rstHtml = popTemplate.conList();
     // res.send(rstHtml);
     var thcss = cssRead('public/css/conlist.css');
-    res.render('popup/conlist',{css:thcss});
+    var thjs = cssRead('public/js/conlist.js');
+    res.render('popup/conlist',{css:thcss,js:thjs});
   }
   if(post.confname == '2'){
     // var rstHtml = popTemplate.conConf();
     // res.send(rstHtml);
     var thcss = cssRead('public/css/conlist.css');
-    res.render('popup/conconf',{css:thcss});
+    var thjs = cssRead('public/js/conlist.js');
+    res.render('popup/conconf',{css:thcss,js:thjs});
   }
 });
 // contact confirm
@@ -365,6 +475,11 @@ router.post('/post',function(req,res){
 
 router.get('/slide',function(req,res){
   res.render('slide');
+});
+
+router.get('/test',(req,res)=>{
+  
+  res.send('ok');
 });
 
 

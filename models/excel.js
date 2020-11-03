@@ -48,7 +48,7 @@ module.exports = function(post){
   ws.column(15).setWidth(40);
   ws.column(16).setWidth(40);
   ws.row(1).setHeight(50);
-  ws.cell(1, 1, 1, 16, true).string(`${post.year}년 ${post.month}월`).style(style2);
+  ws.cell(1, 1, 1, 17, true).string(`${post.year}년 ${post.month}월`).style(style2);
 
   ws.row(2).setHeight(40);
   ws.cell(2,1).string('번호').style(style);
@@ -67,6 +67,7 @@ module.exports = function(post){
   ws.cell(2,14).string('세금계산서').style(style);
   ws.cell(2,15).string('요청사항').style(style);
   ws.cell(2,16).string('비고').style(style);
+  ws.cell(2,17).string('우수환경').style(style);
 
   var cellnum = 3;
   var inNo = 1;
@@ -90,6 +91,7 @@ module.exports = function(post){
     ws.cell(cellnum,14).string(`${postJson[jsnum].wr7}`).style(style);
     ws.cell(cellnum,15).string(`${postJson[jsnum].wr6}`).style(style);
     ws.cell(cellnum,16).string(`${postJson[jsnum].wr17}`).style(style);
+    ws.cell(cellnum,17).string(`${postJson[jsnum].wr20}`).style(style);
     cellnum++;
     inNo++;
     sumwr13 += Number(postJson[jsnum].wr13);

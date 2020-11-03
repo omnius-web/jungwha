@@ -17,7 +17,7 @@
 
 <script>
     //$('.extesst').click(function(){
-    $(document).on('click','.extesst',function(){
+    $(document).on('click','.extesst_a',function(){
         window.open("","pop_window","width=500,height=300");
         $('#excelform').submit();
     //$(document).on('click','.extesst',function(){
@@ -94,7 +94,10 @@
             <select name="complete" style="font-size: 1.3rem;">
                 <option value="0" <% if(post.complete=='0'){ %> selected="selected" <%}%> >신청대기</option>
                 <option value="1" <% if(post.complete=='1'){ %> selected="selected" <%}%> >청소완료</option>
+                <option value="2" <% if(post.complete=='2'){ %> selected="selected" <%}%> >전체보기</option>
             </select>
+            <input type="checkbox" name="usu" value="1" <% if(post.usu=='1'){ %> checked="checked" <%}%> ><a>우수환경</a>
+            <input type="checkbox" name="payrst" value="1" <% if(post.payrst=='1'){ %> checked="checked" <%}%> ><a>미수금</a>
             <input type="submit" value="검색" style="font-size: 1.3rem; padding: 5px 30px;">
         </form>
     </div>
@@ -112,7 +115,7 @@
             document.write(`${selYear}년 ${selMonth}월 ${selDay}`);;
         </script>
     </div>
-    <div class="extesst excel_bt_style">엑셀다운</div>
+    <div class="extesst excel_bt_style"><a class="extesst_a">엑셀다운</a></div>
     <table>
         <tr class="admconlist_tit">
             <td>
@@ -208,7 +211,7 @@
                 <input type="text" name="wr3" value="<%= data[clNum].wr3 %>" class="admconlist_input1"><!--청소시간-->
             </td>
             <td>
-                <input type="text" name="wr13" value="<%= data[clNum].wr13.toFixed(2) %>" class="admconlist_input3 conlistwr13input" style="font-weight: bold; font-size:0.8rem;" oninput="conlistwr13(this.value)"><!--청소량-->
+                <input type="text" name="wr13" value="<%= data[clNum].wr13.toFixed(2) %>" class="admconlist_input3 conlistwr13input" style="font-weight: bold; font-size:0.8rem; text-align: right;" oninput="conlistwr13(this.value)"><!--청소량-->
             </td>
             <td>
                 <input type="text" name="wr5" value="<%= data[clNum].wr5 %>" class="admconlist_input1"><!--전화번호1-->

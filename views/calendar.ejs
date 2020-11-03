@@ -16,7 +16,9 @@
 </div>
 <div class="om_cal_year" data-calyear="<%=year%>">
   <a class="om_cal_prev" data-prevmon="<%=prevMon%>">이전달</a>
+  <% if(!mon6th){ %>
   <a class="om_cal_next" data-nextmon="<%=nextMon%>">다음달</a>
+  <% } %>
 </div>
 <!-- <a href="/excel" target="_blank">excel</a> -->
 <div class="om_calendar_table">
