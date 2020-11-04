@@ -405,15 +405,28 @@ $(document).ready(function(){
       success : function(rst){
         var rstJn = JSON.parse(rst);
         if(rstJn.rst){
-          alert('신청이 완료되었습니다.');
-          location.reload();
+          //alert('신청이 완료되었습니다.');
+          $('.alertpop').html('<img src="/img/main/alert6.png">');
+            $('.alertpop').css('display','inline-block');
+            setTimeout(function(){
+              $('.alertpop').css('display','none');
+              $('.alertpop').html('');
+              location.reload();
+            },3000);
+          
         }
         else{
           if(rstJn.err=='1'){
             alert('이미 신청된 내역이 있습니다.');
           }
           else if(rstJn.err=='2'){
-            alert('모든 내용을 입력해주세요.');
+            //alert('모든 내용을 입력해주세요.');
+            $('.alertpop').html('<img src="/img/main/alert1.png">');
+            $('.alertpop').css('display','inline-block');
+            setTimeout(function(){
+              $('.alertpop').css('display','none');
+              $('.alertpop').html('');
+            },3000);
           }
           else if(rstJn.err=='3'){
             alert('개인정보수집 및 활용동의해주세요.');
@@ -678,6 +691,9 @@ $(document).ready(function(){
 });
 
 
+
+
+
 function numchk(val){
   var rstval = val.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');
   $('.numvalin').val(rstval);
@@ -685,11 +701,29 @@ function numchk(val){
 
 function conlistwr13(val){
   var wr13Val = 0;
+  
   $('.conlistwr13input').each(function(){
-    wr13Val += Number($(this).val());
+    var bthval = '';
+    bthval = $(this).val();
+    bthval = bthval.replace(',','');
+    wr13Val += Number(bthval);
+    
+
+    //wr13Val += Number($(this).val());
   });
-  $('.wr13Rst').text(wr13Val.toLocaleString());
+  var basicNum = '';
+  basicNum = wr13Val.toFixed(3);
+  basicNum = basicNum.split('.');
+  basicNum = Number(basicNum[0]).toLocaleString()+'.'+basicNum[1];
+  // wr13Val = Number(wr13Val).toFixed(3);
+  // wr13Val = Number(wr13Val).toLocaleString();
+  //$('.wr13Rst').text(wr13Val);
+  
+  $('.wr13Rst').text(basicNum);
 }
+
+
+
 function conlistwr15(val){
   var wr15Val = 0;
   $('.conlistwr15input').each(function(){

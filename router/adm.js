@@ -9,6 +9,7 @@ var MySQLStore = require('express-mysql-session')(session);
 var flash = require('connect-flash');
 var authMd = require('../models/auth');
 var omTime = require('../models/time');
+var omToLoString = require('../models/omtolocalestring');
 var excel = require('../models/excel');
 var multer  = require('multer');
 var uploadDate = Date.now();
@@ -248,6 +249,14 @@ router.get('/contact',(req,res)=>{
       })
     });
     conList.then(function(rst){
+      var rstSumWr13 = 0;
+      for(rstNum in rst){
+        rstSumWr13 += Number(rst[rstNum].wr13);
+        rst[rstNum].wr13 = omToLoString(rst[rstNum].wr13);
+      }
+      rst.push({
+        sumwr13: omToLoString(rstSumWr13)
+      });
       rstSend.data = rst;
       var jsonText = JSON.stringify(rst);
       rstSend.jsonText = jsonText;
@@ -321,6 +330,14 @@ router.post('/contact',(req,res)=>{
       if(err){
         throw 'adm contact list post select where error';
       }
+      var rstSumWr13 = 0;
+      for(rstNum in rst){
+        rstSumWr13 += Number(rst[rstNum].wr13);
+        rst[rstNum].wr13 = omToLoString(rst[rstNum].wr13);
+      }
+      rst.push({
+        sumwr13: omToLoString(rstSumWr13)
+      });
       rstSend.data = rst;
       rstSend.post = post;
       var jsonText = JSON.stringify(rst);
@@ -352,6 +369,8 @@ router.post('/contactup',(req,res)=>{
     post.wr9 = dateSplit[1];
     post.wr10 = dateSplit[2];
     post.wr11 = reqSelTime.selTS2;
+    post.wr13 = post.wr13.replace(',','');
+    post.wr13 = Number(post.wr13).toFixed(3);
     var sql = 'update contact set';
     var params = [];
     // post.wr13 = Math.floor(post.wr13);

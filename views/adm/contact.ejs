@@ -173,18 +173,13 @@
 <% var sumwr13 = 0 %>
 <% var sumwr15 = 0 %>
 <% for(clNum in data) { %>
+    <% if(data[clNum].sumwr13 === undefined){ %>
     <% var moneyColor = '' %>
     <% if(data[clNum].wr18=='현금'){ moneyColor = 'mc_black' } %>
     <% if(data[clNum].wr18=='입금'){ moneyColor = 'mc_gray' } %>
     <% if(data[clNum].wr18=='미수'){ moneyColor = 'mc_red' } %>
     <% var jusoSpl = data[clNum].wr4 %>
-    <% jusoSpl = jusoSpl.split(' ') %>
-    <% var jusoRst = '' %>
-    <% for(jso in jusoSpl){ %>
-        <% if(jso != 0 && jso != 1) { jusoRst += jusoSpl[jso]+' ' } %>
-        
-            
-    <% } %>
+    
         <tr>
             <form method="post" id="admconup">
             <td>
@@ -211,7 +206,7 @@
                 <input type="text" name="wr3" value="<%= data[clNum].wr3 %>" class="admconlist_input1"><!--청소시간-->
             </td>
             <td>
-                <input type="text" name="wr13" value="<%= data[clNum].wr13.toFixed(2) %>" class="admconlist_input3 conlistwr13input" style="font-weight: bold; font-size:0.8rem; text-align: right;" oninput="conlistwr13(this.value)"><!--청소량-->
+                <input type="text" name="wr13" value="<%= data[clNum].wr13 %>" class="admconlist_input6 conlistwr13input" style="font-weight: bold; font-size:0.8rem; text-align: right;" oninput="conlistwr13(this.value)"><!--청소량-->
             </td>
             <td>
                 <input type="text" name="wr5" value="<%= data[clNum].wr5 %>" class="admconlist_input1"><!--전화번호1-->
@@ -263,8 +258,9 @@
             </form>
         </tr>
     <% listNum++ %>
-    <% sumwr13 += Number(data[clNum].wr13) %>
+    
     <% sumwr15 += Number(data[clNum].wr15) %>
+    <% } %>
 <% } %>
     </table>
 </div>
@@ -275,7 +271,7 @@
                 총 청소량
             </td>
             <td class="wr13Rst">
-                <%= sumwr13.toLocaleString() %>
+                <%= data[listNum-1].sumwr13 %>
             </td>
             <td>
                 총 청소금액

@@ -810,6 +810,9 @@ input:focus {outline:none;}
 .admconlist_input5 {
   width: 95%;
 }
+.admconlist_input6 {
+  width: 70px;
+}
 .admcon_bt a {
   display: inline-block;
   cursor: pointer;

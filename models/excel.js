@@ -7,7 +7,6 @@ module.exports = function(post){
   var postJson = JSON.parse(post.jstextarea);
 
 
-
   // Create a new instance of a Workbook class
   var wb = new xl.Workbook();
 
@@ -74,6 +73,7 @@ module.exports = function(post){
   var sumwr13 = 0;
   var sumwr15 = 0;
   for(jsnum in postJson){
+    if(postJson[jsnum].sumwr13===undefined){
     ws.row(cellnum).setHeight(25);
     ws.cell(cellnum,1).string(`${inNo}`).style(style);
     ws.cell(cellnum,2).string(`${postJson[jsnum].wr1}`).style(style);
@@ -81,7 +81,7 @@ module.exports = function(post){
     ws.cell(cellnum,4).string(`${postJson[jsnum].wr4}`).style(style);
     ws.cell(cellnum,5).string(`${postJson[jsnum].wr2}`).style(style);
     ws.cell(cellnum,6).string(`${postJson[jsnum].wr3}`).style(style);
-    ws.cell(cellnum,7).number(Number(postJson[jsnum].wr13)).style(style);
+    ws.cell(cellnum,7).string(`${postJson[jsnum].wr13}`).style(style);
     ws.cell(cellnum,8).string(`${postJson[jsnum].wr5}`).style(style);
     ws.cell(cellnum,9).string(`${postJson[jsnum].wr14}`).style(style);
     ws.cell(cellnum,10).number(Number(postJson[jsnum].wr15)).style(style);
@@ -94,13 +94,14 @@ module.exports = function(post){
     ws.cell(cellnum,17).string(`${postJson[jsnum].wr20}`).style(style);
     cellnum++;
     inNo++;
-    sumwr13 += Number(postJson[jsnum].wr13);
+    //sumwr13 += Number(postJson[jsnum].wr13);
     sumwr15 += Number(postJson[jsnum].wr15);
+    }
   }
 
   ws.row(cellnum+2).setHeight(30);
   ws.cell(cellnum+2,6).string(`합계`).style(style);
-  ws.cell(cellnum+2,7).number(Number(sumwr13)).style(style);
+  ws.cell(cellnum+2,7).string(`${postJson[inNo-1].sumwr13}`).style(style);
   ws.cell(cellnum+2,10).number(Number(sumwr15)).style(style);
 
 
