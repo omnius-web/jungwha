@@ -250,12 +250,16 @@ router.get('/contact',(req,res)=>{
     });
     conList.then(function(rst){
       var rstSumWr13 = 0;
+      var rstSumWr15 = 0;
       for(rstNum in rst){
         rstSumWr13 += Number(rst[rstNum].wr13);
-        rst[rstNum].wr13 = omToLoString(rst[rstNum].wr13);
+        rstSumWr15 += Number(rst[rstNum].wr15);
+        rst[rstNum].wr13 = omToLoString.double(rst[rstNum].wr13);
+        rst[rstNum].wr15 = Number(rst[rstNum].wr15).toLocaleString();
       }
       rst.push({
-        sumwr13: omToLoString(rstSumWr13)
+        sumwr13: omToLoString.double(rstSumWr13),
+        sumwr15: Number(rstSumWr15).toLocaleString()
       });
       rstSend.data = rst;
       var jsonText = JSON.stringify(rst);
@@ -331,12 +335,16 @@ router.post('/contact',(req,res)=>{
         throw 'adm contact list post select where error';
       }
       var rstSumWr13 = 0;
+      var rstSumWr15 = 0;
       for(rstNum in rst){
         rstSumWr13 += Number(rst[rstNum].wr13);
-        rst[rstNum].wr13 = omToLoString(rst[rstNum].wr13);
+        rstSumWr15 += Number(rst[rstNum].wr15);
+        rst[rstNum].wr13 = omToLoString.double(rst[rstNum].wr13);
+        rst[rstNum].wr15 = Number(rst[rstNum].wr15).toLocaleString();
       }
       rst.push({
-        sumwr13: omToLoString(rstSumWr13)
+        sumwr13: omToLoString.double(rstSumWr13),
+        sumwr15: Number(rstSumWr15).toLocaleString()
       });
       rstSend.data = rst;
       rstSend.post = post;
@@ -371,6 +379,8 @@ router.post('/contactup',(req,res)=>{
     post.wr11 = reqSelTime.selTS2;
     post.wr13 = post.wr13.replace(',','');
     post.wr13 = Number(post.wr13).toFixed(3);
+    post.wr15 = post.wr15.replace(',','');
+    post.wr15 = Number(post.wr15);
     var sql = 'update contact set';
     var params = [];
     // post.wr13 = Math.floor(post.wr13);

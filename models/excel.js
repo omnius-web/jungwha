@@ -84,7 +84,7 @@ module.exports = function(post){
     ws.cell(cellnum,7).string(`${postJson[jsnum].wr13}`).style(style);
     ws.cell(cellnum,8).string(`${postJson[jsnum].wr5}`).style(style);
     ws.cell(cellnum,9).string(`${postJson[jsnum].wr14}`).style(style);
-    ws.cell(cellnum,10).number(Number(postJson[jsnum].wr15)).style(style);
+    ws.cell(cellnum,10).string(`${postJson[jsnum].wr15}`).style(style);
     ws.cell(cellnum,11).string(`${postJson[jsnum].wr18}`).style(style);
     ws.cell(cellnum,12).string(`${postJson[jsnum].wr12}`).style(style);
     ws.cell(cellnum,13).string(`${postJson[jsnum].wr16}`).style(style);
@@ -95,14 +95,14 @@ module.exports = function(post){
     cellnum++;
     inNo++;
     //sumwr13 += Number(postJson[jsnum].wr13);
-    sumwr15 += Number(postJson[jsnum].wr15);
+    // sumwr15 += Number(postJson[jsnum].wr15);
     }
   }
 
   ws.row(cellnum+2).setHeight(30);
   ws.cell(cellnum+2,6).string(`합계`).style(style);
   ws.cell(cellnum+2,7).string(`${postJson[inNo-1].sumwr13}`).style(style);
-  ws.cell(cellnum+2,10).number(Number(sumwr15)).style(style);
+  ws.cell(cellnum+2,10).string(`${postJson[inNo-1].sumwr15}`).style(style);
 
 
   // Set value of cell A1 to 100 as a number type styled with paramaters of style

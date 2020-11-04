@@ -215,7 +215,7 @@
                 <input type="text" name="wr14" value="<%= data[clNum].wr14 %>" class="admconlist_input1"><!--전화번호2-->
             </td>
             <td class="money_td">
-                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input3 conlistwr15input <%= moneyColor%> moneycolor" style="font-weight: bold; font-size:0.8rem;" oninput="conlistwr15(this.value)"><!--청소금액-->
+                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input3 conlistwr15input <%= moneyColor%> moneycolor" style="font-weight: bold; font-size:0.8rem; text-align: right;" oninput="conlistwr15(this.value)"><!--청소금액-->
             </td>
             <td>
                 <select name="wr18" onchange="moneycol(this.value, this);">
@@ -259,7 +259,7 @@
         </tr>
     <% listNum++ %>
     
-    <% sumwr15 += Number(data[clNum].wr15) %>
+    
     <% } %>
 <% } %>
     </table>
@@ -277,7 +277,7 @@
                 총 청소금액
             </td>
             <td class="wr15Rst">
-                <%= sumwr15.toLocaleString() %>
+                <%= data[listNum-1].sumwr15 %>
             </td>
         </tr>
     </table>

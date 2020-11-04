@@ -727,7 +727,11 @@ function conlistwr13(val){
 function conlistwr15(val){
   var wr15Val = 0;
   $('.conlistwr15input').each(function(){
-    wr15Val += Number($(this).val());
+    // wr15Val += Number($(this).val());
+    var bthval = '';
+    bthval = $(this).val();
+    bthval = bthval.replace(',','');
+    wr15Val += Number(bthval);
   });
   $('.wr15Rst').text(wr15Val.toLocaleString());
 }
