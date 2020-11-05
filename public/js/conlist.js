@@ -62,22 +62,3 @@ $(document).on('click','.search_enter',function(){
   });
 
 
-  // 아이콘 깜빡임
-  var stint = null;
-  function startinter(){
-    stint = setInterval(function(){
-      $('.search_icon img').animate({opacity:0},700).animate({opacity:1},700)
-    },1400);
-  }
-  $('.search_icon').mouseover(function(){
-    iconstop();
-  });
-  $('.search_icon').mouseleave(function(){
-    startinter()
-  });
-  function iconstop(){
-    clearInterval(stint);
-  }
-
-  startinter();
-  // 아이콘 깜빡임

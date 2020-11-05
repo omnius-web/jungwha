@@ -687,6 +687,84 @@ $(document).ready(function(){
   // popup close
 
 
+  $(document).on('click','.main_bt1',function(){
+    $('.main_qa').fadeIn();
+    $('.wrap_div').addClass('blackbg');
+    $('.blackbg').animate({opacity:'0.8'},200);
+  });
+
+  $(document).on('click','.main_qa_icon',function(){
+    $('.main_qa').fadeOut();
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      
+      $('.wrap_div').removeClass('blackbg');
+      
+    },500);
+    $('html').scrollTop(0);
+  });
+
+  $(document).on('click','.main_qa_bt1',function(){
+    $('.main_qa').fadeOut();
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      
+      $('.wrap_div').removeClass('blackbg');
+      
+    },500);
+    $('html').scrollTop(0);
+  });
+
+
+
+  $('.main_qa_bt2').click(function(){
+    $.ajax({
+      type : 'post',
+      url : '/contactconf',
+      data : {confname: "1"},
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      dataType: "text",
+      cache : false,
+      success : function(rst){
+        $('.main_qa').fadeOut();
+        $('.blackbg').animate({opacity:'0'},500);
+        setTimeout(function(){
+          
+          $('.wrap_div').removeClass('blackbg');
+          
+        },500);
+        $('html').scrollTop(0);
+        $('.search').html(rst);
+        $('.search').fadeIn();
+        $('.wrap_div').addClass('blackbg');
+        $('.blackbg').animate({opacity:'0.8'},200);
+      }
+    });
+    
+  });
+
+
+
+
+  // 아이콘 깜빡임
+  var stint = null;
+  function startinter(){
+    stint = setInterval(function(){
+      $('.search_icon img').animate({opacity:0},700).animate({opacity:1},700)
+    },1400);
+  }
+  $('.search_icon').mouseover(function(){
+    iconstop();
+  });
+  $('.search_icon').mouseleave(function(){
+    startinter()
+  });
+  function iconstop(){
+    clearInterval(stint);
+  }
+
+  startinter();
+  // 아이콘 깜빡임
 
 });
 
