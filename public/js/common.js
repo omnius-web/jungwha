@@ -766,6 +766,48 @@ $(document).ready(function(){
   startinter();
   // 아이콘 깜빡임
 
+
+
+  // button over
+  // var btOverHtml1 = `<a><img src="/img/main/bt5_o.png"></a>`;
+  // var btLeaveHtml1 = `<a><img src="/img/main/bt5.png"></a>`;
+  $(document).on('mouseover','.main_bottom_bt_li1',function(){
+    // $('.main_bottom_bt_li1').html(btOverHtml1);
+    $('.main_bot_bt_img1_o').css('display','inline-block');
+
+  });
+  $(document).on('mouseleave','.main_bottom_bt_li1',function(){
+    // $('.main_bottom_bt_li1').html(btLeaveHtml1);
+    $('.main_bot_bt_img1_o').css('display','none');
+
+  });
+
+  $(document).on('mouseover','.main_bottom_bt_li2',function(){
+    // $('.main_bottom_bt_li1').html(btOverHtml1);
+    $('.main_bot_bt_img2_o').css('display','inline-block');
+
+  });
+  $(document).on('mouseleave','.main_bottom_bt_li2',function(){
+    // $('.main_bottom_bt_li1').html(btLeaveHtml1);
+    $('.main_bot_bt_img2_o').css('display','none');
+
+  });
+
+  $(document).on('mouseover','.main_bt1',function(){
+    // $('.main_bottom_bt_li1').html(btOverHtml1);
+    $('.main_bot_bt_img3_o').css('display','inline-block');
+
+  });
+  $(document).on('mouseleave','.main_bt1',function(){
+    // $('.main_bottom_bt_li1').html(btLeaveHtml1);
+    $('.main_bot_bt_img3_o').css('display','none');
+
+  });
+
+  // button over
+
+
+
 });
 
 
