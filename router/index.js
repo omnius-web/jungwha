@@ -13,6 +13,7 @@ var mysql = require('mysql');
 var excel = require('../models/excel');
 var authMd = require('../models/auth');
 var omTime = require('../models/time');
+var namehpSecu = require('../models/namehpsecu');
 var popTemplate = require('../models/poptemplate');
 var db = mysql.createConnection(dbOpt);
 
@@ -47,48 +48,48 @@ router.get('/db',function(req,res){
   });
 });
 
-router.get('/',function(req,res){
-  res.send('');
-  /*
-  var authRst = authMd.authcheck(req,res,1);
-  db.query('select * from popup where anum=1',(err,data)=>{
-    if(err){
-      throw 'main popup select query error';
-    }
-    var rstSend = {
-      auth: authRst,
-      userInfo: req.user,
-      css: 'main.css'
-    }
-    if(data[0].wr2=='0'){
-      rstSend.popup = ``;
-    }
-    if(data[0].wr2=='1'){
-      rstSend.popup = `
-      <div class="main_popup">
-        <div class="popup_img">
-          <img src="/upload/${data[0].wr1}">
-        </div>
-        <div class="popup_close">
-          <a class="popup_close_a">닫기</a>
-        </div>
-      </div>
-      `;
-    }
-    // res.render('index',rstSend);
-    if(req.user === undefined){
-      res.render('index',rstSend);
-    }
-    else{
-      res.redirect('/adm');
-    }
-  });
-  */
+// router.get('/',function(req,res){
+//   res.send('');
+//   /*
+//   var authRst = authMd.authcheck(req,res,1);
+//   db.query('select * from popup where anum=1',(err,data)=>{
+//     if(err){
+//       throw 'main popup select query error';
+//     }
+//     var rstSend = {
+//       auth: authRst,
+//       userInfo: req.user,
+//       css: 'main.css'
+//     }
+//     if(data[0].wr2=='0'){
+//       rstSend.popup = ``;
+//     }
+//     if(data[0].wr2=='1'){
+//       rstSend.popup = `
+//       <div class="main_popup">
+//         <div class="popup_img">
+//           <img src="/upload/${data[0].wr1}">
+//         </div>
+//         <div class="popup_close">
+//           <a class="popup_close_a">닫기</a>
+//         </div>
+//       </div>
+//       `;
+//     }
+//     // res.render('index',rstSend);
+//     if(req.user === undefined){
+//       res.render('index',rstSend);
+//     }
+//     else{
+//       res.redirect('/adm');
+//     }
+//   });
+//   */
 
-});
+// });
 
 
-router.get('/main',(req,res)=>{
+router.get('/',(req,res)=>{
   var authRst = authMd.authcheck(req,res,1);
   db.query('select * from popup where anum=1',(err,data)=>{
     if(err){
@@ -215,6 +216,7 @@ router.post('/contactprc',(req,res)=>{
   
  
   if(confpost){
+    /* 주소 앞 시구 삭제 -> 메인페이지에서 삭제되어서 들어옴
     var jusoSpl = post.wr4;
     jusoSpl = jusoSpl.split(' ');
     delete jusoSpl[0];
@@ -223,13 +225,20 @@ router.post('/contactprc',(req,res)=>{
     for(jsn in jusoSpl){
       jusoSplRst += jusoSpl[jsn]+' ';
     }
+    */
     var conDate = post.wr2;
     var dateSplit = conDate.split('-');
     var reqSelTime = omTime.selTimeSt(Number(dateSplit[0]),Number(dateSplit[1])-1,Number(dateSplit[2]));
     var nowTime = omTime.timeSt();
 
-    post.wr4 = jusoSplRst+post.wr4_1;
+    post.wr4 = post.wr4+' '+post.wr4_1;
+    post.wr23 = post.wr23+' '+post.wr4_1;
     delete post.wr4_1;
+
+    if(post.wr7 !== '1'){
+      post.wr7 = '0';
+    }
+
     post.wr8 = dateSplit[0];
     post.wr9 = dateSplit[1];
     post.wr10 = dateSplit[2];
@@ -294,7 +303,7 @@ router.post('/contactprc',(req,res)=>{
 // contactList
 router.post('/contactlist',(req,res)=>{
   var post = req.body;
-  console.log(post);
+  //console.log(post);
   var searList = function(){
     return new Promise(function(resolve,reject){
       var sql = '';
@@ -317,6 +326,10 @@ router.post('/contactlist',(req,res)=>{
     rstSend.clval = true;
     rstSend.name = post.wr1;
     rstSend.hp = post.wr5;
+    var namehpSecuRst = namehpSecu(rstSend.name, rstSend.hp);
+    console.log(namehpSecuRst.name);
+    console.log(namehpSecuRst.hp);
+
     if(rst[0]==undefined){
       rstSend.clval = false;
     }

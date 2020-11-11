@@ -27,7 +27,8 @@
   			}else{
   				if(jsonStr != null){
   					makeListJson(jsonStr);
-            pageMake(jsonStr);
+			pageMake(jsonStr);
+			$('.juso_bot_text').html(`<img src="/img/main/juso_desc3.png">`)
   				}
   			}
         $('.main_n_juso_wr4_1').html('');
@@ -43,7 +44,7 @@
   	htmlStr += "<table>";
   	$(jsonStr.results.juso).each(function(){
   		htmlStr += "<tr>";
-		  htmlStr += "<td class='juso_list_td'><li class='juso_list_li1'><img src='/img/main/juso_jibun.png'>"+this.roadAddrPart1+"<a class='juso_list_part2'>"+this.roadAddrPart2+"</a></li><li class='juso_list_li2'><img src='/img/main/juso_doro.png'>"+this.jibunAddr+"</li></td>"; // 전체 도로명주소
+		  htmlStr += "<td class='juso_list_td'><li class='juso_list_li1'><img src='/img/main/juso_doro.png'>"+this.roadAddrPart1+"<a class='juso_list_part2'>"+this.roadAddrPart2+"</a></li><li class='juso_list_li2'><img src='/img/main/juso_jibun.png'>"+this.jibunAddr+"</li></td>"; // 전체 도로명주소
 		// 전체 도로명주소 -> this.roadAddr
   		//htmlStr += "<td>"+this.roadAddrPart1+"</td>"; // 도로명주소(참고항목 제외)
   		//htmlStr += "<td>"+this.roadAddrPart2+"</td>"; // 도로명주소 참고항목

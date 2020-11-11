@@ -298,11 +298,13 @@ router.post('/contact',(req,res)=>{
       params.push(post.day);
     }
     if(post.name!==''){
-      sql += ` and wr1=?`;
-      params.push(post.name);
+      sql += ` and (wr1 like ? or wr22 like ?)`;
+      params.push(`%${post.name}%`);
+      params.push(`%${post.name}%`);
     }
     if(post.hp!==''){
-      sql += ` and wr5 like ?`;
+      sql += ` and (wr5 like ? or wr14 like ?)`;
+      params.push(`%${post.hp}%`);
       params.push(`%${post.hp}%`);
     }
     if(post.jusogu!=='0'){

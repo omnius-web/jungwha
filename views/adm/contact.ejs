@@ -121,11 +121,15 @@
             <td>
                 번 호
             </td>
+            
             <td>
                 이 름
             </td>
             <td colspan="2">
                 주 소
+            </td>
+            <td>
+                신주소
             </td>
             <td>
                 청소 날짜
@@ -185,6 +189,7 @@
             <td>
                 <%= listNum %>
             </td>
+            
             <td>
                 <input type="text" name="wr1" value="<%= data[clNum].wr1 %>" class="admconlist_input1"><!--이름-->
             </td>
@@ -198,6 +203,9 @@
             </td>
             <td style="width: 300px;">
                 <input type="text" name="wr4" value="<%= data[clNum].wr4 %>" class="admconlist_input5"><!--주소-->
+            </td>
+            <td>
+                <input type="text" name="wr23" value="<%= data[clNum].wr23 %>" class="admconlist_input5"><!--신주소-->
             </td>
             <td>
                 <input type="text" name="wr2" value="<%= data[clNum].wr2 %>" class="admconlist_input1"><!--청소날짜-->
@@ -215,7 +223,7 @@
                 <input type="text" name="wr14" value="<%= data[clNum].wr14 %>" class="admconlist_input1"><!--전화번호2-->
             </td>
             <td class="money_td">
-                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input3 conlistwr15input <%= moneyColor%> moneycolor" style="font-weight: bold; font-size:0.8rem; text-align: right;" oninput="conlistwr15(this.value)"><!--청소금액-->
+                <input type="text" name="wr15" value="<%= data[clNum].wr15 %>" class="admconlist_input6 conlistwr15input <%= moneyColor%> moneycolor" style="font-weight: bold; font-size:0.8rem; text-align: right;" oninput="conlistwr15(this.value)"><!--청소금액-->
             </td>
             <td>
                 <select name="wr18" onchange="moneycol(this.value, this);">
@@ -226,13 +234,26 @@
                 </select>
             </td>
             <td>
-                <input type="text" name="wr12" value="<%= data[clNum].wr12 %>" class="admconlist_input4"><!--청소완료-->
+                <select name="wr12" id="">
+                    <option value="0" <% if(data[clNum].wr12=='0'){ %> selected="selected" <%}%> >대기</option>
+                    <option value="1" <% if(data[clNum].wr12=='1'){ %> selected="selected" <%}%> >완료</option>
+                </select>
+                <!--<input type="text" name="wr12" value="<%= data[clNum].wr12 %>" class="admconlist_input4">--><!--청소완료-->
             </td>
             <td>
-                <input type="text" name="wr16" value="<%= data[clNum].wr16 %>" class="admconlist_input4"><!--청소알림-->
+                <select name="wr16" id="">
+                    <option value="0" <% if(data[clNum].wr16=='0'){ %> selected="selected" <%}%> >미수신</option>
+                    <option value="1" <% if(data[clNum].wr16=='1'){ %> selected="selected" <%}%> >수신</option>
+                </select>
+                <!--<input type="text" name="wr16" value="<%= data[clNum].wr16 %>" class="admconlist_input4">--><!--청소알림-->
             </td>
             <td>
-                <input type="text" name="wr7" value="<%= data[clNum].wr7 %>" class="admconlist_input4"><!--세금계산서-->
+                <select name="wr7" id="">
+                    <option value="0" <% if(data[clNum].wr7=='0'){ %> selected="selected" <%}%> >미발행</option>
+                    <option value="1" <% if(data[clNum].wr7=='1'){ %> selected="selected" <%}%> >요청</option>
+                    <option value="2" <% if(data[clNum].wr7=='2'){ %> selected="selected" <%}%> >완료</option>
+                </select>
+                <!--<input type="text" name="wr7" value="<%= data[clNum].wr7 %>" class="admconlist_input4">--><!--세금계산서-->
             </td>
             <td>
                 <input type="text" name="wr6" value="<%= data[clNum].wr6 %>" class="admconlist_input1"><!--요청사항-->
@@ -262,6 +283,109 @@
     
     <% } %>
 <% } %>
+        <tr>
+            <td colspan="19" style="height: 30px;"></td>
+        </tr>
+        <tr>
+            <form method="post" id="admconin">
+                <td>
+                    
+                </td>
+                
+                <td>
+                    <input type="text" name="wr1" value="" class="admconlist_input1"><!--이름-->
+                </td>
+                <td>
+                    <select name="wr19">
+                        <option value="">구선택</option>
+                        <option value="원미구"  >원미구</option>
+                        <option value="오정구"  >오정구</option>
+                        <option value="소사구"  >소사구</option>
+                    </select>
+                </td>
+                <td style="width: 300px;">
+                    <input type="text" name="wr4" value="" class="admconlist_input5"><!--주소-->
+                </td>
+                <td>
+                    <input type="text" name="wr23" value="" class="admconlist_input5"><!--신주소-->
+                </td>
+                <td>
+                    <input type="text" name="wr2" value="" class="admconlist_input1"><!--청소날짜-->
+                </td>
+                <td>
+                    <select name="wr3" id="">
+                        <option value="">시간선택</option>
+                        <option value="오전 6시~7시">오전 6시~7시</option>
+                        <option value="오전 7시~8시">오전 7시~8시</option>
+                        <option value="오전 8시~9시">오전 8시~9시</option>
+                        <option value="오전 10시~11시">오전 10시~11시</option>
+                        <option value="오전 11시~12시">오전 11시~12시</option>
+                        <option value="오후 1시~2시">오후 1시~2시</option>
+                        <option value="오후 2시~3시">오후 2시~3시</option>
+                        <option value="오전 아무때나">오전 아무때나</option>
+                        <option value="오후 아무때나">오후 아무때나</option>
+                    </select>
+                    <!--청소시간-->
+                </td>
+                <td>
+                    <input type="text" name="wr13" value="" class="admconlist_input6 conlistwr13input" style="font-weight: bold; font-size:0.8rem; text-align: right;"><!--청소량-->
+                </td>
+                <td>
+                    <input type="text" name="wr5" value="" class="admconlist_input1"><!--전화번호1-->
+                </td>
+                <td>
+                    <input type="text" name="wr14" value="" class="admconlist_input1"><!--전화번호2-->
+                </td>
+                <td class="money_td">
+                    <input type="text" name="wr15" value="" class="admconlist_input6 conlistwr15input moneycolor" style="font-weight: bold; font-size:0.8rem; text-align: right;"><!--청소금액-->
+                </td>
+                <td>
+                    <select name="wr18" onchange="moneycol(this.value, this);">
+                        <option value="">선택</option>
+                        <option value="현금"  >현금</option>
+                        <option value="입금"  >입금</option>
+                        <option value="미수"  >미수</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="wr12" id="">
+                        <option value="0">대기</option>
+                        <option value="1">완료</option>
+                    </select>
+                    <!--청소완료-->
+                </td>
+                <td>
+                    <select name="wr16" id="">
+                        <option value="0">미수신</option>
+                        <option value="1">수신</option>
+                    </select><!--청소알림-->
+                </td>
+                <td>
+                    <select name="wr7" id="">
+                        <option value="0">미발행</option>
+                        <option value="1">요청</option>
+                        <option value="2">완료</option>
+                    </select><!--세금계산서-->
+                </td>
+                <td>
+                    <input type="text" name="wr6" value="" class="admconlist_input1"><!--요청사항-->
+                </td>
+                <td>
+                    <input type="text" name="wr17" value="" class="admconlist_input1"><!--비고-->
+                </td>
+                <td>
+                    
+                    <input type="checkbox" name="wr20" value="1" ><!--우수환경-->
+                </td>
+                <td class="admcon_bt">
+                    <input type="hidden" name="anum" value="">
+                    
+                    <a class="admconin">
+                        신규추가
+                    </a>
+                </td>
+                </form>
+        </tr>
     </table>
 </div>
 <div class="om_sum_conlist">
@@ -331,4 +455,7 @@
     wr18 결재여부
     wr19 구
     wr20 우수환경
+    wr21 개인정보동의
+    wr22 건물명
+    wr23 신주소
 -->

@@ -263,15 +263,45 @@ $(document).ready(function(){
     }
   });
 
+  $('.main_sang_ju').click(function(){
+    
+      $('.main_n_juso').slideUp();
+    
+  });
+
 
   $(document).on('click','.juso_list_td',function(){
     // var juso1 = $(this).children('.juso_list_li1').text();
     var juso2 = $(this).children('.juso_list_li2').text();
+    var juso3 = $(this).children('.juso_list_li1').text();
+    juso2 = juso2.split(' ');
+    var newJuso2 = '';
+
+    for(jsnum2 in juso2){
+      
+      if(jsnum2 > 1){
+        newJuso2 += juso2[jsnum2]+' ';
+
+      }
+    }
+
+    juso3 = juso3.split(' ');
+    var newJuso3 = '';
+
+    for(jsnum3 in juso3){
+      
+      if(jsnum3 > 1){
+        newJuso3 += juso3[jsnum3]+' ';
+
+      }
+    }
 
     // var jusoAddHtml = '<li class="jusoInLi"><input type="text" name="" value="'+juso1+'" readonly></li><li class="jusoInLi"><input type="text" name="jusorst1" value="'+juso2+'" readonly></li><li class="jusoInLi"><input type="text" name="jusorst2" value="" placeholder="상세주소"></li><li class="jusoInLiBt"><button type="button" class="jusoinbt">주소입력</button></li>';
 
     // $('.jusoAddIn').html(jusoAddHtml);
-    $('.main_n_juso_in').val(juso2);
+    // $('.main_n_juso_in').val(juso2);
+    $('.main_n_juso_in').val(newJuso2);
+    $('.main_sinjuso_wr23').val(newJuso3);
     
     if($('.main_n_juso').is(":visible")) {
       $('.main_n_juso').slideUp();
@@ -281,6 +311,7 @@ $(document).ready(function(){
 
     $('#list').html('');
     $('.paginate').html('');
+    $('.juso_bot_text').html('');
     $('.jusoschkeyview').val('');
     $('.main_n_juso_desc2').css('display','inline-block');
   });
@@ -334,10 +365,13 @@ $(document).ready(function(){
   $('.contact_else').click(function(){
     $('.contact_else_option').slideToggle();
   });
-  $('.contact_else_option a').click(function(){
+  $('.main_n_conin_yoch li').click(function(){
     var thdata = $(this).data('conelse');
     if(thdata=='1'){
-      $('.contact_else').focus();
+      
+      // $('.contact_else22').attr("readonly",false);
+      $('.contact_else22').focus();
+      // $('.contact_else22').prop('readonly', false);
     }
     else{
       var seldata = $(this).text();
@@ -368,6 +402,7 @@ $(document).ready(function(){
       $('#main_n_timesel').text(seldata);
       $('.main_n_conin_li4_a').css('font-size','1rem');
       $('.main_n_conin_li4_a').css('color','#000000');
+      $('.main_n_conin_li4_a').css('padding-top','18px');
     
     if($('.main_n_conin_timesel').is(":visible")) {
       $('.main_n_conin_timesel').slideUp();
@@ -404,42 +439,79 @@ $(document).ready(function(){
       cache : false,
       success : function(rst){
         var rstJn = JSON.parse(rst);
+        var alertPopClose = `<div class="main_alert_pop_close"><img src="/img/main/close.png"></div>`;
+        var alertPopClose2 = `<div class="main_alert_pop_close" data-apm="rlo"><img src="/img/main/close.png"></div>`;
         if(rstJn.rst){
           //alert('신청이 완료되었습니다.');
-          $('.alertpop').html('<img src="/img/main/alert6.png">');
+          $('.alertpop').html('<img src="/img/main/alert6.png">'+alertPopClose2);
             $('.alertpop').css('display','inline-block');
-            setTimeout(function(){
-              $('.alertpop').css('display','none');
-              $('.alertpop').html('');
-              location.reload();
-            },3000);
+            // setTimeout(function(){
+            //   $('.alertpop').css('display','none');
+            //   $('.alertpop').html('');
+            //   location.reload();
+            // },1000);
           
         }
         else{
           if(rstJn.err=='1'){
-            alert('이미 신청된 내역이 있습니다.');
+            //alert('이미 신청된 내역이 있습니다.');
+            $('.alertpop').html('<img src="/img/main/alert2.png">'+alertPopClose);
+            $('.alertpop').css('display','inline-block');
+            // setTimeout(function(){
+            //   $('.alertpop').css('display','none');
+            //   $('.alertpop').html('');
+            // },3000);
           }
           else if(rstJn.err=='2'){
             //alert('모든 내용을 입력해주세요.');
-            $('.alertpop').html('<img src="/img/main/alert1.png">');
+            $('.alertpop').html('<img src="/img/main/alert1.png">'+alertPopClose);
             $('.alertpop').css('display','inline-block');
-            setTimeout(function(){
-              $('.alertpop').css('display','none');
-              $('.alertpop').html('');
-            },3000);
+            // setTimeout(function(){
+            //   $('.alertpop').css('display','none');
+            //   $('.alertpop').html('');
+            // },3000);
           }
           else if(rstJn.err=='3'){
-            alert('개인정보수집 및 활용동의해주세요.');
+            //alert('개인정보수집 및 활용동의해주세요.');
+            $('.alertpop').html('<img src="/img/main/alert3.png">'+alertPopClose);
+            $('.alertpop').css('display','inline-block');
+            // setTimeout(function(){
+            //   $('.alertpop').css('display','none');
+            //   $('.alertpop').html('');
+            // },3000);
           }
           else if(rstJn.err=='4'){
-            alert('선택하신 시간은 이미 예약되어있습니다.');
+            //alert('선택하신 시간은 이미 예약되어있습니다.');
+            $('.alertpop').html('<img src="/img/main/alert5.png">'+alertPopClose);
+            $('.alertpop').css('display','inline-block');
+            // setTimeout(function(){
+            //   $('.alertpop').css('display','none');
+            //   $('.alertpop').html('');
+            // },3000);
           }
           else{
-            alert('신청오류! 전화문의주세요.');
+            //alert('신청오류! 전화문의주세요.');
+            $('.alertpop').html('<img src="/img/main/alert4.png">'+alertPopClose);
+            $('.alertpop').css('display','inline-block');
+            // setTimeout(function(){
+            //   $('.alertpop').css('display','none');
+            //   $('.alertpop').html('');
+            // },3000);
           }
         }
       }
     });
+  });
+
+  $(document).on('click','.main_alert_pop_close',function(){
+    if($('.main_alert_pop_close').data('apm') == 'rlo'){
+      location.reload();
+    } else {
+      $('.alertpop').css('display','none');
+      $('.alertpop').html('');
+    }
+    
+    
   });
 
   $('.main_bottom_bt_li1').click(function(){

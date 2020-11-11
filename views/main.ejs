@@ -73,30 +73,30 @@
 
 
 
-    <form class="main_contact" action="/contactprc" method="post">
+    <form class="main_contact" action="/contactprc" method="post" autocomplete="off">
     <div class="main_n_contact_wrap">
       <div class="main_n_contact_tit">
         <img src="/img/main/contact_top.png">
       </div>
       <div class="main_n_contact_con">
         <!-- form_1 -->
-        <div class="main_n_conin">
+        <div class="main_n_conin main_n_conin1">
           <li class="main_n_conin_li1">
             <img src="/img/main/contact_in1.png" alt="성명">
           </li>
           <li class="main_n_conin_li2">
-            <input type="text" name="wr1" value="" placeholder="하수과 신고자명" class="main_n_conin_input main_n_input1">
+            <input type="text" name="wr1" value="" placeholder="건물명 / 하수과 신고자명" class="main_n_conin_input main_n_input1">
           </li>
         </div>
         <!-- form_1 -->
 
         <!-- form_1 -->
-        <div class="main_n_conin">
+        <div class="main_n_conin main_n_conin2">
           <li class="main_n_conin_li1">
             <img src="/img/main/contact_in2.png" alt="청소날짜">
           </li>
           <li class="main_n_conin_li3">
-            <input type="text" name="wr2" value="" placeholder="0000-00-00" class="main_n_conin_input main_n_input1" id="calFormInput">
+            <input type="text" name="wr2" value="" placeholder="0000-00-00" class="main_n_conin_input main_n_input1" id="calFormInput" readonly>
           </li>
           <li class="main_n_conin_li4">
             <input type="hidden" name="wr3" value="" id="main_n_timesel_input">
@@ -112,6 +112,8 @@
             </div>
           </div>
           <div class="main_n_conin_timesel">
+            <li>오전 아무때나</li>
+            <li>오후 아무때나</li>
             <li>오전 6시~7시</li>
             <li>오전 7시~8시</li>
             <li>오전 8시~9시</li>
@@ -119,19 +121,19 @@
             <li>오전 11시~12시</li>
             <li>오후 1시~2시</li>
             <li>오후 2시~3시</li>
-            <li>오전 아무때나</li>
-            <li>오후 아무때나</li>
+            
           </div>
         </div>
         <!-- form_1 -->
 
         <!-- form_1 -->
-        <div class="main_n_conin">
+        <div class="main_n_conin main_n_conin3">
           <li class="main_n_conin_li1">
             <img src="/img/main/contact_in3.png" alt="주소">
           </li>
           <li class="main_n_conin_li2">
             <input type="text" name="wr4" value="" placeholder="지번주소입력" class="main_n_conin_input main_n_input1 main_n_juso_in">
+            <input type="hidden" name="wr23" value="" class="main_sinjuso_wr23">
           </li>
           <div class="main_n_juso">
             <div class="main_n_juso_top">
@@ -147,13 +149,14 @@
               <img src="/img/main/juso_desc2.png" class="main_n_juso_desc2">
               <div id="list" class="main_n_juso_list"></div><!-- 검색 결과 리스트 출력 영역 -->
               <div class="paginate" id="pageApi"></div>
+              <div class="juso_bot_text"></div>
             </div>
           </div>
         </div>
         <!-- form_1 -->
 
         <!-- form_1 -->
-        <div class="main_n_conin">
+        <div class="main_n_conin main_n_conin4">
           <li class="main_n_conin_li1">
             <img src="/img/main/contact_in4.png" alt="전화번호">
           </li>
@@ -164,12 +167,12 @@
         <!-- form_1 -->
 
         <!-- form_1 -->
-        <div class="main_n_conin">
+        <div class="main_n_conin main_n_conin5">
           <li class="main_n_conin_li1">
             <img src="/img/main/contact_in5.png" alt="요청사항">
           </li>
           <li class="main_n_conin_li2">
-            <input type="text" name="wr6" value="" placeholder="요청사항을 선택해주세요." class="main_n_conin_input main_n_input1" id="main_yoch_sel">
+            <input type="text" name="wr6" value="" placeholder="요청사항을 선택해주세요." class="main_n_conin_input main_n_input1 contact_else22" id="main_yoch_sel" autocomplete="off">
           </li>
           <div class="main_n_conin_yoch">
             <li data-conelse="1">직접입력</li>
@@ -178,20 +181,21 @@
 						<li>영수증을 문자로 보내주세요.</li>
           </div>
           <div class="main_n_conin_bil">
-            <input type="checkbox" name="wr7" value="1" class="main_n_conin_bil_input">
+            <input type="checkbox" name="wr7" value="1" class="main_n_conin_bil_input main_n_conin_agree_inputwr7 om_hid" id="wr7chk">
+            <label for="wr7chk"></label>
             <img src="/img/main/contact_in6.png" alt="전자계산서">
           </div>
         </div>
         <!-- form_1 -->
 
         <!-- form_1 -->
-        <div class="main_n_conin">
+        <div class="main_n_conin main_n_conin6">
           <li class="main_n_conin_li1">
             
           </li>
           <li class="main_n_conin_li2">
 
-            <input type="text" name="wr4_1" value="" placeholder="상세주소" class="main_n_conin_input main_n_input1 main_n_juso_wr4_1">
+            <input type="text" name="wr4_1" value="" placeholder="상세주소" class="main_n_conin_input main_n_input1 main_n_juso_wr4_1 main_sang_ju">
           </li>
         </div>
         <!-- form_1 -->
@@ -199,7 +203,8 @@
       </div>
 
       <div class="main_n_agree">
-        <input type="checkbox" name="wr21" value="1" class="main_n_conin_agree_input">
+        <input type="checkbox" name="wr21" value="1" class="main_n_conin_agree_input main_n_conin_agree_inputwr21 om_hid" id="wr21chk">
+        <label for="wr21chk"></label>
         <img src="/img/main/contact_in7.png" class="main_agree_img">
       </div>
       </form>
@@ -219,7 +224,8 @@
 
     <div class="main_n_content_wrap">
       <div class="main_n_content">
-        <img src="/img/main/main_content.png">
+        <img src="/img/main/main_content.png" class="main_n_content_wrap_pc">
+        <img src="/img/main/main_content_mo.png" class="main_n_content_wrap_mo">
       </div>
     </div>
 
@@ -262,8 +268,11 @@
 
 
       <div class="main_qa">
+        <div class="main_qa_icon main_qa_close">
+          <img src="/img/main/close.png">
+        </div>
         <div class="main_qa_img">
-          <img src="/img/main/main_qa_img.png">
+          <img src="/img/main/main_qa_img2.png">
         </div>
         <div class="main_qa_bt">
           <a class="main_qa_bt_a main_qa_bt1"><img src="/img/main/main_qa_bt1.png"></a>
