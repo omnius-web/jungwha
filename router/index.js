@@ -243,7 +243,7 @@ router.post('/contactprc',(req,res)=>{
     post.wr9 = dateSplit[1];
     post.wr10 = dateSplit[2];
     post.wr11 = reqSelTime.selTS2;
-    post.wr12 = 0;
+    post.wr12 = 2;
     post.wr13 = 0;
     post.wr15 = 0;
     post.wr16 = 0;
@@ -326,9 +326,13 @@ router.post('/contactlist',(req,res)=>{
     rstSend.clval = true;
     rstSend.name = post.wr1;
     rstSend.hp = post.wr5;
+
+    // 이름 휴대폰 *
     var namehpSecuRst = namehpSecu(rstSend.name, rstSend.hp);
     console.log(namehpSecuRst.name);
     console.log(namehpSecuRst.hp);
+    // 이름 휴대폰 *
+
 
     if(rst[0]==undefined){
       rstSend.clval = false;

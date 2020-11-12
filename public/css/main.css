@@ -680,10 +680,10 @@
         width: 70%;
     }
     .main_n_conin_li3 {
-        width: 32%;
+        width: 38%;
     }
     .main_n_conin_li4 {
-        width: 38%;
+        width: 32%;
     }
     .main_n_conin_li1 img {
         width: 80%;
@@ -790,8 +790,32 @@
     .main_n_conin3 {
         z-index: 100;
     }
+    .main_n_conin_timesel {
+        right: 0px;
+    }
+    .main_n_juso {
+        right: 0;
+    }
+    .main_n_conin_yoch {
+        right: 0;
+    }
 
 }
+
+@media screen and (max-width: 700px) {
+    .main_n_juso {
+        width: 100%;
+    }
+    .jusoschkeyview {
+        width: 60%;
+    }
+    .main_n_juso_desc1 {
+        width: 275px;
+    }
+    .main_n_juso_desc2 {
+        width: 280px;
+        padding: 30px 0;
+    }
 
 @media screen and (max-width: 500px) {
     .main_footer_info {

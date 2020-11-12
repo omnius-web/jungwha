@@ -241,7 +241,7 @@ router.get('/contact',(req,res)=>{
     }
     rstSend.post = {};
     var conList = new Promise(function(resolve,reject){
-      db.query(`select * from contact where not wr12 = "1" and wr8="${nowTime.nowY}" and wr9="${nowTime.nowM}" order by wr11`,(err,data)=>{
+      db.query(`select * from contact where (wr12 = "0" or wr12 = "2") and wr8="${nowTime.nowY}" and wr9="${nowTime.nowM}" order by wr11`,(err,data)=>{
         if(err){
           throw 'adm contact list select query error';
         }
@@ -287,12 +287,22 @@ router.post('/contact',(req,res)=>{
     }
     var post = req.body;
     rstSend.post = {};
-    var sql = `select * from contact where`;
+    var query = `select * from contact`;
+    var sql = [];
     var params = [];
-    sql += ` wr8=?`;
-    params.push(post.year);
-    sql += ` and wr9=?`;
-    params.push(post.month);
+    /*
+    // sql += ` wr8=?`;
+    // params.push(post.year);
+    // sql += ` and wr9=?`;
+    // params.push(post.month);
+    if(post.year!=='0'){
+      sql += ` and wr8=?`;
+      params.push(post.year);
+    }
+    if(post.month!=='0'){
+      sql += ` and wr9=?`;
+      params.push(post.month);
+    }
     if(post.day!=='0'){
       sql += ` and wr10=?`;
       params.push(post.day);
@@ -319,7 +329,7 @@ router.post('/contact',(req,res)=>{
       sql += ` and wr20=?`;
       params.push(`1`);
     }
-    if(post.complete!=='2'){
+    if(post.complete!=='3'){
       sql += ` and wr12=?`;
       params.push(post.complete);
     }
@@ -327,12 +337,71 @@ router.post('/contact',(req,res)=>{
       sql += ` and wr18=?`;
       params.push('미수');
     }
+    */
+
+
+
+
+    if(post.year!=='0'){
+      sql.push(` wr8=?`);
+      params.push(post.year);
+    }
+    if(post.month!=='0'){
+      sql.push(` wr9=?`);
+      params.push(post.month);
+    }
+    if(post.day!=='0'){
+      sql.push(` wr10=?`);
+      params.push(post.day);
+    }
+    if(post.name!==''){
+      sql.push(` (wr1 like ? or wr22 like ?)`);
+      params.push(`%${post.name}%`);
+      params.push(`%${post.name}%`);
+    }
+    if(post.hp!==''){
+      sql.push(` (wr5 like ? or wr14 like ?)`);
+      params.push(`%${post.hp}%`);
+      params.push(`%${post.hp}%`);
+    }
+    if(post.jusogu!=='0'){
+      sql.push(` wr19=?`);
+      params.push(post.jusogu);
+    }
+    if(post.juso!==''){
+      sql.push(` wr4 like ?`);
+      params.push(`%${post.juso}%`);
+    }
+    if(post.usu == '1'){
+      sql.push(` wr20=?`);
+      params.push(`1`);
+    }
+    if(post.complete!=='3'){
+      sql.push(` wr12=?`);
+      params.push(post.complete);
+    }
+    if(post.payrst=='1'){
+      sql.push(` wr18=?`);
+      params.push('미수');
+    }
+
+    if(sql[0] !== undefined){
+      for(sqlNum in sql){
+        var queryWhere = ' and';
+        if(sqlNum == 0){
+          queryWhere = ' where';
+        }
+        query += queryWhere+sql[sqlNum];
+      }
+    }
     
-    sql += ` order by wr11`;
-    
+    query += ` order by wr11`;
+
+    console.log(query);
     console.log(sql);
     console.log(params);
-    db.query(sql,params,function(err,rst){
+    
+    db.query(query,params,function(err,rst){
       if(err){
         throw 'adm contact list post select where error';
       }
@@ -455,6 +524,16 @@ router.post('/excelsend',(req,res)=>{
   excelRst.write('Excel.xlsx',res);
 });
 // EXCEL Down
+
+
+
+// Print
+router.post('/print',(req,res)=>{
+  var post = req.body;
+  post.jstextarea = JSON.parse(post.jstextarea);
+  res.render('adm/print',post);
+});
+// Print
 
 
 

@@ -1,0 +1,116 @@
+<div class="print">
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    td {
+        font-size: 0.8rem;
+        border: 1px solid #eaeaea;
+        text-align: center;
+        padding: 5px 0;
+    }
+    .date {
+        width: 100%;
+        text-align: center;
+    }
+    .date a {
+        font-size: 1.7rem;
+        font-weight: bold;
+        display: inline-block;
+        padding: 20px 5px;
+    }
+    .admconlist_tit td {
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+</style>
+<div class="date">
+    <a><%= year %>년</a>
+    <a><%= month %>월</a>
+    <% if(day !== '0'){ %>
+    <a><%= day %>일</a>
+    <% } %>
+</div>
+<table style="width: 100%;">
+    <tr class="admconlist_tit">
+        <td>
+            번 호
+        </td>
+        
+        <td>
+            이 름
+        </td>
+        <td>
+            주 소
+        </td>
+        <td>
+            청소 시간
+        </td>
+        <td>
+            전화번호1
+        </td>
+        <td>
+            전화번호2
+        </td>
+        <td>
+            전자계산서
+        </td>
+        <td>
+            요청사항
+        </td>
+        <td>
+            비고
+        </td>
+
+    </tr>
+<% var listNum = 1 %>
+<% for(clNum in jstextarea) { %>
+<% if(jstextarea[clNum].sumwr13 === undefined){ %>
+
+    <tr>
+        <form method="post" id="admconup">
+        <td>
+            <%= listNum %>
+        </td>
+        
+        <td>
+            <%= jstextarea[clNum].wr1 %><!--이름-->
+        </td>
+        <td style="width: 300px;">
+            <%= jstextarea[clNum].wr4 %><!--주소-->
+        </td>
+        <td>
+            <%= jstextarea[clNum].wr3 %><!--청소시간-->
+        </td>
+        <td>
+            <%= jstextarea[clNum].wr5 %><!--전화번호1-->
+        </td>
+        <td>
+            <%= jstextarea[clNum].wr14 %><!--전화번호2-->
+        </td>
+        <td>
+            <% if(jstextarea[clNum].wr7=='0'){ %> 미발행 <%}%>
+            <% if(jstextarea[clNum].wr7=='1'){ %> 요청 <%}%>
+            <% if(jstextarea[clNum].wr7=='2'){ %> 완료 <%}%> 
+            <!--세금계산서-->
+        </td>
+        <td>
+            <%= jstextarea[clNum].wr6 %><!--요청사항-->
+        </td>
+        <td>
+            <%= jstextarea[clNum].wr17 %><!--비고-->
+        </td>
+        </form>
+    </tr>
+<% listNum++ %>
+
+
+<% } %>
+<% } %>
+</table>
+</div>
+
+
+<script>
+    window.print();
+</script>

@@ -15,6 +15,16 @@
     
 </div>
 
+<div class="om_hid jsontext_div">
+    <form action="/adm/print" method="post" id="excelform2" target="pop_window2">
+        <input type="text" name="year" value="<%=post.year%>">
+        <input type="text" name="month" value="<%=post.month%>">
+        <input type="text" name="day" value="<%=post.day%>">
+        <textarea name="jstextarea"><%- jsonText %></textarea>
+    </form>
+    
+</div>
+
 <script>
     //$('.extesst').click(function(){
     $(document).on('click','.extesst_a',function(){
@@ -36,11 +46,18 @@
             }
         })*/
     });
+
+
+    $(document).on('click','.extesst_p',function(){
+        window.open("","pop_window2","width=1200,height=800");
+        $('#excelform2').submit();
+    });
 </script>
 <div class="admconlist_wrap">
     <div class="contactlist_select">
         <form action="/adm/contact" method="post">
             <select name="year" style="font-size: 1.3rem;">
+                <option value="0">전체</option>
                 <% for(var i = 2017; i < 2100; i++) { %>
                     <% var selected = '' %>
                     <% if(obPostBul){ %>
@@ -56,6 +73,7 @@
                 <% } %>
             </select>
             <select name="month" style="font-size: 1.3rem;">
+                <option value="0">전체</option>
                 <% for(var i = 1; i < 13; i++) { %>
                     <% var selected = '' %>
                     <% if(obPostBul){ %>
@@ -93,8 +111,9 @@
             </select>
             <select name="complete" style="font-size: 1.3rem;">
                 <option value="0" <% if(post.complete=='0'){ %> selected="selected" <%}%> >신청대기</option>
+                <option value="2" <% if(post.complete=='2'){ %> selected="selected" <%}%> >신청접수</option>
                 <option value="1" <% if(post.complete=='1'){ %> selected="selected" <%}%> >청소완료</option>
-                <option value="2" <% if(post.complete=='2'){ %> selected="selected" <%}%> >전체보기</option>
+                <option value="3" <% if(post.complete=='3'){ %> selected="selected" <%}%> >전체보기</option>
             </select>
             <input type="checkbox" name="usu" value="1" <% if(post.usu=='1'){ %> checked="checked" <%}%> ><a>우수환경</a>
             <input type="checkbox" name="payrst" value="1" <% if(post.payrst=='1'){ %> checked="checked" <%}%> ><a>미수금</a>
@@ -115,7 +134,7 @@
             document.write(`${selYear}년 ${selMonth}월 ${selDay}`);;
         </script>
     </div>
-    <div class="extesst excel_bt_style"><a class="extesst_a">엑셀다운</a></div>
+    <div class="extesst excel_bt_style"><a class="extesst_p">누르지마세요</a><a class="extesst_a">엑셀다운</a></div>
     <table>
         <tr class="admconlist_tit">
             <td>
@@ -231,11 +250,12 @@
                     <option value="현금" <% if(data[clNum].wr18=='현금'){ %> selected="selected" <%}%> >현금</option>
                     <option value="입금" <% if(data[clNum].wr18=='입금'){ %> selected="selected" <%}%> >입금</option>
                     <option value="미수" <% if(data[clNum].wr18=='미수'){ %> selected="selected" <%}%> >미수</option>
-                </select>
+                </select><!--결재여부-->
             </td>
             <td>
                 <select name="wr12" id="">
                     <option value="0" <% if(data[clNum].wr12=='0'){ %> selected="selected" <%}%> >대기</option>
+                    <option value="2" <% if(data[clNum].wr12=='2'){ %> selected="selected" <%}%> >접수</option>
                     <option value="1" <% if(data[clNum].wr12=='1'){ %> selected="selected" <%}%> >완료</option>
                 </select>
                 <!--<input type="text" name="wr12" value="<%= data[clNum].wr12 %>" class="admconlist_input4">--><!--청소완료-->
@@ -350,6 +370,7 @@
                 <td>
                     <select name="wr12" id="">
                         <option value="0">대기</option>
+                        <option value="2">접수</option>
                         <option value="1">완료</option>
                     </select>
                     <!--청소완료-->

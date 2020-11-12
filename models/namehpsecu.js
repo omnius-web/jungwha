@@ -1,3 +1,4 @@
+// 이름 휴대폰 번호 *로 변환
 module.exports = function(strName, hp){
     var namehp = {};
     if (strName.length > 2) {
