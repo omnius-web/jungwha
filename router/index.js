@@ -249,9 +249,18 @@ router.post('/contactprc',(req,res)=>{
     post.wr16 = 0;
     post.date = nowTime.now2;
 
+    var ctprcSql = `select * from contact where (wr5 = ? and not wr12="1")`;
+    var ctprcParam = [post.wr5];
+
+    if(post.wr3 !== '빠른시일 아무때나'){
+      ctprcSql +=  `or (wr2 = ? and wr3 = ?)`;
+      ctprcParam.push(post.wr2);
+      ctprcParam.push(post.wr3);
+    }
+
     var dbSearch = function(){
       return new Promise(function(resolve,reject){
-        db.query('select * from contact where (wr5 = ? and not wr12="1") or (wr2 = ? and wr3 = ?)',[post.wr5,post.wr2,post.wr3],function(err,data){
+        db.query(ctprcSql,ctprcParam,function(err,data){
           if(err){
             throw 'contact db for hp num search';
           }
@@ -331,6 +340,9 @@ router.post('/contactlist',(req,res)=>{
     var namehpSecuRst = namehpSecu(rstSend.name, rstSend.hp);
     console.log(namehpSecuRst.name);
     console.log(namehpSecuRst.hp);
+
+    rstSend.name = namehpSecuRst.name;
+    rstSend.hp = namehpSecuRst.hp;
     // 이름 휴대폰 *
 
 

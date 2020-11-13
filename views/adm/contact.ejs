@@ -134,7 +134,12 @@
             document.write(`${selYear}년 ${selMonth}월 ${selDay}`);;
         </script>
     </div>
-    <div class="extesst excel_bt_style"><a class="extesst_p">누르지마세요</a><a class="extesst_a">엑셀다운</a></div>
+    <div class="extesst excel_bt_style">
+        <% if(postconf == 1) { %>
+        <a class="extesst_p">출력하기</a>
+        <% } %>
+
+        <a class="extesst_a">엑셀다운</a></div>
     <table>
         <tr class="admconlist_tit">
             <td>

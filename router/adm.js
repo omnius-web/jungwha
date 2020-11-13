@@ -264,6 +264,7 @@ router.get('/contact',(req,res)=>{
       rstSend.data = rst;
       var jsonText = JSON.stringify(rst);
       rstSend.jsonText = jsonText;
+      rstSend.postconf = 0;
       res.render('adm/contact',rstSend);
     }).catch(function(err){
       console.log(err);
@@ -421,6 +422,7 @@ router.post('/contact',(req,res)=>{
       rstSend.post = post;
       var jsonText = JSON.stringify(rst);
       rstSend.jsonText = jsonText;
+      rstSend.postconf = 1;
       res.render('adm/contact',rstSend);
     })
   }
@@ -513,6 +515,69 @@ router.post('/contactdel',(req,res)=>{
   
 })
 // Contact list 삭제
+
+
+
+
+// Contact list 입력
+router.post('/contactin',(req,res)=>{
+  var authRst = authMd.authcheck(req,res,10);
+  if(authRst){
+    var post = req.body;
+    // var anum = post.anum;
+    delete post.anum;
+    var conDate = post.wr2;
+    var dateSplit = conDate.split('-');
+    var reqSelTime = omTime.selTimeSt(Number(dateSplit[0]),Number(dateSplit[1])-1,Number(dateSplit[2]));
+    var nowTime = omTime.timeSt();
+
+    post.wr8 = dateSplit[0];
+    post.wr9 = dateSplit[1];
+    post.wr10 = dateSplit[2];
+    post.wr11 = reqSelTime.selTS2;
+    post.wr13 = post.wr13.replace(',','');
+    post.wr13 = Number(post.wr13).toFixed(3);
+    post.wr15 = post.wr15.replace(',','');
+    post.wr15 = Number(post.wr15);
+    var sql = 'insert into contact set ?';
+    // var params = [];
+    // post.wr13 = Math.floor(post.wr13);
+    if(post.wr20 === undefined){
+      post.wr20 = '0';
+    }
+    
+    /*
+    console.log(post.wr20);
+    for(poval in post){
+      sql += ` ${poval} = ?,`;
+      params.push(post[poval]);
+    }
+    sql = sql.substr(0, sql.length -1);
+    sql += ' where anum = ?';
+    params.push(anum);
+    */
+
+    // console.log(sql);
+    // console.log(params);
+    
+    var conUpdate = new Promise(function(resolve,reject){
+      db.query(sql,post,function(err,rst){
+        if(err){
+          throw 'adm contact insert query error';
+        }
+        resolve(rst);
+      })
+    });
+    conUpdate.then(function(rst){
+      res.send(true);
+    }).catch(function(err){
+      console.log(err);
+    })
+    
+  }
+  
+})
+// Contact list 입력
 
 
 

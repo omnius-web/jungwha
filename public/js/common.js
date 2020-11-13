@@ -747,6 +747,37 @@ $(document).ready(function(){
       });
     }
   });
+
+
+
+
+  $(document).on('click','.admconin',function(){
+    var confedit = confirm('입력하시겠습니까?');
+    if(confedit){
+      var contactData = $(this).parents('.admcon_bt').prevAll('#admconin').serialize();
+      $.ajax({
+        type : 'post',
+        url : '/adm/contactin',
+        data : contactData,
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: "text",
+        cache : false,
+        success : function(rst){
+          if(rst){
+            alert('입력되었습니다.');
+            location.reload();
+          }
+          else{
+            alert('입력오류!');
+          }
+        }
+      });
+    }
+  });
+
+
+
+
   // admin contact list
 
   // popup close
