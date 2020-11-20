@@ -173,7 +173,7 @@ router.post('/calendar',function(req,res){
     var date2 = new Date();
     var date1 = new Date(Number(year),Number(month)-1,date2.getDate());
     //console.log(date2.getDate());
-    var date2Sum6 = date2.setMonth(date2.getMonth()+4);
+    var date2Sum6 = date2.setMonth(date2.getMonth()+12);
     //console.log(date1.getTime(),date2.getTime());
     if(date1.getTime() > date2.getTime()){
       rstSend.mon6th = true;
@@ -385,7 +385,7 @@ router.post('/contactlist',(req,res)=>{
         res.send(se2_htlm);
       }
       else{
-        var se2_htlm = '<div class="con_conf_sms"><img src="/img/main/con_conf_no.png"><li class="search_icon conf_first_close sms_conf_icon"><img src="/img/icon_b.png"></li></div>';
+        var se2_htlm = '<div class="con_conf_sms"><img src="/img/main/con_conf_no.png"><li class="search_icon conf_first_close sms_conf_icon"><img src="/img/icon_b.png"></li><p class="sms_conf_icon_p_close"><i class="fa fa-times" aria-hidden="true" style="color: black;"></i></p></div>';
         res.send(se2_htlm);
       }
       // if(post.sms){

@@ -1,11 +1,24 @@
 <div class="print">
 <style>
+
+
+@font-face {
+ font-family: 'NanumBarunGothic';
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'NanumBarunGothic', sans-serif;
+}
     table {
         border-collapse: collapse;
     }
     td {
         font-size: 0.8rem;
-        border: 1px solid #eaeaea;
+        border: 1px solid #cccccc;
         text-align: center;
         padding: 5px 0;
     }
@@ -24,11 +37,13 @@
         font-weight: 700;
     }
 </style>
+
 <div class="date">
     <a><%= year %>년</a>
     <a><%= month %>월</a>
     <% if(day !== '0'){ %>
     <a><%= day %>일</a>
+    <a><%= yoil %>요일</a>
     <% } %>
 </div>
 <table style="width: 100%;">
@@ -48,9 +63,6 @@
         </td>
         <td>
             전화번호1
-        </td>
-        <td>
-            전화번호2
         </td>
         <td>
             전자계산서
@@ -73,20 +85,17 @@
             <%= listNum %>
         </td>
         
-        <td>
+        <td style="font-size: 0.9rem; font-weight: 700;">
             <%= jstextarea[clNum].wr1 %><!--이름-->
         </td>
-        <td style="width: 300px;">
+        <td style="width: 270px; text-align: left; padding-left: 5px;font-size: 0.9rem; font-weight: 700;">
             <%= jstextarea[clNum].wr4 %><!--주소-->
         </td>
-        <td>
+        <td style="font-size: 0.9rem; font-weight: 700;">
             <%= jstextarea[clNum].wr3 %><!--청소시간-->
         </td>
-        <td>
+        <td style="font-size: 0.9rem; font-weight: 700;">
             <%= jstextarea[clNum].wr5 %><!--전화번호1-->
-        </td>
-        <td>
-            <%= jstextarea[clNum].wr14 %><!--전화번호2-->
         </td>
         <td>
             <% if(jstextarea[clNum].wr7=='0'){ %> 미발행 <%}%>
@@ -94,7 +103,7 @@
             <% if(jstextarea[clNum].wr7=='2'){ %> 완료 <%}%> 
             <!--세금계산서-->
         </td>
-        <td>
+        <td style="font-size: 0.9rem; font-weight: 700;">
             <%= jstextarea[clNum].wr6 %><!--요청사항-->
         </td>
         <td>

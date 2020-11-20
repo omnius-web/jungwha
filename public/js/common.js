@@ -59,7 +59,7 @@ $(document).ready(function(){
 
 
   
-  $('.calBottom').click(function(){
+  $('.calBottom li').click(function(){
     // $('.calForForm').css('display','none');
     // $('.calForForm').slideDown();
     if($('.calForForm').is(":visible")) {
@@ -68,6 +68,8 @@ $(document).ready(function(){
       $('.calForForm').slideDown();
     }
   });
+  
+  
 
   $('#calFormInput').click(function(){
     if($('.calForForm').is(":visible")) {
@@ -439,8 +441,10 @@ $(document).ready(function(){
       cache : false,
       success : function(rst){
         var rstJn = JSON.parse(rst);
-        var alertPopClose = `<div class="main_alert_pop_close"><img src="/img/main/close.png"></div>`;
-        var alertPopClose2 = `<div class="main_alert_pop_close" data-apm="rlo"><img src="/img/main/close.png"></div>`;
+        // var alertPopClose = '<div class="main_alert_pop_close"><img src="/img/main/close.png"></div>';
+        // var alertPopClose2 = '<div class="main_alert_pop_close" data-apm="rlo"><img src="/img/main/close.png"></div>';
+        var alertPopClose = '<div class="main_alert_pop_close"><img src="/img/main/close_text.png"></div>';
+        var alertPopClose2 = '<div class="main_alert_pop_close" data-apm="rlo"><img src="/img/main/close_text.png"></div>';
         if(rstJn.rst){
           //alert('신청이 완료되었습니다.');
           $('.alertpop').html('<img src="/img/main/alert6.png">'+alertPopClose2);
@@ -514,7 +518,7 @@ $(document).ready(function(){
     
   });
 
-  $('.main_bottom_bt_li1').click(function(){
+  $('.main_bt_list').click(function(){
     $.ajax({
       type : 'post',
       url : '/contactconf',
@@ -531,7 +535,7 @@ $(document).ready(function(){
     });
     
   });
-  $('.main_bottom_bt_li2').click(function(){
+  $('.main_bt_conf').click(function(){
     $.ajax({
       type : 'post',
       url : '/contactconf',
@@ -578,6 +582,10 @@ $(document).ready(function(){
     $('.sms_conf').html('');
     $('.sms_conf').css('display','none');
   });
+  $(document).on('click','.sms_conf_icon_p_close',function(){
+    $('.sms_conf').html('');
+    $('.sms_conf').css('display','none');
+  });
   
 
   
@@ -595,6 +603,14 @@ $(document).ready(function(){
     });
   });
   $(document).on('click','.agree_close',function(){
+    $('.agree_wrap').fadeOut();
+    $('.agree_html').html('');
+    $('.blackbg').animate({opacity:'0'},500);
+    setTimeout(function(){
+      $('.wrap_div').removeClass('blackbg');
+    },500);
+  });
+  $(document).on('click','.agree_close2',function(){
     $('.agree_wrap').fadeOut();
     $('.agree_html').html('');
     $('.blackbg').animate({opacity:'0'},500);
@@ -911,6 +927,14 @@ $(document).ready(function(){
 
 
 
+
+  // top_scroll_bt
+  
+  // top_scroll_bt
+
+
+
+
 });
 
 
@@ -997,4 +1021,15 @@ function omJusoBt(){
   var schKey = $('.jusoschkeyview').val();
   $('.om_search_key').val(schKey);
   getAddr(1);
+}
+
+function calelse(){
+  alert('ok');
+  if($('#calelse').is(":checked")){
+    $('#main_n_timesel_input').val('빠른시일 아무때나');
+    $('#main_n_timesel').text('빠른시일 아무때나');
+    $('.main_n_conin_li4_a').css('font-size','1rem');
+    $('.main_n_conin_li4_a').css('color','#000000');
+    $('.main_n_conin_li4_a').css('padding-top','18px');
+  }
 }

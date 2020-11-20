@@ -25,28 +25,13 @@ var option2 = {
 	//ca: fs.readFileSync(__dirname+'')
 };
 
-var option3 = {
-	key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server3.key'),
-	cert: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server3.crt'),
-	//ca: fs.readFileSync(__dirname+'')
-};
-
 app.use('/',indexRout);
 app.use('/adm',admRout);
 
-https.createServer(option3, app).listen(3002,function(){
-	console.log('HTTPS SERVER START! PORT:3002');
-});
-
-https.createServer(option, app).listen(3001,function(){
-	console.log('HTTPS SERVER START! PORT:3001');
-});
 
 https.createServer(option2, app).listen(3000,function(){
-	console.log('HTTPS SERVER START! PORT:3000');
+	console.log('HTTPS SERVER START! PORT:3001');
 });
-
-
 
 
 

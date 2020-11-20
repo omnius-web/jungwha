@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes">
+    <meta name="description" content="부천 정화조청소 전문업체 복사골환경(주)입니다. 무료소독 서비스">
     <title>복사골환경(주)</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/<%= css%>">
@@ -47,7 +48,7 @@
     <div class="main_wrap">
       <div class="main_bg">
         <img src="/img/main/main_bg_n2.png">
-        <div class="main_bt_wrap">
+        <div class="main_bt_wrap main_bt_pc">
           <div class="main_bt_con">
             <li class="main_bt1"><img src="/img/main/bt1.png" class="main_bot_bt_img3"><img src="/img/main/bt1_o.png"  class="main_bot_bt_img3_o"></li>
             <li class="main_bt2"><img src="/img/main/bt2.png" alt=""></li>
@@ -55,11 +56,11 @@
             <li class="main_bt4"><img src="/img/main/bt4.png" alt=""></li>
           </div>
         </div>
-        <div class="main_bottom_bt">
-          <li class="main_bottom_bt_li main_bottom_bt_li1">
+        <div class="main_bottom_bt main_bt_pc">
+          <li class="main_bottom_bt_li main_bottom_bt_li1 main_bt_list">
             <a><img src="/img/main/bt5.png" class="main_bot_bt_img1"><img src="/img/main/bt5_o.png"  class="main_bot_bt_img1_o"></a>
           </li>
-          <li class="main_bottom_bt_li main_bottom_bt_li2">
+          <li class="main_bottom_bt_li main_bottom_bt_li2 main_bt_conf">
             <a><img src="/img/main/bt6.png" class="main_bot_bt_img2"><img src="/img/main/bt6_o.png"  class="main_bot_bt_img2_o"></a>
           </li>
         </div>
@@ -67,6 +68,17 @@
 
        
       </div>
+
+      <div class="main_bg_mo">
+        <img src="/img/main/main_bg_mo2.png">
+      </div>
+
+      <div class="main_bt_mo">
+        <a class="main_bt_list"><img src="/img/main/mo_bt_1.png" alt="청소이력조회"></a>
+        <a class="main_bt_conf"><img src="/img/main/mo_bt_2.png" alt="신청확인하기"></a>
+      </div>
+
+      
     </div>
 
 
@@ -76,7 +88,7 @@
     <form class="main_contact" action="/contactprc" method="post" autocomplete="off">
     <div class="main_n_contact_wrap">
       <div class="main_n_contact_tit">
-        <img src="/img/main/contact_top.png">
+        <img src="/img/main/contact_top2.jpg">
       </div>
       <div class="main_n_contact_con">
         <!-- form_1 -->
@@ -106,18 +118,49 @@
             <div class="om_calendar_input">
             </div>
             <div class="calBottom">
+              <p>
+                <input type="checkbox" id="calelse" value="빠른시일 아무때나" class="om_hid">
+                <label for="calelse" id="calelse_label"></label>
+                <a>빠른시일 아무때나</a>
+              </p>
               <li>
                 <a>닫기</a>
               </li>
             </div>
           </div>
+          <script>
+            var calelseDate = new Date();
+            var calelseY = calelseDate.getFullYear();
+            var calelseM = calelseDate.getMonth()+1;
+            var calelseD = calelseDate.getDate();
+
+            $('#calelse_label').click(function(){
+              if(!$('#calelse').is(":checked")){
+                $('#main_n_timesel_input').val('빠른시일 아무때나');
+                $('#main_n_timesel').text('빠른시일');
+                $('.main_n_conin_li4_a').css('font-size','0.9rem');
+                $('.main_n_conin_li4_a').css('color','#000000');
+                $('.main_n_conin_li4_a').css('padding-top','18px');
+                $('#calFormInput').val(calelseY+'-'+calelseM+'-'+calelseD);
+              }
+              if($('#calelse').is(":checked")){
+                $('#main_n_timesel_input').val('');
+                $('#main_n_timesel').text('시간선택');
+                $('.main_n_conin_li4_a').css('font-size','1.3rem');
+                $('.main_n_conin_li4_a').css('color','#acacac');
+                $('.main_n_conin_li4_a').css('padding-top','15px');
+                $('#calFormInput').val('');
+              }
+            });
+          </script>
           <div class="main_n_conin_timesel">
-            <li>빠른시일 아무때나</li>
+            <!-- <li>빠른시일 아무때나</li> -->
             <li>오전 중</li>
             <li>오후 중</li>
             <li>오전 6시~7시</li>
             <li>오전 7시~8시</li>
             <li>오전 8시~9시</li>
+            <li>오전 9시~10시</li>
             <li>오전 10시~11시</li>
             <li>오전 11시~12시</li>
             <li>오후 1시~2시</li>
@@ -133,7 +176,7 @@
             <img src="/img/main/contact_in3.png" alt="주소">
           </li>
           <li class="main_n_conin_li2">
-            <input type="text" name="wr4" value="" placeholder="지번주소입력" class="main_n_conin_input main_n_input1 main_n_juso_in">
+            <input type="text" name="wr4" value="" placeholder="지번주소입력" class="main_n_conin_input main_n_input1 main_n_juso_in" readonly>
             <input type="hidden" name="wr23" value="" class="main_sinjuso_wr23">
           </li>
           <div class="main_n_juso">
@@ -223,10 +266,17 @@
 
 
 
+    <div class="main_mo_info">
+      <img src="/img/main/mo_info.png">
+    </div>
+
+
+
+
     <div class="main_n_content_wrap">
       <div class="main_n_content">
         <img src="/img/main/main_content.png" class="main_n_content_wrap_pc">
-        <img src="/img/main/main_content_mo.png" class="main_n_content_wrap_mo">
+        <img src="/img/main/main_content_mo2.png" class="main_n_content_wrap_mo">
       </div>
     </div>
 
@@ -325,7 +375,14 @@
             <a class="main_footer_a_ab">https://blog.naver.com/boksagol2020</a>
           </li>
         </div>
+        <div class="top_scroll_bt" onclick="window.scrollTo(0,0);">
+          <i class="fa fa-arrow-up" aria-hidden="true"></i>
+          <!-- <img src="/img/main/top_scroll_bt.png"> -->
+        </div>
       </div>
+
+
+      
 
 
     <script src="/js/juso_api.js"></script>

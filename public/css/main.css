@@ -105,6 +105,38 @@
     display: none;
 } */
 
+.main_bt_mo {
+    width: 100%;
+    display: none;
+    text-align: center;
+    margin-top: 3px;
+}
+.main_bt_mo > a {
+    display: inline-block;
+    padding: 0 10px;
+
+}
+.main_bt_mo > a > img {
+    width: 250px;
+}
+.main_mo_info {
+    display: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+}
+.main_mo_info img {
+    width: 700px;
+}
+
+.main_bg_mo {
+    display: none;
+}
+
+
+
+
+
 
 
 
@@ -118,6 +150,7 @@
 
 
 .main_n_contact_wrap {
+    position: relative;
     width: 1600px;
     margin: 20px auto 5px auto;
     font-size: 0;
@@ -300,7 +333,9 @@
 }
 
 .alertpop {
-    position: absolute;
+    position: fixed;
+    /* width: 100%; */
+    z-index: 99999;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -352,8 +387,15 @@
 }
 .main_alert_pop_close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    /* top: 10px;
+    right: 10px; */
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
 
 }
 .main_n_conin_agree_inputwr21 + label {
@@ -431,6 +473,7 @@
 
 
 .main_footer {
+    position: relative;
     width: 100%;
     background-color: #292929;
     padding: 30px 0;
@@ -482,8 +525,29 @@
 .main_footer_a1, .main_footer_a2 {
 }
 
+.sms_conf_icon_p_close {
+    display: none;
+}
 
 
+
+
+
+
+.top_scroll_bt {
+    position: absolute;
+    width: auto!important;
+    bottom: 10px;
+    right: 10px;
+    z-index: 999999;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 8px 10px;
+    background-color: white;
+}
+.top_scroll_bt i {
+    font-size: 1.5rem;
+}
 
 
 
@@ -572,9 +636,47 @@
         bottom: auto;
     }
 
+    .main_n_content_wrap {
+        margin-top: 40px;
+    }
+
 }
 
+@media screen and (max-width: 1500px) {
+    .main_bt_pc {
+        display: none;
+    }
+    .main_bt_mo {
+        display: inline-block;
+    }
+    .main_mo_info {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .main_bg {
+        height: 440px;
+    }
+    .main_bg > img {
+        width: 1200px;
+    }
+    .main_bt_mo > a > img {
+        width: 200px;
+    }
+}
+
+
 @media screen and (max-width: 1000px) {
+    .main_bg_mo {
+        display: inline-block;
+    }
+    .main_bg_mo img {
+        width: 100%;
+    }
+    .main_bg {
+        display: none;
+    }
     .main_n_contact_wrap {
         width: 100%;
     }
@@ -649,6 +751,13 @@
         font-size: 1rem!important;
     }
 
+
+
+    .main_n_contact_wrap {
+        padding: 0 5px;
+        box-sizing: border-box;
+    }
+
 }
 
 @media screen and (max-width: 900px) {
@@ -702,7 +811,8 @@
     }
     .main_n_contact_con {
         position: relative;
-        height: 450px;
+        /* height: 450px; */
+        height: 375px;
     }
 
     .main_n_conin1 {
@@ -718,7 +828,8 @@
     
     .main_n_conin4 {
         position: absolute;
-        top: 75px;
+        /* top: 75px; */
+        top: 65px;
         left: 50%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
@@ -729,7 +840,8 @@
     
     .main_n_conin2 {
         position: absolute;
-        top: 140px;
+        /* top: 140px; */
+        top: 120px;
         left: 50%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
@@ -740,7 +852,8 @@
     
     .main_n_conin3 {
         position: absolute;
-        top: 210px;
+        /* top: 210px; */
+        top: 174px;
         left: 50%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
@@ -750,7 +863,8 @@
     }
     .main_n_conin6 {
         position: absolute;
-        top: 280px;
+        /* top: 280px; */
+        top: 228px;
         left: 50%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
@@ -760,7 +874,8 @@
     }
     .main_n_conin5 {
         position: absolute;
-        top: 350px;
+        /* top: 350px; */
+        top: 282px;
         left: 50%;
         transform: translateX(-50%);
         -webkit-transform: translateX(-50%);
@@ -808,6 +923,11 @@
         right: 0;
     }
 
+    .main_n_contact_wrap {
+        margin: 10px auto 5px auto;
+    }
+    
+
 }
 
 @media screen and (max-width: 700px) {
@@ -824,6 +944,51 @@
         width: 280px;
         padding: 30px 0;
     }
+    .main_bg {
+        height: 300px;
+    }
+    .main_bg > img {
+        width: 900px;
+    }
+
+    .main_popup {
+        left: 0;
+        top: 0;
+    }
+
+    .main_mo_info img {
+        width: 100%;
+    }
+
+    .top_scroll_bt {
+        bottom: 7px;
+        right: 7px;
+    }
+
+
+    .main_n_contact_tit {
+        position: absolute;
+        width: 200px;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        z-index: 99999;
+        background-color: white;
+        padding: 0 30px;
+
+    }
+
+
+
+    .main_mo_info {
+        padding: 0 5px;
+        box-sizing: border-box;
+    }
+}
 
 @media screen and (max-width: 500px) {
     .main_footer_info {
@@ -842,7 +1007,7 @@
         width: 90%;
     }
     .main_n_contact_tit img {
-        width: 70%;
+        width: 100%;
     }
     .main_n_conin_agree_inputwr7 + label {
         margin-top: 1px;
@@ -862,4 +1027,124 @@
     .contact_submit img {
         width: 350px;
     }
+
+
+    .main_bg {
+        height: 250px;
+    }
+    .main_bg > img {
+        width: 750px;
+    }
+    .main_tit > a {
+        font-size: 1.2rem;
+    }
+
+
+    .main_popup {
+        width: 100%;
+    }
+    .popup_img img {
+        width: 100%;
+    }
+
+
+
+    .search {
+        width: 100%;
+        height: 600px;
+    }
+    .search_con {
+        background-size: 115%!important;
+    }
+    .sfd_li1 img {
+        width: 70px!important;
+    }
+
+
+    .sms_conf {
+        width: 100%;
+    }
+    .con_conf_sms img {
+        width: 100%;
+    }
+    .sms_conf_icon {
+        /* display: none; */
+        right: 0!important;
+    }
+    .sms_conf_icon_p_close {
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .main_bt_mo > a {
+        padding: 0 5px;
+    }
+    .main_bt_mo > a > img {
+        width: 120px;
+    }
+
+
+
+    .alertpop {
+        width: 100%;
+    }
+    .alertpop img {
+        width: 100%;
+    }
+    .main_footer {
+        padding: 30px 0 60px 0;
+    }
+
+
+
+    .main_alert_pop_close {
+        width: 60px;
+        bottom: 5px;
+    }
+    
+    
 }
+
+
+
+@media screen and (max-width: 370px) {
+    .search_con {
+        background-size: 140%!important;
+    }
+    .popup_list_rst_bottom_noimg {
+        width: 100%!important;
+    }
+    .popup_list_rst_bottom_li {
+        width: 100%!important;
+    }
+    .calForForm {
+        right: -15px;
+        left: auto;
+        margin-left: 0;
+        width: 100%;
+    }
+    .main_n_juso_desc1 {
+        width: 100%;
+    }
+    .main_n_juso_desc2 {
+        width: 100%;
+    }
+}
+
+
+
+@media screen and (max-width: 350px) {
+    .contact_submit {
+        width: 100%;
+    }
+    .contact_submit img {
+        width: 100%;
+    }
+}
+
+
+
+
+

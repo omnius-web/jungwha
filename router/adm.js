@@ -596,6 +596,11 @@ router.post('/excelsend',(req,res)=>{
 router.post('/print',(req,res)=>{
   var post = req.body;
   post.jstextarea = JSON.parse(post.jstextarea);
+  if(post.day !== '0'){
+    var printDate = new Date(Number(post.year),Number(post.month)-1,Number(post.day));
+    var yoil = ['일','월','화','수','목','금','토'];
+    post.yoil = yoil[printDate.getDay()];
+  }
   res.render('adm/print',post);
 });
 // Print

@@ -43,3 +43,36 @@
     font-size: 1.8rem;
     z-index: 9999;
 }
+.agree_close2 {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0 10px 0;
+}
+.agree_close2 img {
+    width: 60px;
+}
+
+
+
+
+@media screen and (max-width: 800px){
+    .agree_wrap {
+        width: 100%;
+        height: 300px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .agree_wrap > li.tit {
+        font-size: 1.2rem;
+        font-weight: 800;
+    }
+    
+    .agree_wrap > li.tit2 {
+        font-size: 1.0rem;
+        font-weight: 600;
+    }
+    
+    .agree_wrap > li.desc {
+        font-size: 0.8rem;
+    }
+}

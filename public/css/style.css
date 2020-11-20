@@ -328,6 +328,30 @@ input:focus {outline:none;}
   background-color: #dadada;
   cursor: pointer;
 }
+.calBottom > p {
+  text-align: left;
+}
+.calBottom > p > a {
+  display: inline-block;
+  margin-top: 7px;
+  color: red;
+}
+.calBottom > p > input + label {
+  vertical-align: top;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #bcbcbc;
+  cursor: pointer;
+  margin-top: 7px;
+}
+.calBottom > p > input:checked + label {
+  background-image: url('/img/main/check.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* background-color: #0088ff; */
+}
 .main_n_juso {
   position: absolute;
   display: none;
@@ -870,6 +894,10 @@ input:focus {outline:none;}
   border: 1px solid #cccccc;
   padding: 10px;
 }
+.adm_conin_tr td {
+  border-top: 3px solid black!important;
+  border-bottom: 3px solid black!important;
+}
 
 /* adm_Contact_list */
 
@@ -922,3 +950,4 @@ input:focus {outline:none;}
   cursor: pointer;
 }
 /* main_popup */
+

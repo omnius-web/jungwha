@@ -190,8 +190,8 @@
 
   .sms_conf {
     display: none;
-    position: absolute;
-    top: 55%;
+    position: fixed;
+    top: 70%;
     left: 50%;
     transform: translate(-50%,-50%);
     -webkit-transform: translate(-50%,-50%);
@@ -233,3 +233,14 @@
     padding: 0 5px;
     font-size: 1.3rem;
   }
+
+
+
+
+
+@media screen and (max-width: 500px){
+    .sms_conf_icon {
+        /* display: none; */
+        right: 0!important;
+    }
+}

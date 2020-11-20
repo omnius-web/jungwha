@@ -61,33 +61,36 @@ module.exports = function(post){
     },
     numberFormat: '#,##0; (#,##0); -',
   });
+  ws.column(2).setWidth(40);
   ws.column(4).setWidth(70);
-  ws.column(6).setWidth(20);
-  ws.column(8).setWidth(15);
+  ws.column(5).setWidth(70);
+  ws.column(7).setWidth(20);
   ws.column(9).setWidth(15);
-  ws.column(15).setWidth(40);
+  ws.column(10).setWidth(15);
   ws.column(16).setWidth(40);
+  ws.column(17).setWidth(40);
   ws.row(1).setHeight(50);
-  ws.cell(1, 1, 1, 17, true).string(`${post.year}년 ${post.month}월`).style(style2);
+  ws.cell(1, 1, 1, 18, true).string(`${post.year}년 ${post.month}월`).style(style2);
 
   ws.row(2).setHeight(40);
   ws.cell(2,1).string('번호').style(style);
   ws.cell(2,2).string('이름').style(style);
   ws.cell(2,3).string('구').style(style);
   ws.cell(2,4).string('주소').style(style);
-  ws.cell(2,5).string('청소날짜').style(style);
-  ws.cell(2,6).string('청소시간').style(style);
-  ws.cell(2,7).string('청소량').style(style);
-  ws.cell(2,8).string('전화번호1').style(style);
-  ws.cell(2,9).string('전화번호2').style(style);
-  ws.cell(2,10).string('청소금액').style(style);
-  ws.cell(2,11).string('결재여부').style(style);
-  ws.cell(2,12).string('청소완료').style(style);
-  ws.cell(2,13).string('청소알림').style(style);
-  ws.cell(2,14).string('세금계산서').style(style);
-  ws.cell(2,15).string('요청사항').style(style);
-  ws.cell(2,16).string('비고').style(style);
-  ws.cell(2,17).string('우수환경').style(style);
+  ws.cell(2,5).string('신주소').style(style);
+  ws.cell(2,6).string('청소날짜').style(style);
+  ws.cell(2,7).string('청소시간').style(style);
+  ws.cell(2,8).string('청소량').style(style);
+  ws.cell(2,9).string('전화번호1').style(style);
+  ws.cell(2,10).string('전화번호2').style(style);
+  ws.cell(2,11).string('청소금액').style(style);
+  ws.cell(2,12).string('결재여부').style(style);
+  ws.cell(2,13).string('청소완료').style(style);
+  ws.cell(2,14).string('청소알림').style(style);
+  ws.cell(2,15).string('세금계산서').style(style);
+  ws.cell(2,16).string('요청사항').style(style);
+  ws.cell(2,17).string('비고').style(style);
+  ws.cell(2,18).string('우수환경').style(style);
 
   var cellnum = 3;
   var inNo = 1;
@@ -100,19 +103,20 @@ module.exports = function(post){
     ws.cell(cellnum,2).string(`${postJson[jsnum].wr1}`).style(style);
     ws.cell(cellnum,3).string(`${postJson[jsnum].wr19}`).style(style);
     ws.cell(cellnum,4).string(`${postJson[jsnum].wr4}`).style(style);
-    ws.cell(cellnum,5).string(`${postJson[jsnum].wr2}`).style(style);
-    ws.cell(cellnum,6).string(`${postJson[jsnum].wr3}`).style(style);
-    ws.cell(cellnum,7).string(`${postJson[jsnum].wr13}`).style(style);
-    ws.cell(cellnum,8).string(`${postJson[jsnum].wr5}`).style(style);
-    ws.cell(cellnum,9).string(`${postJson[jsnum].wr14}`).style(style);
-    ws.cell(cellnum,10).string(`${postJson[jsnum].wr15}`).style(style);
-    ws.cell(cellnum,11).string(`${postJson[jsnum].wr18}`).style(style);
-    ws.cell(cellnum,12).string(`${postJson[jsnum].wr12}`).style(style);
-    ws.cell(cellnum,13).string(`${postJson[jsnum].wr16}`).style(style);
-    ws.cell(cellnum,14).string(`${postJson[jsnum].wr7}`).style(style);
-    ws.cell(cellnum,15).string(`${postJson[jsnum].wr6}`).style(style);
-    ws.cell(cellnum,16).string(`${postJson[jsnum].wr17}`).style(style);
-    ws.cell(cellnum,17).string(`${postJson[jsnum].wr20}`).style(style);
+    ws.cell(cellnum,5).string(`${postJson[jsnum].wr23}`).style(style);
+    ws.cell(cellnum,6).string(`${postJson[jsnum].wr2}`).style(style);
+    ws.cell(cellnum,7).string(`${postJson[jsnum].wr3}`).style(style);
+    ws.cell(cellnum,8).string(`${postJson[jsnum].wr13}`).style(style);
+    ws.cell(cellnum,9).string(`${postJson[jsnum].wr5}`).style(style);
+    ws.cell(cellnum,10).string(`${postJson[jsnum].wr14}`).style(style);
+    ws.cell(cellnum,11).string(`${postJson[jsnum].wr15}`).style(style);
+    ws.cell(cellnum,12).string(`${postJson[jsnum].wr18}`).style(style);
+    ws.cell(cellnum,13).string(`${postJson[jsnum].wr12}`).style(style);
+    ws.cell(cellnum,14).string(`${postJson[jsnum].wr16}`).style(style);
+    ws.cell(cellnum,15).string(`${postJson[jsnum].wr7}`).style(style);
+    ws.cell(cellnum,16).string(`${postJson[jsnum].wr6}`).style(style);
+    ws.cell(cellnum,17).string(`${postJson[jsnum].wr17}`).style(style);
+    ws.cell(cellnum,18).string(`${postJson[jsnum].wr20}`).style(style);
     cellnum++;
     inNo++;
     //sumwr13 += Number(postJson[jsnum].wr13);
@@ -121,9 +125,9 @@ module.exports = function(post){
   }
 
   ws.row(cellnum+2).setHeight(30);
-  ws.cell(cellnum+2,6).string(`합계`).style(style);
-  ws.cell(cellnum+2,7).string(`${postJson[inNo-1].sumwr13}`).style(style);
-  ws.cell(cellnum+2,10).string(`${postJson[inNo-1].sumwr15}`).style(style);
+  ws.cell(cellnum+2,7).string(`합계`).style(style);
+  ws.cell(cellnum+2,8).string(`${postJson[inNo-1].sumwr13}`).style(style);
+  ws.cell(cellnum+2,11).string(`${postJson[inNo-1].sumwr15}`).style(style);
 
 
   // Set value of cell A1 to 100 as a number type styled with paramaters of style

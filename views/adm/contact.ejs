@@ -127,11 +127,15 @@
             var selDay = $('select[name="day"]').val();
             if(selDay=='0'){
                 selDay = '';
+                var yoilRst = '';
             }
             else{
+                var printDate = new Date(Number(selYear),Number(selMonth)-1,Number(selDay));
+                var yoil = ['일','월','화','수','목','금','토'];
+                var yoilRst = yoil[printDate.getDay()]+'요일';
                 selDay = `${selDay}일`;
             }
-            document.write(`${selYear}년 ${selMonth}월 ${selDay}`);;
+            document.write(`${selYear}년 ${selMonth}월 ${selDay} ${yoilRst}`);
         </script>
     </div>
     <div class="extesst excel_bt_style">
@@ -225,7 +229,7 @@
                     <option value="소사구" <% if(data[clNum].wr19=='소사구'){ %> selected="selected" <%}%> >소사구</option>
                 </select>
             </td>
-            <td style="width: 300px;">
+            <td style="width: 260px;">
                 <input type="text" name="wr4" value="<%= data[clNum].wr4 %>" class="admconlist_input5"><!--주소-->
             </td>
             <td>
@@ -311,7 +315,7 @@
         <tr>
             <td colspan="19" style="height: 30px;"></td>
         </tr>
-        <tr>
+        <tr class="adm_conin_tr">
             <form method="post" id="admconin">
                 <td>
                     
@@ -328,7 +332,7 @@
                         <option value="소사구"  >소사구</option>
                     </select>
                 </td>
-                <td style="width: 300px;">
+                <td style="width: 260px;">
                     <input type="text" name="wr4" value="" class="admconlist_input5"><!--주소-->
                 </td>
                 <td>
@@ -340,15 +344,17 @@
                 <td>
                     <select name="wr3" id="">
                         <option value="">시간선택</option>
+                        <option value="오전 아무때나">오전중</option>
+                        <option value="오후 아무때나">오후중</option>
                         <option value="오전 6시~7시">오전 6시~7시</option>
                         <option value="오전 7시~8시">오전 7시~8시</option>
                         <option value="오전 8시~9시">오전 8시~9시</option>
+                        <option value="오전 8시~9시">오전 9시~10시</option>
                         <option value="오전 10시~11시">오전 10시~11시</option>
                         <option value="오전 11시~12시">오전 11시~12시</option>
                         <option value="오후 1시~2시">오후 1시~2시</option>
                         <option value="오후 2시~3시">오후 2시~3시</option>
-                        <option value="오전 아무때나">오전 아무때나</option>
-                        <option value="오후 아무때나">오후 아무때나</option>
+                        
                     </select>
                     <!--청소시간-->
                 </td>

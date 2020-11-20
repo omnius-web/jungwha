@@ -13,7 +13,7 @@ $(document).on('click','.search_enter2',function(){
         $('.sms_conf').css('display','inline-block');
       }
     });
-    var se2_htlm = '<div class="con_conf_sms"><img src="/img/main/sms_conf.png"><li class="con_conf_sms_input"><a><input type="radio" name="sms" value="0"></a><a>네</a><a><input type="radio" name="sms" value="1"></a><a>아니요</a></li><li class="search_icon search_enter sms_conf_icon"><img src="/img/icon_b.png"></li></div>';
+    var se2_htlm = '<div class="con_conf_sms"><img src="/img/main/sms_conf.png"><li class="con_conf_sms_input"><a><input type="radio" name="sms" value="0"></a><a>네</a><a><input type="radio" name="sms" value="1"></a><a>아니요</a></li><li class="search_icon search_enter sms_conf_icon"><img src="/img/icon_b.png"></li><p class="sms_conf_icon_p_close"><i class="fa fa-times" aria-hidden="true" style="color: black;"></i></p></div>';
     // $('.sms_conf').html(se2_htlm);
     // $('.sms_conf').css('display','inline-block');
 });
