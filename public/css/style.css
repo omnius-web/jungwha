@@ -550,6 +550,7 @@ input:focus {outline:none;}
   font-size: 1.7rem;
   font-weight: bolder;
   margin: 30px 0 25px 0;
+  /* padding-top: 80px; */
 }
 
 .contact_submit {
@@ -846,8 +847,17 @@ input:focus {outline:none;}
   font-size: 0.8rem;
 }
 .contactlist_select {
+  /* position: fixed;
+  width: 100%; */
   text-align: center;
   margin-bottom: 20px;
+  /* background-color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%); */
 }
 .contactlist_select a {
   font-size: 1.3rem;

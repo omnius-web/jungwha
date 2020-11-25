@@ -118,6 +118,7 @@ router.get('/',(req,res)=>{
     // res.render('index',rstSend);
     if(req.user === undefined){
       res.render('main',rstSend);
+      // res.send('점검중');
     }
     else{
       res.redirect('/adm');
@@ -202,6 +203,7 @@ router.post('/contactprc',(req,res)=>{
       sendJn.err = '2';
       confpost = false;
       res.send(sendJn);
+      // console.log(post);
       return
     }
     postCount++;
@@ -252,7 +254,18 @@ router.post('/contactprc',(req,res)=>{
     var ctprcSql = `select * from contact where (wr5 = ? and not wr12="1")`;
     var ctprcParam = [post.wr5];
 
-    if(post.wr3 !== '빠른시일 아무때나'){
+    // if(post.wr3 !== '빠른시일 아무때나'){
+    //   ctprcSql +=  `or (wr2 = ? and wr3 = ?)`;
+    //   ctprcParam.push(post.wr2);
+    //   ctprcParam.push(post.wr3);
+    // }
+
+    if(post.wr3 == '오전 중' || post.wr3 == '오후 중' || post.wr3 == '빠른시일 아무때나'){
+      // ctprcSql +=  `or (wr2 = ? and wr3 = ?)`;
+      // ctprcParam.push(post.wr2);
+      // ctprcParam.push(post.wr3);
+    }
+    else {
       ctprcSql +=  `or (wr2 = ? and wr3 = ?)`;
       ctprcParam.push(post.wr2);
       ctprcParam.push(post.wr3);
@@ -489,7 +502,23 @@ router.get('/agree',(req,res)=>{
 
 
 
-
+router.get('/timestamp',function(req,res){
+  db.query('select wr1,wr8,wr9,wr10 from contact',(err,data)=>{
+    if(err){
+      throw err;
+    }
+    var timeHtml = '';
+    for(yuio in data){
+      var yYear = data[yuio].wr8;
+      var yMonth = data[yuio].wr9;
+      var yDay = data[yuio].wr10;
+      var rstTime = omTime.selTimeSt(yYear,yMonth-1,yDay);
+      //console.log(data[yuio].wr1,rstTime.selTS2);
+      timeHtml += `${rstTime.selTS2}<br>`;
+    }
+    res.send(timeHtml);
+  });
+});
 
 
 

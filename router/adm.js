@@ -534,7 +534,10 @@ router.post('/contactin',(req,res)=>{
     post.wr8 = dateSplit[0];
     post.wr9 = dateSplit[1];
     post.wr10 = dateSplit[2];
-    post.wr11 = reqSelTime.selTS2;
+    if(post.wr2 !== ''){
+      post.wr11 = reqSelTime.selTS2;
+    }
+    // post.wr11 = reqSelTime.selTS2;
     post.wr13 = post.wr13.replace(',','');
     post.wr13 = Number(post.wr13).toFixed(3);
     post.wr15 = post.wr15.replace(',','');
@@ -557,13 +560,13 @@ router.post('/contactin',(req,res)=>{
     params.push(anum);
     */
 
-    // console.log(sql);
-    // console.log(params);
+    console.log(sql);
+    console.log(post);
     
     var conUpdate = new Promise(function(resolve,reject){
       db.query(sql,post,function(err,rst){
         if(err){
-          throw 'adm contact insert query error';
+          throw 'adm contact insert query error'+err;
         }
         resolve(rst);
       })
