@@ -22,6 +22,9 @@ var storage = multer.diskStorage({
   }
 });
 
+// router.use(bodyParser.json({ limit : 100000000 })); 
+// router.use(bodyParser.urlencoded({ limit:100000000, extended: false }));
+
 var upload = multer(
   { 
     storage: storage,
@@ -43,6 +46,8 @@ router.use(session({
 }))
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
+// router.use(bodyParser.json({limit: '50mb'}));
+// router.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 router.use(flash());
 
 var passport = require('../models/passport')(router,db);

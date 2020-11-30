@@ -12,6 +12,9 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
+
 
 var option = {
 	key: fs.readFileSync('/opt/bitnami/apache/conf/bitnami/certs/server.key'),
